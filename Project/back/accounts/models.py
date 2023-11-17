@@ -18,7 +18,7 @@ class Profile(models.Model):
     job = models.CharField(max_length=30, null=True)
     main_bank = models.TextField(null=True)
 
-    # 성향 관련 변수
+    # 유저 성향 관련 필드
     stability = models.TextField(null=True)
     banking_products = models.TextField(null=True)
     card_products = models.TextField(null=True)
