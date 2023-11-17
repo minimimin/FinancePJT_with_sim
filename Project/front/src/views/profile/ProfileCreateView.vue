@@ -2,7 +2,7 @@
   <!--아래 값 받은 걸로 프로필 페이지에 보여질 수 있게 + 수정할 수 있게 설정하기!!-->
 
   <div>
-    <h1>{{ username }}님의 PROFILE</h1>
+    <!-- <h1>{{ username }}님의 PROFILE</h1> -->
     <hr>
     <p>상세 정보를 입력해주세요.</p>
     <!--age, money, salary, job, main_bank, 
@@ -142,6 +142,12 @@
 
 
 <script setup>
+import { useProfileStore } from '@/stores/profile'
+import { useUserStore } from '@/stores/user'
+import { useRouter, useRoute } from 'vue-router'
+import { ref } from 'vue'
+import axios from 'axios'
+
 const toggleTextField = function() {
       const radio = document.getElementById('기타')
       const textField = document.getElementById('기타TextField')
@@ -156,12 +162,6 @@ const toggleTextField = function() {
 
 
  //--------------------------------------------------------------------------------------
-
-    import { useProfileStore } from '@/stores/profile'
-    import { useUserStore } from '@/stores/user'
-    import { useRouter, useRoute } from 'vue-router'
-    import { ref } from 'vue'
-    import axios from 'axios'
 
     const router = useRouter()
     const selectedBank = ref(null)
@@ -183,36 +183,36 @@ const toggleTextField = function() {
     const user_pk = store.userPk
     const username = store.userName
 
-    const createProfile = function () {
-      axios({
-      method:'post',
-      url:`${store.API_URL}/profile/${user_pk}/`,
-      // user_pk를 우선 위에서 받아왔다고 치고, 입력해놓기,,!!
-      data:{
-        age: age.value, 
-        money: money.value, 
-        salary: salary.value,
-        // job: job.value, 
-        // main_bank: main_bank.value, 
-        // stabillity: stabillity.value, 
-        // banking_products: banking_products.value, 
-        // card_products: card_products.value,
-      },
-      headers: {
-        Authorization: `Token ${store.token}`
-      }
-    })
-      .then((response) => {
-        router.push({ name: 'profile' })
+    // const createProfile = function () {
+    //   axios({
+    //   method:'post',
+    //   url:`${store.API_URL}/profile/${user_pk}/`,
+    //   // user_pk를 우선 위에서 받아왔다고 치고, 입력해놓기,,!!
+    //   data:{
+    //     age: age.value, 
+    //     money: money.value, 
+    //     salary: salary.value,
+    //     // job: job.value, 
+    //     // main_bank: main_bank.value, 
+    //     // stabillity: stabillity.value, 
+    //     // banking_products: banking_products.value, 
+    //     // card_products: card_products.value,
+    //   },
+    //   headers: {
+    //     Authorization: `Token ${store.token}`
+    //   }
+    // })
+    //   .then((response) => {
+    //     router.push({ name: 'profile' })
         
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-      return {
+    //   })
+    //   .catch((error) => {
+    //     console.log(error)
+    //   })
+    //   return {
 
-      }
-    }
+    //   }
+    // }
 
     
 //--------------------------------------------------------------------

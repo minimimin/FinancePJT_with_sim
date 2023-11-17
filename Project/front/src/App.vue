@@ -3,6 +3,7 @@
     <nav>
       <RouterLink :to="{ name: 'main' }">Main</RouterLink> |
       <RouterLink :to="{ name: 'articles' }">Community</RouterLink> |
+      <RouterLink :to="{ name: 'profile' }">Profile</RouterLink> |
       <RouterLink :to="{ name: 'signup' }">SignUp</RouterLink> |
       <RouterLink :to="{ name: 'login' }">LogIn</RouterLink> |
       <button @click="store.logOut">LogOut</button> |

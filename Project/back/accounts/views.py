@@ -10,7 +10,7 @@ from .serializers import ProfileSerializer
 @permission_classes([IsAuthenticated])
 def user_profile(request, user_pk):
     if request.method == 'GET':
-        profile = Profile.objects.get(pk=user_pk)
+        profile = Profile.objects.get(user_id=user_pk)
         serializer = ProfileSerializer(profile)
         return Response(serializer.data)
 
@@ -21,7 +21,7 @@ def user_profile(request, user_pk):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     elif request.method == 'PUT':
-        profile = Profile.objects.get(pk=user_pk)
+        profile = Profile.objects.get(user_id=user_pk)
         serializer = ProfileSerializer(profile, data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()

@@ -7,14 +7,10 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
 import { useUserStore } from '@/stores/user'
 
 const store = useUserStore()
 
-// onMounted(() => {
-//   store.getUserInfo()
-// })
 </script>
 
 <style scoped>

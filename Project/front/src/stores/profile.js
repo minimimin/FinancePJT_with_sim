@@ -1,10 +1,11 @@
-import { ref, computed } from 'vue'
-import { defineStore } from 'pinia'
-import axios from 'axios'
+import { ref } from 'vue'
 import { useRoute } from 'vue-router'
+import { defineStore } from 'pinia'
 import { useUserStore } from '@/stores/user'
+import axios from 'axios'
 
 export const useProfileStore = defineStore('profile', () => {
+  const userStore = useUserStore()
   const bank = ref([
     // 장고에서 은행 가지고 오기!
     // {name:'국민은행', id:1 }, 
@@ -13,41 +14,25 @@ export const useProfileStore = defineStore('profile', () => {
     // {name:'토스', id:4 }, 
     // {name:'하나은행', id:5 }
   ])
-
-  // const API_URL = 'http://127.0.0.1:8000'
-  const route = useRoute()
   const profile = ref([])
-  const store = useUserStore()
-  const user_pk = store.userPk
-  const username = store.userName
-  const token = store.token
-  // console.log(user_pk)
-// stores/User 에서 token이랑 인증키랑 isLogin 받아와야할 거 같은데..!??!
-// const token = ref(키 값 필 요)
 
-// 일단 그냥 만들고 추가해야하면 추가하자!
-
-// DRF에 profile 조회 요청을 보내는 action
-const getProfile = function() {
-  axios({
-    method: 'get',
-    url: `${store.API_URL}/profile/${user_pk}/`,
-    // 장고 주소 입력하는 곳인데 어떻게 유저 pk를 가지고 와서 입력할지??
-    headers:{
-      Authorization: `Token ${token}`
-    }
-    // 장고한테 인증받기위해서 토큰도 같이 보내기
-  })
-    .then((res) =>{
-      profile.value = res.data
+  // DRF에 profile 조회 요청을 보내는 action
+  const getProfile = function () {
+    axios({
+      method: 'get',
+      url: `${userStore.API_URL}/profile/${userStore.userPk}/`,
+      headers: {
+        Authorization: `Token ${userStore.token}`
+      }
     })
-    .catch((err) => {
-      console.log(err)
-    })
-}
-
-
-
+      .then((res) =>{
+        console.log(res.data)
+        profile.value = res.data
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
 
 // back의 모델에 설정된 필드들! 이걸 가지고 던져줘야한다!
   // const postProfile = function (profileDetail) {
@@ -88,5 +73,5 @@ const getProfile = function() {
 
 // back에 설정된 url은 user_pk도 있기때문에 그걸 받아와서 보내야한다!
 
-  return { API_URL, bank, profile, token, username, getProfile }
+  return { bank, profile, getProfile }
 })
