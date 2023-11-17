@@ -7,6 +7,7 @@ export const useUserStore = defineStore('user', () => {
   const API_URL = 'http://127.0.0.1:8000'
   const token = ref(null)
   const router = useRouter()
+
   const isLogin = computed(() => {
     if (token.value === null) {
       return false
@@ -53,5 +54,5 @@ export const useUserStore = defineStore('user', () => {
       })
   }
 
-  return { API_URL, singUp, logIn, token, isLogin }
+  return { API_URL, token, isLogin, singUp, logIn }
 }, { persist: true })

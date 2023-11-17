@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h1>회원가입</h1>
+    <h1>회원가입 페이지</h1>
     <form @submit.prevent="signUp">
-      <label for="userid">아이디 : </label>
-      <input type="text" id="userid" v-model.trim="username"><br>
+      <label for="username">아이디 : </label>
+      <input type="text" id="username" v-model.trim="username"><br>
       <label for="password1">패스워드 : </label>
       <input type="password" id="password1" v-model.trim="password1"><br>
       <label for="password2">패스워드 확인 : </label>

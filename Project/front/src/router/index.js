@@ -21,7 +21,6 @@ const router = createRouter({
     // article 관련
     {
       path: '/community',
-      name: 'community',
       name: 'articles',
       component: ArticleView
     },
