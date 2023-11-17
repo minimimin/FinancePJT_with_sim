@@ -21,13 +21,15 @@ const inputCategory = ref(null)
 const createCategory = function () {
     axios({
       method: 'post',
-      url: `${store.API_URL}/api/v1/category/`,
+      url: `${store.API_URL}/articles/category/detail/`,
       data: {
         name: inputCategory.value
+      },
+      headers: {
+        Authorization: `Token ${token.value}`
       }
     })
       .then((res) => {
-        // console.log(res.data)
         router.push({ name: 'main' })
       })
       .catch((err) => {

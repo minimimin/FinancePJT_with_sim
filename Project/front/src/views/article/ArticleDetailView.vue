@@ -51,6 +51,9 @@ const articleDelete = function () {
   axios({
     method: 'delete',
     url: `${store.API_URL}/articles/${articleId.value}/`,
+    headers: {
+      Authorization: `Token ${token.value}`
+    }
   })
     .then((res) => {
       router.push({ name: 'articles'})
@@ -67,6 +70,9 @@ const createComment = function () {
     data: {
       article: articleId.value,
       content: inputComment.value
+    },
+    headers: {
+      Authorization: `Token ${token.value}`
     }
   })
     .then((res) => {

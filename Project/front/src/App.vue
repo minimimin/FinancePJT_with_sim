@@ -6,7 +6,8 @@
       <RouterLink :to="{ name: 'profile' }">Profile</RouterLink> |
       <RouterLink :to="{ name: 'signup' }">SignUp</RouterLink> |
       <RouterLink :to="{ name: 'login' }">LogIn</RouterLink> |
-      <!-- <RouterLink :to="{ name: 'categoryCreate' }">CategoryCreate</RouterLink> | -->
+      <button @click="store.logOut">LogOut</button> |
+      <RouterLink :to="{ name: 'categoryCreate' }">CategoryCreate</RouterLink> |
     </nav>
   </header>
   <RouterView />
@@ -14,6 +15,10 @@
 
 <script setup>
 import { RouterView, RouterLink } from 'vue-router'
+import { useUserStore } from '@/stores/user'
+
+const store = useUserStore()
+
 </script>
 
 <style scoped>

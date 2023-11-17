@@ -40,6 +40,9 @@ const updateArticle = function () {
         title: existingTitle.value,
         content: existingContent.value,
         category: existingCategory.value,
+      },
+      headers: {
+        Authorization: `Token ${token.value}`
       }
     })
       .then((res) => {

@@ -7,6 +7,9 @@ export const useUserStore = defineStore('user', () => {
   const API_URL = 'http://127.0.0.1:8000'
   const token = ref(null)
   const router = useRouter()
+  const isSignUp = ref(false)
+  const userPk = ref(null)
+  const userName = ref(null)
 
   const isLogin = computed(() => {
     if (token.value === null) {
@@ -24,11 +27,12 @@ export const useUserStore = defineStore('user', () => {
       url: `${API_URL}/accounts/signup/`,
       data: {
         username, password1, password2,
-      }
+      },
     })
       .then((res) => {
-        token.value = res.data.key
-        router.push({ name: 'main' })
+        const password = password1
+        isSignUp.value = true
+        logIn({ username, password, isSignUp })
       })
       .catch((err) => {
         console.log(err)
@@ -36,7 +40,7 @@ export const useUserStore = defineStore('user', () => {
   }
 
   const logIn = function (payload) {
-    const { username, password } = payload
+    const { username, password, isSignUp } = payload
 
     axios({
       method: 'post',
@@ -47,12 +51,51 @@ export const useUserStore = defineStore('user', () => {
     })
       .then((res) => {
         token.value = res.data.key
-        history.back()
+        if (isSignUp) {
+          isSignUp.value = false
+          router.push({ name: 'main' })
+        } else {
+          history.back()
+        }
       })
       .catch((err) => {
         console.log(err)
       })
   }
 
-  return { API_URL, token, isLogin, singUp, logIn }
+  const logOut = function () {
+    axios({
+      method: 'post',
+      url: `${API_URL}/accounts/logout/`,
+      headers: {
+        Authorization: `Token ${token.value}`
+      }
+    })
+      .then((res) => {
+        token.value = null
+        router.push({ name: 'main' })
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  const getUserPk = function () {
+    axios({
+      method: 'get',
+      url: `${API_URL}/accounts/user/`,
+      headers: {
+        Authorization: `Token ${token.value}`
+      }
+    })
+      .then((res) => {
+        userPk.value = res.data.pk
+        userName.value = res.data.username
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  return { API_URL, token, isLogin, userPk, userName, singUp, logIn, logOut, getUserPk }
 }, { persist: true })

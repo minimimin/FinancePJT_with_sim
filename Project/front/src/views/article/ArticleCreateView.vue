@@ -40,6 +40,9 @@ const createArticle = function () {
         title: inputTitle.value,
         content: inputContent.value,
         category: selectedCategory.value,
+      },
+      headers: {
+      Authorization: `Token ${token.value}`
       }
     })
       .then((res) => {

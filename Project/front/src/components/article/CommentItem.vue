@@ -24,6 +24,9 @@ const commentDelete = function () {
   axios({
     method: 'delete',
     url: `${store.API_URL}/articles/comment/detail/${props.comment.id}/`,
+    headers: {
+    Authorization: `Token ${token.value}`
+    }
   })
     .then((res) => {
       store.getComments(articleId.value)
