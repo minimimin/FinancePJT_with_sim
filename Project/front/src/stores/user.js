@@ -13,8 +13,11 @@ export const useUserStore = defineStore('user', () => {
 
   const isLogin = computed(() => {
     if (token.value === null) {
+      userPk.value = null
+      userName.value = null
       return false
     } else {
+      getUserInfo()
       return true
     }
   })
@@ -73,6 +76,8 @@ export const useUserStore = defineStore('user', () => {
     })
       .then((res) => {
         token.value = null
+        // userPk.value = null
+        // userName.value = null
         router.push({ name: 'main' })
       })
       .catch((err) => {
