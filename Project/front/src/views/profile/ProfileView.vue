@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{ user_pk }}님의 프로필</h1>
+    <h1>{{ username }}님의 프로필</h1>
     <!--프로필이 있다면 보여주기 + 수정하기 페이지로 이동할 수 있도록 만들기-->
     <button @click="updateprofile()">프로필 수정하기</button>
     <p>나이 : {{ store.profile.age }}</p>
@@ -30,7 +30,9 @@ import { useProfileStore } from '@/stores/profile'
 import { useUserStore } from '../../stores/user'
 
 const store = useProfileStore()
-
+// const stores = useUserStore()
+const user_pk = store.userPk
+const username = store.userName
 
 // 바로바로 정보 가지고 오기
 onMounted(() => {

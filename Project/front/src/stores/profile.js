@@ -2,7 +2,7 @@ import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import axios from 'axios'
 import { useRoute } from 'vue-router'
-import { useUserStore } from './user'
+import { useUserStore } from '@/stores/user'
 
 export const useProfileStore = defineStore('profile', () => {
   const bank = ref([
@@ -18,8 +18,10 @@ export const useProfileStore = defineStore('profile', () => {
   const route = useRoute()
   const profile = ref([])
   const store = useUserStore()
-  // const token = store.token.value
-
+  const user_pk = store.userPk
+  const username = store.userName
+  const token = store.token
+  // console.log(user_pk)
 // stores/User 에서 token이랑 인증키랑 isLogin 받아와야할 거 같은데..!??!
 // const token = ref(키 값 필 요)
 
@@ -29,10 +31,10 @@ export const useProfileStore = defineStore('profile', () => {
 const getProfile = function() {
   axios({
     method: 'get',
-    url: `${store.API_URL}/profile/${route.params.user_pk}/`,
+    url: `${store.API_URL}/profile/${user_pk}/`,
     // 장고 주소 입력하는 곳인데 어떻게 유저 pk를 가지고 와서 입력할지??
     headers:{
-      Authorization: `Token ${store.token.value}`
+      Authorization: `Token ${token}`
     }
     // 장고한테 인증받기위해서 토큰도 같이 보내기
   })
@@ -86,5 +88,5 @@ const getProfile = function() {
 
 // back에 설정된 url은 user_pk도 있기때문에 그걸 받아와서 보내야한다!
 
-  return { API_URL, bank, profile, token, postProfile, getProfile }
+  return { API_URL, bank, profile, token, username, getProfile }
 })

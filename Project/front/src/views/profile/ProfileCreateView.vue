@@ -7,7 +7,7 @@
     <p>상세 정보를 입력해주세요.</p>
     <!--age, money, salary, job, main_bank, 
       stabillity, banking_products, card_products-->
-    <form @submit.prevent="createProfile">
+    <!-- <form @submit.prevent="createProfile">
 
       <label for="age">나이</label><br>
       <input type="number" id="age" v-model.trim='age' min=0 max=200 value="여기 입력받은 값이 연동될 수 있게 하기!">
@@ -22,7 +22,13 @@
       <br>
       <br>
 
-      <fieldset>
+      <label for="salary">연봉</label>
+      <br>
+      <input type="number" id="salary" v-model.trim='salary' value="여기 입력받은 값이 연동될 수 있게 하기!">
+      
+      <br>
+      <br> -->
+      <!-- <fieldset>
         <legend>직업</legend>
         <div>
           <input type="radio" id="학생 및 주부" name="job"  v-model.trim='job' value="학생 및 주부" checked />
@@ -44,7 +50,9 @@
           <label for="기타">기타</label>
           <input type="text" id="기타TextField" v-model.trim='job' disabled>
         </div>
-      </fieldset>
+      </fieldset> -->
+
+
       <!-- <label for="job">직업 : </label>
       <div id="job">
         <input type="radio">
@@ -53,22 +61,23 @@
       <br>
 
 <!--------------------------------------------------------------------------------------------->
-      <label for="main_bank">주거래은행 : </label><br>
-      <select id="main_bank" v-model="selectedBank">
+      <!-- <label for="main_bank">주거래은행 : </label><br> -->
+      <!-- <select id="main_bank" v-model="selectedBank"> -->
+      <!-- <select id="main_bank">
         <option disabled value="">은행을 선택하세요</option>
         <option v-for="bank in store.bank" 
         :key="bank.id" :value="bank.id">{{ bank.name }}</option>
-      </select>
+      </select> -->
 
       <br>
 <!--------------------------------------------------------------------------------------------->
 
       <br>
 
-  <label for="stabillity">안정성</label><br>
-  <input type="range" id="stabillity" name="stabillity" min="0" max="100"  list="values">
+  <!-- <label for="stabillity">안정성</label><br>
+  <input type="range" id="stabillity" name="stabillity" min="0" max="100"  list="values"> -->
   <!-- <input type="submit" value="Submit"> -->
-  <datalist id="values">
+  <!-- <datalist id="values">
   <option value="0" label="매우 모험 추구(하이 리스크 하이 리턴)"></option>
   <option value="25" label="모험 추구"></option>
   <option value="50" label="보통"></option>
@@ -76,13 +85,13 @@
   <option value="100" label="매우 안정 추구(노 리스트 리를 리턴)"></option>
   </datalist>
   
-  <br>
+  <br> -->
 
 <!----------------------------------------------------------------------------------------------->
       
 <br>
 
-  <fieldset>
+  <!-- <fieldset>
         <legend>선호하는 은행 상품 유형(모두 선택 가능)</legend>
 
         <div>
@@ -104,12 +113,12 @@
           <input type="checkbox" id="대출" name="대출" />
           <label for="대출">대출</label>
         </div>
-      </fieldset>
+      </fieldset> -->
 
 <!---------------------------------------------------------------------------------------------->
       <br>
 
-      <fieldset>
+      <!-- <fieldset>
         <legend>선호하는 카드 유형(하나만 선택)</legend>
         <div>
           <input type="radio" id="신용카드" name="card" value="신용카드" checked />
@@ -127,7 +136,7 @@
         </div>
       </fieldset>
 
-    </form>
+    </form> -->
   </div>
 </template>
 
@@ -169,11 +178,10 @@ const toggleTextField = function() {
     const banking_products = ref(null)
     const card_products = ref(null)
 
-    const route = useRoute()
+    // const route = useRoute()
 
-    const user_pk = ref(route.params.user_pk)
-    const username = ref(route.params.name)
-
+    const user_pk = store.userPk
+    const username = store.userName
 
     const createProfile = function () {
       axios({
@@ -184,11 +192,11 @@ const toggleTextField = function() {
         age: age.value, 
         money: money.value, 
         salary: salary.value,
-        job: job.value, 
-        main_bank: main_bank.value, 
-        stabillity: stabillity.value, 
-        banking_products: banking_products.value, 
-        card_products: card_products.value,
+        // job: job.value, 
+        // main_bank: main_bank.value, 
+        // stabillity: stabillity.value, 
+        // banking_products: banking_products.value, 
+        // card_products: card_products.value,
       },
       headers: {
         Authorization: `Token ${store.token}`
