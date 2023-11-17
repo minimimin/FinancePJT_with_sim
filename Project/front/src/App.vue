@@ -2,10 +2,11 @@
   <header>
     <nav>
       <RouterLink :to="{ name: 'main' }">Main</RouterLink> |
-      <RouterLink :to="{ name: 'community' }">Community</RouterLink> |
+      <RouterLink :to="{ name: 'articles' }">Community</RouterLink> |
       <RouterLink :to="{ name: 'profile' }">Profile</RouterLink> |
       <RouterLink :to="{ name: 'signup' }">SignUp</RouterLink> |
       <RouterLink :to="{ name: 'login' }">LogIn</RouterLink> |
+      <!-- <RouterLink :to="{ name: 'categoryCreate' }">CategoryCreate</RouterLink> | -->
     </nav>
   </header>
   <RouterView />
@@ -16,4 +17,8 @@ import { RouterView, RouterLink } from 'vue-router'
 </script>
 
 <style scoped>
+</style>
+
+<style>
+/* 모든 파일에 적용할 CSS */
 </style>
