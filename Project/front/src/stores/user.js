@@ -80,7 +80,7 @@ export const useUserStore = defineStore('user', () => {
       })
   }
 
-  const getUserPk = function () {
+  const getUserInfo = function () {
     axios({
       method: 'get',
       url: `${API_URL}/accounts/user/`,
@@ -97,5 +97,5 @@ export const useUserStore = defineStore('user', () => {
       })
   }
 
-  return { API_URL, token, isLogin, userPk, userName, singUp, logIn, logOut, getUserPk }
+  return { API_URL, token, isLogin, userPk, userName, singUp, logIn, logOut, getUserInfo }
 }, { persist: true })

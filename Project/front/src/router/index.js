@@ -7,7 +7,7 @@ import ArticleDetailView from '@/views/article/ArticleDetailView.vue'
 import ArticleUpdateView from '@/views/article/ArticleUpdateView.vue'
 import CategoryCreateView from '@/views/article/CategoryCreateView.vue'
 import ProfileView from '@/views/profile/ProfileView.vue'
-import ProfileCreateView from '@/views/profile/ProfileCreateView.vue'
+// import ProfileCreateView from '@/views/profile/ProfileCreateView.vue'
 import ProfileUpdateView from '@/views/profile/ProfileUpdateView.vue'
 import SignUpView from '@/views/user/SignUpView.vue'
 import LogInView from '@/views/user/LogInView.vue'
@@ -55,7 +55,7 @@ const router = createRouter({
     {
       path: '/profile/create/',
       name: 'profileCreate',
-      component: ProfileCreateView
+      // component: ProfileCreateView
     },
 		{
       path: '/profile/update/',
