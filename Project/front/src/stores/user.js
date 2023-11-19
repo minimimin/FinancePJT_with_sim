@@ -1,6 +1,7 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import { useRouter } from 'vue-router'
+import { useProfileStore } from '@/stores/profile'
 import axios from 'axios'
 
 export const useUserStore = defineStore('user', () => {
@@ -12,10 +13,14 @@ export const useUserStore = defineStore('user', () => {
   const userName = ref(null)
   const isSignUp = ref(false) // 회원가입 후 바로 로그인하기 위한 플래그 변수
 
+  // 이거 로그아웃시 프로필 초기화 해주기 위한 변수에요!
+  const store = useProfileStore()
+
   const isLogin = computed(() => {
     if (token.value === null) {
       userPk.value = null
       userName.value = null
+      store.profile = null
       return false
     } else {
       getUserInfo()
@@ -96,9 +101,9 @@ export const useUserStore = defineStore('user', () => {
       }
     })
       .then((res) => {
-        // userPk.value = res.data.pk
-        // userName.value = res.data.username
-        console.log(res.data)
+        userPk.value = res.data.id
+        userName.value = res.data.username
+        // console.log(res.data)
       })
       .catch((err) => {
         console.log(err)

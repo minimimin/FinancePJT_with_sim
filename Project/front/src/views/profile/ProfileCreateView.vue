@@ -2,32 +2,34 @@
   <!--아래 값 받은 걸로 프로필 페이지에 보여질 수 있게 + 수정할 수 있게 설정하기!!-->
 
   <div>
-    <!-- <h1>{{ username }}님의 PROFILE</h1> -->
+    <h1>{{ username }}님의 PROFILE</h1>
     <hr>
     <p>상세 정보를 입력해주세요.</p>
     <!--age, money, salary, job, main_bank, 
       stabillity, banking_products, card_products-->
-    <!-- <form @submit.prevent="createProfile">
+    <form @submit.prevent="createProfile">
+    <!-- <form> -->
 
       <label for="age">나이</label><br>
-      <input type="number" id="age" v-model.trim='age' min=0 max=200 value="여기 입력받은 값이 연동될 수 있게 하기!">
+      <input type="number" id="age" v-model.trim='age' min=0 max=200>
       
       <br>
       <br>
       
       <label for="money">자산</label>
       <br>
-      <input type="number" id="money" v-model.trim='money' value="여기 입력받은 값이 연동될 수 있게 하기!">
-      
+      <input type="number" id="money" v-model.trim='money'>
+      <!-- <input type="submit"> -->
       <br>
       <br>
 
       <label for="salary">연봉</label>
       <br>
-      <input type="number" id="salary" v-model.trim='salary' value="여기 입력받은 값이 연동될 수 있게 하기!">
+      <input type="number" id="salary" v-model.trim='salary'>
       
       <br>
-      <br> -->
+      <button @click="submit">제출</button>
+      <br>
       <!-- <fieldset>
         <legend>직업</legend>
         <div>
@@ -137,6 +139,7 @@
       </fieldset>
 
     </form> -->
+  </form>
   </div>
 </template>
 
@@ -164,55 +167,60 @@ const toggleTextField = function() {
  //--------------------------------------------------------------------------------------
 
     const router = useRouter()
-    const selectedBank = ref(null)
+    // const selectedBank = ref(null)
     const store = useUserStore()
-    const stores = useProfileStore()
+    // const stores = useProfileStore()
 
 
     const age = ref(null)
     const money = ref(null)
     const salary = ref(null)
-    const job = ref(null)
-    const main_bank = ref(null)
-    const stabillity = ref(null)
-    const banking_products = ref(null)
-    const card_products = ref(null)
+    // const job = ref(null)
+    // const main_bank = ref(null)
+    // const stabillity = ref(null)
+    // const banking_products = ref(null)
+    // const card_products = ref(null)
 
     // const route = useRoute()
 
     const user_pk = store.userPk
     const username = store.userName
 
-    // const createProfile = function () {
-    //   axios({
-    //   method:'post',
-    //   url:`${store.API_URL}/profile/${user_pk}/`,
-    //   // user_pk를 우선 위에서 받아왔다고 치고, 입력해놓기,,!!
-    //   data:{
-    //     age: age.value, 
-    //     money: money.value, 
-    //     salary: salary.value,
-    //     // job: job.value, 
-    //     // main_bank: main_bank.value, 
-    //     // stabillity: stabillity.value, 
-    //     // banking_products: banking_products.value, 
-    //     // card_products: card_products.value,
-    //   },
-    //   headers: {
-    //     Authorization: `Token ${store.token}`
-    //   }
-    // })
-    //   .then((response) => {
-    //     router.push({ name: 'profile' })
+    const createProfile = function () {
+//       console.log("Request Data:", {
+//   age: age.value,
+//   money: money.value,
+//   salary: salary.value,
+// });
+      axios({
+      method:'post',
+      url:`${store.API_URL}/users/profile/${user_pk}/`,
+      data:{
+        age: age.value, 
+        money: money.value, 
+        salary: salary.value,
+        // job: job.value, 
+        // main_bank: main_bank.value, 
+        // stabillity: stabillity.value, 
+        // banking_products: banking_products.value, 
+        // card_products: card_products.value,
+      },
+      headers: {
+        Authorization: `Token ${store.token}`
+      }
+    })
+      .then((response) => {
+        console.log('good')
+        router.push({ name: 'profile' })
         
-    //   })
-    //   .catch((error) => {
-    //     console.log(error)
-    //   })
-    //   return {
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+      return {
 
-    //   }
-    // }
+      }
+    }
 
     
 //--------------------------------------------------------------------

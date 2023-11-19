@@ -7,11 +7,12 @@
       <div v-show="!userStore.isLogin"> 
         <RouterLink :to="{ name: 'signup' }">SignUp</RouterLink> |
         <RouterLink :to="{ name: 'login' }">LogIn</RouterLink> |
-        <RouterLink :to="{ name: 'profile' }">Profile</RouterLink> |
-        <RouterLink :to="{ name: 'categoryCreate' }">CategoryCreate</RouterLink> |
+        
       </div>
       <div v-show="userStore.isLogin">
         <button @click="userStore.logOut">LogOut</button> |
+        <RouterLink :to="{ name: 'profile' }">Profile</RouterLink> |
+        <RouterLink :to="{ name: 'categoryCreate' }">CategoryCreate</RouterLink> |
       </div>
     </nav>
   </header>

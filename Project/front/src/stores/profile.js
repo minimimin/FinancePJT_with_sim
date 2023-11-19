@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { defineStore } from 'pinia'
 import { useUserStore } from '@/stores/user'
@@ -20,7 +20,7 @@ export const useProfileStore = defineStore('profile', () => {
   const getProfile = function () {
     axios({
       method: 'get',
-      url: `${userStore.API_URL}/profile/${userStore.userPk}/`,
+      url: `${userStore.API_URL}/users/profile/${userStore.userPk}/`,
       headers: {
         Authorization: `Token ${userStore.token}`
       }
@@ -28,12 +28,19 @@ export const useProfileStore = defineStore('profile', () => {
       .then((res) =>{
         console.log(res.data)
         profile.value = res.data
+        // console.log(profile.value)
       })
       .catch((err) => {
         console.log(err)
       })
   }
 
+  const isValue = computed(() => {
+    if (profile.value) {
+      return true
+    } else
+      return false
+    })
 // back의 모델에 설정된 필드들! 이걸 가지고 던져줘야한다!
   // const postProfile = function (profileDetail) {
   //   const { user_pk, age, money, salary, job, main_bank, 
@@ -73,5 +80,5 @@ export const useProfileStore = defineStore('profile', () => {
 
 // back에 설정된 url은 user_pk도 있기때문에 그걸 받아와서 보내야한다!
 
-  return { bank, profile, getProfile }
+  return { bank, profile, getProfile, isValue }
 })
