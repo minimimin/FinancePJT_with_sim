@@ -1,19 +1,21 @@
 <template>
-  <div v-if="store.article">
+  <div v-if="articleStore.article">
     <h1>게시글 상세 정보</h1>
-    <p>{{ store.article.category.name }}</p>
-    <p>{{ store.article.id }}번 글</p>
-    <h2>{{ store.article.title }}</h2>
+    <p>{{ articleStore.article.category.name }}</p>
+    <p>{{ articleStore.article.id }}번 글</p>
+    <h2>{{ articleStore.article.title }}</h2>
     <hr>
-    <p>작성일: {{ store.article.created_at }}</p>
-    <p>수정일: {{ store.article.updated_at }}</p>
+    <p>작성일: {{ articleStore.article.created_at }}</p>
+    <p>수정일: {{ articleStore.article.updated_at }}</p>
     <hr>
-    <p>{{ store.article.content }}</p>
-    <button @click="goUpdate">수정</button>
-    <button @click="articleDelete">삭제</button>
+    <p>{{ articleStore.article.content }}</p>
+    <div v-if="userStore.isLogin && articleStore.article.user === userStore.userPk">
+      <button @click="goUpdate">수정</button>
+      <button @click="articleDelete">삭제</button>
+    </div>
     <hr>
     <CommentItem
-      v-for="comment in store.comments"
+      v-for="comment in articleStore.comments"
       :key="comment.id"
       :comment="comment"
     />
@@ -28,19 +30,21 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { useUserStore } from '@/stores/user'
 import { useArticleStore } from '@/stores/article'
 import CommentItem from '@/components/article/CommentItem.vue'
 import axios from 'axios'
 
 const route = useRoute()
 const router = useRouter()
-const store = useArticleStore()
+const userStore = useUserStore()
+const articleStore = useArticleStore()
 const articleId = ref(route.params.id)
 const inputComment = ref(null)
 
 onMounted(() => {
-  store.getDetail(articleId.value)
-  store.getComments(articleId.value)
+  articleStore.getDetail(articleId.value)
+  articleStore.getComments(articleId.value)
 })
 
 const goUpdate = function () {
@@ -50,7 +54,7 @@ const goUpdate = function () {
 const articleDelete = function () {
   axios({
     method: 'delete',
-    url: `${store.API_URL}/articles/${articleId.value}/`,
+    url: `${articleStore.API_URL}/articles/${articleId.value}/`,
     headers: {
       Authorization: `Token ${token.value}`
     }
@@ -66,7 +70,7 @@ const articleDelete = function () {
 const createComment = function () {
   axios({
     method: 'post',
-    url: `${store.API_URL}/articles/comment/${articleId.value}/`,
+    url: `${articleStore.API_URL}/articles/comment/${articleId.value}/`,
     data: {
       article: articleId.value,
       content: inputComment.value
@@ -76,7 +80,7 @@ const createComment = function () {
     }
   })
     .then((res) => {
-      store.getComments(articleId.value)
+      articleStore.getComments(articleId.value)
     })
     .catch((err) => {
       console.log(err)

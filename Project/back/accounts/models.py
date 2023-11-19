@@ -11,7 +11,6 @@ class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     
     # 원하는 추가 필드 작성
-    email = models.EmailField(max_length=254, null=True)
     age = models.IntegerField(null=True)
     money = models.IntegerField(null=True)
     salary = models.IntegerField(null=True)

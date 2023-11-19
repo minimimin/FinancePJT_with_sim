@@ -24,6 +24,7 @@ const store = useArticleStore()
 
 onMounted(() => {
   store.getArticles()
+  store.getCategories()
 })
 </script>
 

@@ -76,24 +76,4 @@ const router = createRouter({
 })
 
 
-// router.beforeEach((to, from) => {
-//   const store = useUserStore()
-//   if (to.name === 'ArticleView' && !store.isLogin) {
-//     window.alert('로그인이 필요합니다.')
-//     return { name: 'LogInView' }
-//   }
-//   if ((to.name === 'SignUpView' || to.name === 'LogInView') && (store.isLogin)) {
-//     window.alert('이미 로그인 했습니다.')
-//     return { name: 'ArticleView' }
-//   }
-// })
-
-
-// beforeEnter: (to, from) => {
-//   const store = useArticleStore()
-//   if (store.isSignin) {
-//     return { name: 'home' }
-//   }
-// }
-
 export default router

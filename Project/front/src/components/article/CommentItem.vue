@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>{{ comment.user }} : {{ comment.content }}</p>
-    <button @click="commentDelete">삭제</button>
+    <button v-if="userStore.isLogin && comment.user === userStore.userPk" @click="commentDelete">삭제</button>
     <hr>
   </div>
 </template>
@@ -9,11 +9,13 @@
 <script setup>
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
+import { useUserStore } from '@/stores/user'
 import { useArticleStore } from '@/stores/article'
 import axios from 'axios'
 
 const route = useRoute()
-const store = useArticleStore()
+const userStore = useUserStore()
+const articleStore = useArticleStore()
 const articleId = ref(route.params.id)
 
 const props = defineProps({
@@ -23,13 +25,13 @@ const props = defineProps({
 const commentDelete = function () {
   axios({
     method: 'delete',
-    url: `${store.API_URL}/articles/comment/detail/${props.comment.id}/`,
+    url: `${articleStore.API_URL}/articles/comment/detail/${props.comment.id}/`,
     headers: {
     Authorization: `Token ${token.value}`
     }
   })
     .then((res) => {
-      store.getComments(articleId.value)
+      articleStore.getComments(articleId.value)
     })
     .catch((err) => {
       console.log(err)
