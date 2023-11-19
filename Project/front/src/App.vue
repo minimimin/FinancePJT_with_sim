@@ -12,7 +12,9 @@
       <div v-show="userStore.isLogin">
         <button @click="userStore.logOut">LogOut</button> |
         <RouterLink :to="{ name: 'profile' }">Profile</RouterLink> |
-        <RouterLink :to="{ name: 'categoryCreate' }">CategoryCreate</RouterLink> |
+        <div v-if="userStore.loginUser.is_superuser">
+          <RouterLink :to="{ name: 'categoryCreate' }">CategoryCreate</RouterLink> |
+        </div>
       </div>
     </nav>
   </header>

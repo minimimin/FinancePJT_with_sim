@@ -72,6 +72,18 @@ const router = createRouter({
       name: 'login',
       component: LogInView
     },
+    // map 관련
+    {
+      path: '/login',
+      name: 'login',
+      component: LogInView
+    },
+    // calculator 관련
+    {
+      path: '/login',
+      name: 'login',
+      component: LogInView
+    },
   ]
 })
 

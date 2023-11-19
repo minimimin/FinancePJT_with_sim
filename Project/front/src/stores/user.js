@@ -12,6 +12,7 @@ export const useUserStore = defineStore('user', () => {
   const userPk = ref(null)
   const userName = ref(null)
   const errors = ref(null)
+  const loginUser = ref(null)
   const isSignUp = ref(false) // 회원가입 후 바로 로그인하기 위한 플래그 변수
 
   // 이거 로그아웃시 프로필 초기화 해주기 위한 변수에요!
@@ -106,12 +107,12 @@ export const useUserStore = defineStore('user', () => {
       .then((res) => {
         userPk.value = res.data.id
         userName.value = res.data.username
-        // console.log(res.data)
+        loginUser.value = res.data
       })
       .catch((err) => {
         console.log(err)
       })
   }
 
-  return { API_URL, token, isLogin, userPk, userName, errors, singUp, logIn, logOut, getUserInfo }
+  return { API_URL, token, isLogin, userPk, userName, errors, loginUser, singUp, logIn, logOut, getUserInfo }
 }, { persist: true })
