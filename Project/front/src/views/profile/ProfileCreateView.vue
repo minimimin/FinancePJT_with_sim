@@ -1,6 +1,4 @@
 <template>
-  <!--아래 값 받은 걸로 프로필 페이지에 보여질 수 있게 + 수정할 수 있게 설정하기!!-->
-
   <div>
     <h1>{{ username }}님의 PROFILE</h1>
     <hr>
@@ -8,7 +6,6 @@
     <!--age, money, salary, job, main_bank, 
       stabillity, banking_products, card_products-->
     <form @submit.prevent="createProfile">
-    <!-- <form> -->
 
       <label for="age">나이</label><br>
       <input type="number" id="age" v-model.trim='age' min=0 max=200>
@@ -19,40 +16,37 @@
       <label for="money">자산</label>
       <br>
       <input type="number" id="money" v-model.trim='money'>
-      <!-- <input type="submit"> -->
+
       <br>
       <br>
 
       <label for="salary">연봉</label>
       <br>
       <input type="number" id="salary" v-model.trim='salary'>
-      
-      <br>
-      <button @click="submit">제출</button>
-      <br>
-      <!-- <fieldset>
+
+      <div>
         <legend>직업</legend>
         <div>
-          <input type="radio" id="학생 및 주부" name="job"  v-model.trim='job' value="학생 및 주부" checked />
+          <input type="radio" id="학생 및 주부" name="job" v-model.trim='selectedJobValue' value="학생 및 주부" />
           <label for="학생 및 주부">학생 및 주부</label>
         </div>
 
         <div>
-          <input type="radio" id="사업가 및 프리랜서" name="job"  v-model.trim='job' value="사업가 및 프리랜서" />
+          <input type="radio" id="사업가 및 프리랜서" name="job" v-model.trim='selectedJobValue' value="사업가 및 프리랜서" />
           <label for="사업가 및 프리랜서">사업가 및 프리랜서</label>
         </div>
 
         <div>
-          <input type="radio" id="회사원" name="job"  v-model.trim='job' value="회사원" />
+          <input type="radio" id="회사원" name="job" v-model.trim='selectedJobValue' value="회사원" />
           <label for="회사원">회사원</label>
         </div>
 
         <div>
           <input type="radio" id="기타" name="job" value="기타" onchange="toggleTextField()"/> 
           <label for="기타">기타</label>
-          <input type="text" id="기타TextField" v-model.trim='job' disabled>
+          <input type="text" id="기타TextField" v-model.trim='selectedJobValue' disabled>
         </div>
-      </fieldset> -->
+      </div>
 
 
       <!-- <label for="job">직업 : </label>
@@ -63,13 +57,13 @@
       <br>
 
 <!--------------------------------------------------------------------------------------------->
-      <!-- <label for="main_bank">주거래은행 : </label><br> -->
-      <!-- <select id="main_bank" v-model="selectedBank"> -->
-      <!-- <select id="main_bank">
+      <label for="main_bank">주거래은행 : </label><br>
+      <select id="main_bank" v-model="mainBank">
+      <!-- <select id="main_bank"> -->
         <option disabled value="">은행을 선택하세요</option>
-        <option v-for="bank in store.bank" 
+        <option v-for="bank in profileStore.bank" 
         :key="bank.id" :value="bank.id">{{ bank.name }}</option>
-      </select> -->
+      </select>
 
       <br>
 <!--------------------------------------------------------------------------------------------->
@@ -136,9 +130,11 @@
           <input type="radio" id="카드X" name="card" value="카드X" />
           <label for="카드X">카드를 사용을 희망하지 않음</label>
         </div>
-      </fieldset>
-
-    </form> -->
+      </fieldset>-->
+            
+      <br>
+      <button @click="submit">제출</button>
+      <br>
   </form>
   </div>
 </template>
@@ -167,80 +163,49 @@ const toggleTextField = function() {
  //--------------------------------------------------------------------------------------
 
     const router = useRouter()
-    // const selectedBank = ref(null)
-    const store = useUserStore()
-    // const stores = useProfileStore()
+    const userStore = useUserStore()
+    const profileStore = useProfileStore()
 
 
     const age = ref(null)
     const money = ref(null)
     const salary = ref(null)
     // const job = ref(null)
-    // const main_bank = ref(null)
+    const mainBank = ref(null)
     // const stabillity = ref(null)
     // const banking_products = ref(null)
     // const card_products = ref(null)
-
     // const route = useRoute()
 
-    const user_pk = store.userPk
-    const username = store.userName
+    const user_pk = userStore.userPk
+    const username = userStore.userName
 
     const createProfile = function () {
-//       console.log("Request Data:", {
-//   age: age.value,
-//   money: money.value,
-//   salary: salary.value,
-// });
       axios({
       method:'post',
-      url:`${store.API_URL}/users/profile/${user_pk}/`,
+      url:`${userStore.API_URL}/users/profile/${user_pk}/`,
       data:{
         age: age.value, 
         money: money.value, 
         salary: salary.value,
         // job: job.value, 
-        // main_bank: main_bank.value, 
+        main_bank: mainBank.value,
         // stabillity: stabillity.value, 
         // banking_products: banking_products.value, 
         // card_products: card_products.value,
       },
       headers: {
-        Authorization: `Token ${store.token}`
+        Authorization: `Token ${userStore.token}`
       }
     })
       .then((response) => {
-        console.log('good')
         router.push({ name: 'profile' })
         
       })
       .catch((error) => {
         console.log(error)
       })
-      return {
-
-      }
     }
-
-    
-//--------------------------------------------------------------------
-  //   const createArticle = function () {
-  //   axios({
-  //     method: 'post',
-  //     url: `${store.API_URL}/articles/`,
-  //     data: {
-  //       title: inputTitle.value,
-  //       content: inputContent.value,
-  //       bank: selectedBank.value,
-  //     }
-  //   })
-  //     .then((res) => {
-  //       router.push({ name: 'articles' })
-  //     })
-  //     .catch((err) => {
-  //       console.log(err)
-  //     })
-  // }
 </script>
 
 <style scoped>

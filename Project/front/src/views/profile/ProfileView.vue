@@ -6,6 +6,8 @@
     <p>나이 : {{ profileStore.profile.age }}</p>
     <p>자산 : {{ profileStore.profile.money }}</p>
     <p>연봉 : {{ profileStore.profile.salary }}</p>
+    <p>주거래은행 : {{ profileStore.profile.main_bank }}</p>
+    <!--만약 id가 들어가있다면 어떻게 이름을 보이게 하지..?!?!-->
   </div>
 
     <!--프로필이 없다면 프로필 생성페이지로 이동!-->
@@ -31,12 +33,9 @@ const goProfileCreate = function() {
   router.push({ name: 'profileCreate' })
 }
 
-// 이건 데이터가 있을때 바로바로 정보 가지고 오기
-// if (profileStore.isValue) {
   onMounted(() => {
   profileStore.getProfile()
 })
-// }
 
 
 const updateProfile = function () {
