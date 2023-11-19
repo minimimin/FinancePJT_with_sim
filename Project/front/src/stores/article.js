@@ -16,7 +16,6 @@ export const useArticleStore = defineStore('article', () => {
     })
       .then((res) => {
         articles.value = res.data
-        console.log(userpk)
       })
       .catch((err) => {
         console.log(err)

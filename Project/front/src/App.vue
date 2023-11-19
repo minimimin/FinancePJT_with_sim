@@ -3,11 +3,16 @@
     <nav>
       <RouterLink :to="{ name: 'main' }">Main</RouterLink> |
       <RouterLink :to="{ name: 'articles' }">Community</RouterLink> |
-      <RouterLink :to="{ name: 'profile' }">Profile</RouterLink> |
-      <RouterLink :to="{ name: 'signup' }">SignUp</RouterLink> |
-      <RouterLink :to="{ name: 'login' }">LogIn</RouterLink> |
-      <button @click="store.logOut">LogOut</button> |
-      <RouterLink :to="{ name: 'categoryCreate' }">CategoryCreate</RouterLink> |
+      
+      <div v-show="!userStore.isLogin"> 
+        <RouterLink :to="{ name: 'signup' }">SignUp</RouterLink> |
+        <RouterLink :to="{ name: 'login' }">LogIn</RouterLink> |
+        <RouterLink :to="{ name: 'profile' }">Profile</RouterLink> |
+        <RouterLink :to="{ name: 'categoryCreate' }">CategoryCreate</RouterLink> |
+      </div>
+      <div v-show="userStore.isLogin">
+        <button @click="userStore.logOut">LogOut</button> |
+      </div>
     </nav>
   </header>
   <RouterView />
@@ -17,7 +22,7 @@
 import { RouterView, RouterLink } from 'vue-router'
 import { useUserStore } from '@/stores/user'
 
-const store = useUserStore()
+const userStore = useUserStore()
 
 </script>
 

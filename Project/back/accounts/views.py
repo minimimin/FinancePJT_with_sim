@@ -2,10 +2,21 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth import get_user_model
 from .models import Profile
-from .serializers import ProfileSerializer
+from .serializers import ProfileSerializer, UserSerializer
 
 # Create your views here.
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def user_info(request):
+    if request.method == 'GET':
+        # User = get_user_model()
+        # userinfo = User.objects.get()
+        serializer = UserSerializer(request.user)
+        return Response(serializer.data)
+
+
 @api_view(['GET', 'POST', 'PUT'])
 @permission_classes([IsAuthenticated])
 def user_profile(request, user_pk):

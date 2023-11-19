@@ -5,11 +5,12 @@ import axios from 'axios'
 
 export const useUserStore = defineStore('user', () => {
   const API_URL = 'http://127.0.0.1:8000'
-  const token = ref(null)
   const router = useRouter()
-  const isSignUp = ref(false)
+
+  const token = ref(null)
   const userPk = ref(null)
   const userName = ref(null)
+  const isSignUp = ref(false) // 회원가입 후 바로 로그인하기 위한 플래그 변수
 
   const isLogin = computed(() => {
     if (token.value === null) {
@@ -61,6 +62,9 @@ export const useUserStore = defineStore('user', () => {
           history.back()
         }
       })
+      .then((res) => {
+        getUserProfile()
+      })
       .catch((err) => {
         console.log(err)
       })
@@ -76,8 +80,6 @@ export const useUserStore = defineStore('user', () => {
     })
       .then((res) => {
         token.value = null
-        // userPk.value = null
-        // userName.value = null
         router.push({ name: 'main' })
       })
       .catch((err) => {
@@ -88,19 +90,36 @@ export const useUserStore = defineStore('user', () => {
   const getUserInfo = function () {
     axios({
       method: 'get',
-      url: `${API_URL}/accounts/user/`,
+      url: `${API_URL}/users/`,
       headers: {
         Authorization: `Token ${token.value}`
       }
     })
       .then((res) => {
-        userPk.value = res.data.pk
-        userName.value = res.data.username
+        // userPk.value = res.data.pk
+        // userName.value = res.data.username
+        console.log(res.data)
       })
       .catch((err) => {
         console.log(err)
       })
   }
 
-  return { API_URL, token, isLogin, userPk, userName, singUp, logIn, logOut, getUserInfo }
+  const getUserProfile = function () {
+    axios({
+      method: 'get',
+      url: `${API_URL}/users/profile/${userPk.value}/`,
+      headers: {
+        Authorization: `Token ${token.value}`
+      }
+    })
+      .then((res) => {
+        console.log(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  return { API_URL, token, isLogin, userPk, userName, singUp, logIn, logOut, getUserInfo, getUserProfile }
 }, { persist: true })
