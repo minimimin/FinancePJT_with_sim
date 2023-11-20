@@ -64,7 +64,6 @@
 
   <label for="stabillity">안정성</label><br>
   <input type="range" id="stabillity" name="stabillity" min="0" max="100"  list="values" v-model.trim='stabillity' >
-  <input type="submit" value="Submit">
   <datalist id="values">
     <option value="0" label="매우 모험 추구"></option>
     <option value="25" label="모험 추구"></option>
@@ -80,22 +79,22 @@
     <legend>선호하는 은행 상품 유형(모두 선택 가능)</legend>
 
       <div>
-        <input type="checkbox" id="예금" value="예금" name="banking_products" v-model.trim='banking_products' />
+        <input type="radio" id="예금" value="예금" name="banking_products" v-model.trim='banking_products' />
         <label for="예금">예금</label>
       </div>
 
       <div>
-        <input type="checkbox" id="적금" value="적금" name="banking_products" v-model.trim='banking_products'  />
+        <input type="radio" id="적금" value="적금" name="banking_products" v-model.trim='banking_products' />
         <label for="적금">적금</label>
       </div>
 
       <div>
-        <input type="checkbox" id="펀드" value="펀드" name="banking_products" v-model.trim='banking_products'  />
+        <input type="radio" id="펀드" value="펀드" name="banking_products" v-model.trim='banking_products' />
         <label for="펀드">펀드</label>
       </div>
 
       <div>
-        <input type="checkbox" id="대출" value="대출" name="banking_products" v-model.trim='banking_products'  />
+        <input type="radio" id="대출" value="대출" name="banking_products" v-model.trim='banking_products' />
         <label for="대출">대출</label>
       </div>
   </div>
@@ -152,7 +151,7 @@ import axios from 'axios'
     const banking_products = ref(null)
     const card_products = ref(null)
 
-
+    const API_URL = userStore.API_URL
     const user_pk = userStore.userPk
     const username = userStore.userName
 
@@ -163,7 +162,7 @@ import axios from 'axios'
       }
       axios({
       method:'post',
-      url:`${userStore.API_URL}/users/profile/${user_pk}/`,
+      url:`${API_URL}/users/profile/${user_pk}/`,
       data:{
         age: age.value, 
         money: money.value, 

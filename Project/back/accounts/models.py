@@ -18,6 +18,6 @@ class Profile(models.Model):
     main_bank = models.TextField(null=True)
 
     # 유저 성향 관련 필드
-    stability = models.TextField(null=True)
+    stabillity = models.TextField(null=True)
     banking_products = models.TextField(null=True)
     card_products = models.TextField(null=True)
