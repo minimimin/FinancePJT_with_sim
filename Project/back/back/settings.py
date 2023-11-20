@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'articles',
     'accounts',
     'exchange',
+    'maps',
 
     # DRF
     'rest_framework',
