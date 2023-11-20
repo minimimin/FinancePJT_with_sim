@@ -12,7 +12,8 @@ from django.shortcuts import get_object_or_404, get_list_or_404
 @api_view(['GET'])
 def exchangeRate(request):
     api_key = settings.EXCHANGE_RATE_API_KEY
-    url = f'https://www.koreaexim.go.kr/site/program/financial/exchangeJSON?authkey={api_key}&data=AP01'
+    # url = f'https://www.koreaexim.go.kr/site/program/financial/exchangeJSON?authkey={api_key}&data=AP01'
+    url = f'https://www.koreaexim.go.kr/site/program/financial/exchangeJSON?authkey={api_key}&searchdate=20231120&data=AP01'
     exchange_data=ExchangeRate.objects.all()
     exchange_data.delete()
     response = requests.get(url).json()
