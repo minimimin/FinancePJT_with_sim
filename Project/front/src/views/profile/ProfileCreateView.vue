@@ -76,7 +76,7 @@
   <br>
 
   <div>
-    <legend>선호하는 은행 상품 유형(모두 선택 가능)</legend>
+    <legend>선호하는 은행 상품 유형(하나만 선택)</legend>
 
       <div>
         <input type="radio" id="예금" value="예금" name="banking_products" v-model.trim='banking_products' />
