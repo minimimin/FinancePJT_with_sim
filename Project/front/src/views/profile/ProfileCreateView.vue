@@ -24,113 +24,101 @@
       <br>
       <input type="number" id="salary" v-model.trim='salary'>
 
+<!--:disabled=''를 사용하면 선택한 거 안보이게 할 수 있다.-->
       <div>
         <legend>직업</legend>
         <div>
-          <input type="radio" id="학생 및 주부" name="job" v-model.trim='selectedJobValue' value="학생 및 주부" />
+          <input type="radio" id="학생 및 주부" name="job" v-model.trim='job' value="학생 및 주부" />
           <label for="학생 및 주부">학생 및 주부</label>
         </div>
 
         <div>
-          <input type="radio" id="사업가 및 프리랜서" name="job" v-model.trim='selectedJobValue' value="사업가 및 프리랜서" />
+          <input type="radio" id="사업가 및 프리랜서" name="job" v-model.trim='job' value="사업가 및 프리랜서" />
           <label for="사업가 및 프리랜서">사업가 및 프리랜서</label>
         </div>
 
         <div>
-          <input type="radio" id="회사원" name="job" v-model.trim='selectedJobValue' value="회사원" />
+          <input type="radio" id="회사원" name="job" v-model.trim='job' value="회사원" />
           <label for="회사원">회사원</label>
         </div>
 
         <div>
-          <input type="radio" id="기타" name="job" value="기타" onchange="toggleTextField()"/> 
+          <input type="radio" id="기타" name="job" v-model.trim='job' value="기타" /> 
           <label for="기타">기타</label>
-          <input type="text" id="기타TextField" v-model.trim='selectedJobValue' disabled>
+          <input type="text" v-model.trim='otherJob' :disabled="job !== '기타'">
         </div>
       </div>
 
-
-      <!-- <label for="job">직업 : </label>
-      <div id="job">
-        <input type="radio">
-      </div> -->
-
       <br>
 
-<!--------------------------------------------------------------------------------------------->
+
       <label for="main_bank">주거래은행 : </label><br>
       <select id="main_bank" v-model="mainBank">
-      <!-- <select id="main_bank"> -->
         <option disabled value="">은행을 선택하세요</option>
-        <option v-for="bank in profileStore.bank" 
+        <option v-for="bank in profileStore.banks" 
         :key="bank.id" :value="bank.id">{{ bank.name }}</option>
       </select>
 
       <br>
-<!--------------------------------------------------------------------------------------------->
-
       <br>
 
-  <!-- <label for="stabillity">안정성</label><br>
-  <input type="range" id="stabillity" name="stabillity" min="0" max="100"  list="values"> -->
-  <!-- <input type="submit" value="Submit"> -->
-  <!-- <datalist id="values">
-  <option value="0" label="매우 모험 추구(하이 리스크 하이 리턴)"></option>
-  <option value="25" label="모험 추구"></option>
-  <option value="50" label="보통"></option>
-  <option value="75" label="안정 추구"></option>
-  <option value="100" label="매우 안정 추구(노 리스트 리를 리턴)"></option>
+  <label for="stabillity">안정성</label><br>
+  <input type="range" id="stabillity" name="stabillity" min="0" max="100"  list="values" v-model.trim='stabillity' >
+  <input type="submit" value="Submit">
+  <datalist id="values">
+    <option value="0" label="매우 모험 추구"></option>
+    <option value="25" label="모험 추구"></option>
+    <option value="50" label="보통"></option>
+    <option value="75" label="안정 추구"></option>
+    <option value="100" label="매우 안정 추구"></option>
   </datalist>
   
-  <br> -->
+  <br>
+  <br>
 
-<!----------------------------------------------------------------------------------------------->
-      
-<br>
+  <div>
+    <legend>선호하는 은행 상품 유형(모두 선택 가능)</legend>
 
-  <!-- <fieldset>
-        <legend>선호하는 은행 상품 유형(모두 선택 가능)</legend>
+      <div>
+        <input type="checkbox" id="예금" value="예금" name="banking_products" v-model.trim='banking_products' />
+        <label for="예금">예금</label>
+      </div>
 
-        <div>
-          <input type="checkbox" id="예금" name="예금" checked />
-          <label for="예금">예금</label>
-        </div>
+      <div>
+        <input type="checkbox" id="적금" value="적금" name="banking_products" v-model.trim='banking_products'  />
+        <label for="적금">적금</label>
+      </div>
 
-        <div>
-          <input type="checkbox" id="적금" name="적금" />
-          <label for="적금">적금</label>
-        </div>
+      <div>
+        <input type="checkbox" id="펀드" value="펀드" name="banking_products" v-model.trim='banking_products'  />
+        <label for="펀드">펀드</label>
+      </div>
 
-        <div>
-          <input type="checkbox" id="펀드" name="펀드" />
-          <label for="펀드">펀드</label>
-        </div>
+      <div>
+        <input type="checkbox" id="대출" value="대출" name="banking_products" v-model.trim='banking_products'  />
+        <label for="대출">대출</label>
+      </div>
+  </div>
 
-        <div>
-          <input type="checkbox" id="대출" name="대출" />
-          <label for="대출">대출</label>
-        </div>
-      </fieldset> -->
-
-<!---------------------------------------------------------------------------------------------->
       <br>
 
-      <!-- <fieldset>
+      <div>
         <legend>선호하는 카드 유형(하나만 선택)</legend>
         <div>
-          <input type="radio" id="신용카드" name="card" value="신용카드" checked />
+          <input type="radio" id="신용카드" name="card" value="신용카드" v-model.trim='card_products' />
           <label for="신용카드">신용카드</label>
         </div>
 
         <div>
-          <input type="radio" id="체크카드" name="card" value="체크카드" />
+          <input type="radio" id="체크카드" name="card" value="체크카드" v-model.trim='card_products' />
           <label for="체크카드">체크카드</label>
         </div>
 
         <div>
-          <input type="radio" id="카드X" name="card" value="카드X" />
+          <input type="radio" id="카드X" name="card" value="카드X" v-model.trim='card_products' />
           <label for="카드X">카드를 사용을 희망하지 않음</label>
         </div>
-      </fieldset>-->
+      </div>
             
       <br>
       <button @click="submit">제출</button>
@@ -147,20 +135,6 @@ import { useRouter, useRoute } from 'vue-router'
 import { ref } from 'vue'
 import axios from 'axios'
 
-const toggleTextField = function() {
-      const radio = document.getElementById('기타')
-      const textField = document.getElementById('기타TextField')
-
-      // '기타' 라디오 버튼이 선택되었을 때
-      if (radio.checked) {
-        textField.disabled = false // 텍스트 필드를 활성화
-      } else {
-        textField.disabled = true // 텍스트 필드를 비활성화
-      }
-    }
-
-
- //--------------------------------------------------------------------------------------
 
     const router = useRouter()
     const userStore = useUserStore()
@@ -170,17 +144,23 @@ const toggleTextField = function() {
     const age = ref(null)
     const money = ref(null)
     const salary = ref(null)
-    // const job = ref(null)
+    const job = ref(null)
+    const otherJob = ref(null)
     const mainBank = ref(null)
-    // const stabillity = ref(null)
-    // const banking_products = ref(null)
-    // const card_products = ref(null)
-    // const route = useRoute()
+    const stabillity = ref(null)
+    // 그냥 기본값으로 50을 넣어놓음
+    const banking_products = ref(null)
+    const card_products = ref(null)
+
 
     const user_pk = userStore.userPk
     const username = userStore.userName
 
+
     const createProfile = function () {
+      if (otherJob.value) {
+        job.value = otherJob.value
+      }
       axios({
       method:'post',
       url:`${userStore.API_URL}/users/profile/${user_pk}/`,
@@ -188,11 +168,11 @@ const toggleTextField = function() {
         age: age.value, 
         money: money.value, 
         salary: salary.value,
-        // job: job.value, 
+        job: job.value, 
         main_bank: mainBank.value,
-        // stabillity: stabillity.value, 
-        // banking_products: banking_products.value, 
-        // card_products: card_products.value,
+        stabillity: stabillity.value, 
+        banking_products: banking_products.value, 
+        card_products: card_products.value,
       },
       headers: {
         Authorization: `Token ${userStore.token}`
@@ -209,5 +189,20 @@ const toggleTextField = function() {
 </script>
 
 <style scoped>
+datalist {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  writing-mode: vertical-lr;
+  width: 200px;
+}
 
+option {
+  padding: 0;
+}
+
+input[type="range"] {
+  width: 200px;
+  margin: 0;
+}
 </style>

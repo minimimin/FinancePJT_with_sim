@@ -25,6 +25,7 @@ export const useProfileStore = defineStore('profile', () => {
       }
     })
       .then((res) =>{
+        console.log(res.data)
         profile.value = res.data
       })
       .catch((err) => {

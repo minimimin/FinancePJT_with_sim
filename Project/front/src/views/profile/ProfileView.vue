@@ -3,11 +3,18 @@
   <div  v-if="profileStore.isValue">
     <h1>{{ userStore.userName }}님의 프로필</h1>
     <button @click="updateProfile">프로필 수정하기</button>
+    <!--age, money, salary, job, main_bank, 
+      stabillity, banking_products, card_products-->
     <p>나이 : {{ profileStore.profile.age }}</p>
     <p>자산 : {{ profileStore.profile.money }}</p>
     <p>연봉 : {{ profileStore.profile.salary }}</p>
+    <p>직업 : {{ profileStore.profile.job }}</p>
     <p>주거래은행 : {{ profileStore.profile.main_bank }}</p>
-    <!--만약 id가 들어가있다면 어떻게 이름을 보이게 하지..?!?!-->
+        <!--만약 id가 들어가있다면 어떻게 이름을 보이게 하지..?!?!-->
+    <p>안정성 : {{ profileStore.profile.stabillity }}% </p>
+    <!--일단 값이 없다면 표시되지 않게 하도록-->
+    <p>선호은행상품유형 : {{ profileStore.profile.banking_products }}</p>
+    <p>선호카드상품유형 : {{ profileStore.profile.card_products }}</p>
   </div>
 
     <!--프로필이 없다면 프로필 생성페이지로 이동!-->
@@ -35,6 +42,7 @@ const goProfileCreate = function() {
 
   onMounted(() => {
   profileStore.getProfile()
+  console.log(profileStore.profile)
 })
 
 
