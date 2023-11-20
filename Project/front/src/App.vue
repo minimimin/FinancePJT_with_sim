@@ -4,12 +4,12 @@
       <RouterLink :to="{ name: 'main' }">Main</RouterLink> |
       <RouterLink :to="{ name: 'articles' }">Community</RouterLink> |
       
-      <div v-show="!userStore.isLogin"> 
+      <div v-if="!userStore.isLogin"> 
         <RouterLink :to="{ name: 'signup' }">SignUp</RouterLink> |
         <RouterLink :to="{ name: 'login' }">LogIn</RouterLink> |
         
       </div>
-      <div v-show="userStore.isLogin">
+      <div v-if="userStore.isLogin">
         <button @click="userStore.logOut">LogOut</button> |
         <RouterLink :to="{ name: 'profile' }">Profile</RouterLink> |
         <div v-if="userStore.loginUser.is_superuser">

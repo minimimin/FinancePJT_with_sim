@@ -5,7 +5,7 @@
       <label for="category">카테고리 선택:</label><br>
       <select id="category" v-model="selectedCategory">
         <option disabled value="">카테고리를 선택하세요</option>
-        <option v-for="category in store.categories" 
+        <option v-for="category in articleStore.categories" 
         :key="category.id" :value="category.id">{{ category.name }}</option>
       </select>
       <br>
@@ -23,26 +23,28 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useUserStore } from '@/stores/user'
 import { useArticleStore } from '@/stores/article'
 import axios from 'axios'
 
 const inputTitle = ref(null)
 const inputContent = ref(null)
 const selectedCategory = ref(null)
-const store = useArticleStore()
+const userStore = useUserStore()
+const articleStore = useArticleStore()
 const router = useRouter()
 
 const createArticle = function () {
     axios({
       method: 'post',
-      url: `${store.API_URL}/articles/`,
+      url: `${userStore.API_URL}/articles/`,
       data: {
         title: inputTitle.value,
         content: inputContent.value,
         category: selectedCategory.value,
       },
       headers: {
-      Authorization: `Token ${token.value}`
+      Authorization: `Token ${userStore.token}`
       }
     })
       .then((res) => {
