@@ -5,7 +5,7 @@
       <label for="category">카테고리 선택:</label><br>
       <select id="category" v-model="existingCategory">
         <option disabled value="">카테고리를 선택하세요</option>
-        <option v-for="category in store.categories" 
+        <option v-for="category in articleStore.categories" 
         :key="category.id" :value="category.id">{{ category.name }}</option>
       </select><br>
       <label for="title">제목:</label><br>
@@ -20,29 +20,31 @@
 <script setup>
 import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { useUserStore } from '@/stores/user'
 import { useArticleStore } from '@/stores/article'
 import axios from 'axios'
 
 const route = useRoute()
 const router = useRouter()
-const store = useArticleStore()
+const userStore = useUserStore()
+const articleStore = useArticleStore()
 const articleId = ref(route.params.id)
 
-const existingTitle = ref(store.article.title)
-const existingContent = ref(store.article.content)
-const existingCategory = ref(store.article.category.id)
+const existingTitle = ref(articleStore.article.title)
+const existingContent = ref(articleStore.article.content)
+const existingCategory = ref(articleStore.article.category.id)
 
 const updateArticle = function () {
     axios({
       method: 'put',
-      url: `${store.API_URL}/articles/${articleId.value}/`,
+      url: `${userStore.API_URL}/articles/${articleId.value}/`,
       data: {
         title: existingTitle.value,
         content: existingContent.value,
         category: existingCategory.value,
       },
       headers: {
-        Authorization: `Token ${token.value}`
+        Authorization: `Token ${userStore.token}`
       }
     })
       .then((res) => {

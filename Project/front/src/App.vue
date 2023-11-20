@@ -3,6 +3,8 @@
     <nav>
       <RouterLink :to="{ name: 'main' }">Main</RouterLink> |
       <RouterLink :to="{ name: 'articles' }">Community</RouterLink> |
+      <RouterLink :to="{ name: 'calculator' }">Calculator</RouterLink> |
+      <RouterLink :to="{ name: 'map' }">Map</RouterLink> |
       
       <div v-if="!userStore.isLogin"> 
         <RouterLink :to="{ name: 'signup' }">SignUp</RouterLink> |

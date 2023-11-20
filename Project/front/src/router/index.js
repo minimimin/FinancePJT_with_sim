@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { useUserStore } from '@/stores/user'
 import MainView from '@/views/MainView.vue'
 import ArticleView from '@/views/article/ArticleView.vue'
 import ArticleCreateView from '@/views/article/ArticleCreateView.vue'
@@ -11,6 +10,8 @@ import ProfileCreateView from '@/views/profile/ProfileCreateView.vue'
 import ProfileUpdateView from '@/views/profile/ProfileUpdateView.vue'
 import SignUpView from '@/views/user/SignUpView.vue'
 import LogInView from '@/views/user/LogInView.vue'
+import CalculatorView from '@/views/calculator/CalculatorView.vue'
+import MapView from '@/views/map/MapView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -72,17 +73,17 @@ const router = createRouter({
       name: 'login',
       component: LogInView
     },
-    // map 관련
-    {
-      path: '/login',
-      name: 'login',
-      component: LogInView
-    },
     // calculator 관련
     {
-      path: '/login',
-      name: 'login',
-      component: LogInView
+      path: '/calculator',
+      name: 'calculator',
+      component: CalculatorView
+    },
+    // map 관련
+    {
+      path: '/map',
+      name: 'map',
+      component: MapView
     },
   ]
 })

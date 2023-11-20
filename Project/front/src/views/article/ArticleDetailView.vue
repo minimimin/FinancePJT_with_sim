@@ -54,9 +54,9 @@ const goUpdate = function () {
 const articleDelete = function () {
   axios({
     method: 'delete',
-    url: `${articleStore.API_URL}/articles/${articleId.value}/`,
+    url: `${userStore.API_URL}/articles/${articleId.value}/`,
     headers: {
-      Authorization: `Token ${token.value}`
+      Authorization: `Token ${userStore.token}`
     }
   })
     .then((res) => {
@@ -70,16 +70,17 @@ const articleDelete = function () {
 const createComment = function () {
   axios({
     method: 'post',
-    url: `${articleStore.API_URL}/articles/comment/${articleId.value}/`,
+    url: `${userStore.API_URL}/articles/comment/${articleId.value}/`,
     data: {
       article: articleId.value,
       content: inputComment.value
     },
     headers: {
-      Authorization: `Token ${token.value}`
+      Authorization: `Token ${userStore.token}`
     }
   })
     .then((res) => {
+      inputComment.value = ''
       articleStore.getComments(articleId.value)
     })
     .catch((err) => {

@@ -27,7 +27,7 @@ const commentDelete = function () {
     method: 'delete',
     url: `${articleStore.API_URL}/articles/comment/detail/${props.comment.id}/`,
     headers: {
-    Authorization: `Token ${token.value}`
+    Authorization: `Token ${userStore.token}`
     }
   })
     .then((res) => {

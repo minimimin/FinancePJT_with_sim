@@ -173,7 +173,7 @@ const otherJob = ref(null)
 // }
 // 입력창을 없애면 원래값이 나오게 할 수 있는데,,,이게 어렵네
 const mainBank = ref(profileStore.profile.main_bank)
-const stabillity = ref(profileStore.profile.stabillity || 50)
+const stabillity = ref(profileStore.profile.stabillity)
 const banking_products = ref(profileStore.profile.banking_products)
 const card_products = ref(profileStore.profile.card_products)
 
@@ -181,7 +181,6 @@ const updateProfile = function () {
       if (otherJob.value) {
         job.value = otherJob.value
       }
-      console.log(stabillity.value)
       axios({
       method:'put',
       url:`${API_URL}/users/profile/${user_pk}/`,
@@ -200,6 +199,7 @@ const updateProfile = function () {
       }
     })
       .then((response) => {
+        console.log(stabillity.value)
         router.push({ name: 'profile' })
         
       })
