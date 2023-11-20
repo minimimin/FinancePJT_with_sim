@@ -11,7 +11,9 @@ import ProfileUpdateView from '@/views/profile/ProfileUpdateView.vue'
 import SignUpView from '@/views/user/SignUpView.vue'
 import LogInView from '@/views/user/LogInView.vue'
 import CalculatorView from '@/views/calculator/CalculatorView.vue'
+import ExchangeView from '@/views/calculator/ExchangeView.vue'
 import MapView from '@/views/map/MapView.vue'
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -49,7 +51,7 @@ const router = createRouter({
     },
     // user 관련
     {
-      path: '/profile',
+      path: '/profile/',
       name: 'profile',
       component: ProfileView
     },
@@ -78,6 +80,11 @@ const router = createRouter({
       path: '/calculator',
       name: 'calculator',
       component: CalculatorView
+    },
+    {
+      path: '/calculator/exchange/',
+      name: 'exchange',
+      component: ExchangeView
     },
     // map 관련
     {

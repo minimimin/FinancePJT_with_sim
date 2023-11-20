@@ -1,5 +1,4 @@
 import { ref, computed } from 'vue'
-// import { useRoute } from 'vue-router'
 import { defineStore } from 'pinia'
 import { useUserStore } from '@/stores/user'
 import axios from 'axios'
@@ -39,19 +38,6 @@ export const useProfileStore = defineStore('profile', () => {
     } else
       return false
     })
-
-// back의 모델에 설정된 필드들! 이걸 가지고 던져줘야한다!
-    // email = models.EmailField(max_length=254, null=True)
-    // age = models.IntegerField(null=True)
-    // money = models.IntegerField(null=True)
-    // salary = models.IntegerField(null=True)
-    // job = models.CharField(max_length=30, null=True)
-    // main_bank = models.TextField(null=True)
-
-    // # 유저 성향 관련 필드
-    // stability = models.TextField(null=True)
-    // banking_products = models.TextField(null=True)
-    // card_products = models.TextField(null=True)
 
   return { banks, profile, getProfile, isValue }
 })
