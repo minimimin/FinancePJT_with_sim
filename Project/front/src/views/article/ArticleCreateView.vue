@@ -29,7 +29,7 @@ import axios from 'axios'
 
 const inputTitle = ref(null)
 const inputContent = ref(null)
-const selectedCategory = ref(null)
+const selectedCategory = ref('')
 const userStore = useUserStore()
 const articleStore = useArticleStore()
 const router = useRouter()
