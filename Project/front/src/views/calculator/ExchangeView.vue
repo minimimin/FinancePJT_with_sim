@@ -36,8 +36,8 @@
             :key="exchangeAll.cur_unit" :value="exchangeAll.cur_unit">{{ exchangeAll.cur_nm }}</option>
         </select>
         <br>
-        <p>보내실때(송금) : {{ exchangeKoreaTTS }}</p>
-        <p>받으실때(송금) : {{ exchangeKoreaTTB }}</p>
+        <p>보내실때(송금) : {{ exchangeKoreaTTS }}원</p>
+        <p>받으실때(송금) : {{ exchangeKoreaTTB }}원</p>
         </div>
         
     </div>
@@ -88,7 +88,7 @@ const exchangeMoney2 = function () {
 }
 
 
-const exchangeKorea = ref(null)
+const exchangeKorea = ref('')
 // const exchangeKoreaTTS = ref(calculatorStore.exchange.filter(exchange => exchange.cur_unit === exchangeKorea.value))
 const exchangeKoreaTTS = computed(()=>{
     if(calculatorStore.exchange.filter(exchange => exchange.cur_unit === exchangeKorea.value)[0]) {
