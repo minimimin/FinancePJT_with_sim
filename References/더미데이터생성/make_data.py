@@ -18,6 +18,37 @@
 #     is_superuser = models.BooleanField(default=False)
 
 
+### 우리 모델
+# class User(AbstractUser):
+    # pass
+    # username
+    # first_name
+    # last_name
+    # email
+    # password
+    # date_joined
+    # last_login
+    # is_superuser
+    # is_staff
+    # is_active
+
+
+# class Profile(models.Model):
+#     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    
+#     # 원하는 추가 필드 작성
+#     age = models.IntegerField(null=True)
+#     money = models.IntegerField(null=True)
+#     salary = models.IntegerField(null=True)
+#     job = models.CharField(max_length=30, null=True)
+#     main_bank = models.TextField(null=True)
+
+#     # 유저 성향 관련 필드
+#     stabillity = models.TextField(null=True)
+#     banking_products = models.TextField(null=True)
+#     card_products = models.TextField(null=True)
+
+
 import random
 import requests
 
