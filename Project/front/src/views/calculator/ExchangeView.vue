@@ -1,8 +1,6 @@
 <template>
     <div>
         <h1>환율 계산기</h1>
-        <!-- <label for=""></label><br> -->
-        <!-- <select v-model="cur_nm" @change=""> -->
         <div>
             <h3>[나라별 환율 계산]</h3>
             <select v-model="changeCountry" >
@@ -26,9 +24,6 @@
         <div>
         <!--나라를 정하면 그것의 송금 보낼 때 송금 받을 때 값 넣을 수 있게-->
         <h3>[한국에서 송금/착금 할 때 환율 계산]</h3>
-        <!-- <label for="mySelect">
-        <input type="text" id="myInput" @input="filterOptions()" placeholder="나라명을 검색하세요">
-        </label> -->
         <br>
         <select id='mySelect' v-model="exchangeKorea">
             <option disabled value="">나라 및 통화명</option>

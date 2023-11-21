@@ -13,6 +13,11 @@ import LogInView from '@/views/user/LogInView.vue'
 import CalculatorView from '@/views/calculator/CalculatorView.vue'
 import ExchangeView from '@/views/calculator/ExchangeView.vue'
 import MapView from '@/views/map/MapView.vue'
+import financialProductView from '@/views/financialproduct/financialProductView.vue'
+import depositproduct from '@/component/financialProduct/depositproduct.vue'
+import savingproduct from '@/component/financialProduct/savingproduct.vue'
+import loanhome from '@/component/financialProduct/loanhome.vue'
+import loanperson from '@/component/financialProduct/loanperson.vue'
 
 
 const router = createRouter({
@@ -91,6 +96,32 @@ const router = createRouter({
       path: '/map',
       name: 'map',
       component: MapView
+    },
+    // financial_product 관련
+    {
+      path: '/financialproduct/',
+      name: 'financialProduct',
+      component: financialProductView
+    },
+    {
+      path: '/financialproduct/deposit/',
+      name: 'depositProduct',
+      component: depositproduct
+    },
+    {
+      path: '/financialproduct/saving/',
+      name: 'savingProduct',
+      component: savingproduct
+    },
+    {
+      path: '/financialproduct/loanhome/',
+      name: 'loanhome',
+      component: loanhome
+    },
+    {
+      path: '/financialproduct/loanperson/',
+      name: 'loanperson',
+      component: loanperson
     },
   ]
 })
