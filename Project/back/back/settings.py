@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'accounts',
     'exchange',
     'maps',
+    'financial_products',
 
     # DRF
     'rest_framework',
