@@ -1,13 +1,5 @@
 from rest_framework import serializers
-from .models import FinancialCompany
-from .models import DepositProduct
-from .models import DepositProductOptions
-from .models import SavingProduct
-from .models import SavingProductOptions
-from .models import LoanForHome
-from .models import LoanForPerson
-from .models import LoanForPersonOptions
-from .models import ChooseProduct
+from .models import FinancialCompany, DepositProduct, DepositProductOptions, SavingProduct, SavingProductOptions, LoanForHome, LoanForHomeOptions, LoanForPerson, LoanForPersonOptions, ChooseProduct
 
 # 금융회사---------------------------------------------------------------------------------------------
 class FinancialCompanySerializer(serializers.ModelSerializer):
@@ -30,7 +22,7 @@ class DepositProductOptionsSerializer(serializers.ModelSerializer):
 
 
 class DepositProductWithOptionsSerializer(serializers.ModelSerializer):
-    deposit_products = DepositProductOptionsSerializer(many=True, read_only=True)
+    deposit_product_option = DepositProductOptionsSerializer(many=True, read_only=True)
 
     class Meta():
         model = DepositProduct
@@ -51,7 +43,7 @@ class SavingProductOptionsSerializer(serializers.ModelSerializer):
 
 
 class SavingProductWithOptionsSerializer(serializers.ModelSerializer):
-    saving_products = SavingProductOptionsSerializer(many=True, read_only=True)
+    saving_product_option = SavingProductOptionsSerializer(many=True, read_only=True)
 
     class Meta():
         model = SavingProduct
@@ -60,6 +52,18 @@ class SavingProductWithOptionsSerializer(serializers.ModelSerializer):
 
 # 전세자금대출-------------------------------------------------------------------------------------------------------------
 class LoanForHomeSerializer(serializers.ModelSerializer):
+    class Meta():
+        model = LoanForHome
+        fields = '__all__'
+
+class LoanForHomeOptionsSerializer(serializers.ModelSerializer):
+    class Meta():
+        model = LoanForHomeOptions
+        fields = '__all__'
+
+class LoanForHomeWithOptionsSerializer(serializers.ModelSerializer):
+    loan_home_product_option = LoanForHomeOptionsSerializer(many=True, read_only=True)
+
     class Meta():
         model = LoanForHome
         fields = '__all__'
@@ -79,7 +83,7 @@ class LoanForPersonOptionsSerializer(serializers.ModelSerializer):
 
 
 class LoanForPersonWithOptionsSerializer(serializers.ModelSerializer):
-    loan_person_products = LoanForPersonOptionsSerializer(many=True, read_only=True)
+    loan_person_product_option = LoanForPersonOptionsSerializer(many=True, read_only=True)
 
     class Meta():
         model = LoanForPerson

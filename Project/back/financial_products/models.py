@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 # 금융회사---------------------------------------------------------------------------------------------
 class FinancialCompany(models.Model):
-    fin_co_no = models.TextField()
+    fin_co_no = models.TextField(unique=True)
     # 금융회사 코드
     # 이걸 PK로 잡는게 좋을 듯?!?!?
     # PK 잡지말고 나중에 필터 쓰는 걸로 하자
@@ -21,7 +21,7 @@ class DepositProduct(models.Model):
     # 금융회사 코드
     kor_co_nm = models.TextField()
     # 금융회사명
-    fin_prdt_cd = models.TextField()
+    fin_prdt_cd = models.TextField(unique=True)
     # 금융상품 코드
     fin_prdt_nm = models.TextField()
     # 금융상품명
@@ -47,9 +47,9 @@ class DepositProductOptions(models.Model):
     deposit_product = models.ForeignKey(DepositProduct, on_delete=models.CASCADE, related_name='deposit_product_option', to_field='fin_prdt_cd')
     # 금융상품 코드
 
-    fin_prdt_cd = models.TextField(null=True) 
-    # 저축금리유형
-    intr_rate_type_nm = models.CharField(null=True) 
+    intr_rate_type = models.TextField(null=True) 
+    # 저축금리유형    
+    intr_rate_type_nm = models.TextField(null=True) 
     # 저축금리유형명
     intr_rate = models.FloatField(null=True) 
     # 저축금리
@@ -65,7 +65,7 @@ class SavingProduct(models.Model):
     # 금융회사 코드
     kor_co_nm = models.TextField()
     # 금융회사명
-    fin_prdt_cd = models.TextField() 
+    fin_prdt_cd = models.TextField(unique=True) 
     # 금융상품코드
     fin_prdt_nm = models.TextField() 
     # 금융상품명
@@ -95,7 +95,7 @@ class SavingProductOptions(models.Model):
 
     intr_rate_type = models.TextField(null=True) 
     # 저축금리유형
-    intr_rate_type_nm = models.CharField(null=True) 
+    intr_rate_type_nm = models.TextField(null=True) 
     # 저축금리유형명
     intr_rate = models.FloatField(null=True) 
     # 저축금리
@@ -111,7 +111,7 @@ class LoanForHome(models.Model):
     # 금융회사 코드
     kor_co_nm = models.TextField()
     # 금융회사명
-    fin_prdt_cd = models.TextField() 
+    fin_prdt_cd = models.TextField(unique=True) 
     # 금융상품코드
     fin_prdt_nm = models.TextField() 
     # 금융상품명
@@ -124,7 +124,10 @@ class LoanForHome(models.Model):
     dly_rate = models.TextField(null=True)
     # 연체 이자율
 
-    # 여기는 optionList에서 가져오기!
+
+class LoanForHomeOptions(models.Model):
+    loan_home_product = models.ForeignKey(LoanForHome, on_delete=models.CASCADE, related_name='loan_home_product_option', to_field='fin_prdt_cd')
+    # 금융상품 코드
 
     lend_rate_type = models.TextField(null=True)
     # 대출금리유형 코드
@@ -140,7 +143,7 @@ class LoanForHome(models.Model):
 
 # 개인신용대출------------------------------------------------------------------------------------------------
 class LoanForPerson(models.Model):
-    fin_co_no = models.TextField()
+    fin_co_no = models.TextField(unique=True)
     # 금융회사 코드
     kor_co_nm = models.TextField()
     # 금융회사명
@@ -161,7 +164,7 @@ class LoanForPerson(models.Model):
 class LoanForPersonOptions(models.Model):
     # fin_co_no = models.ForeignKey(LoanForPerson, on_delete=models.CASCADE)
     # 금융회사 코드
-    loan_person_product = models.ForeignKey(LoanForPerson, on_delete=models.CASCADE, related_name='deposit_product_option', to_field='fin_prdt_cd')
+    loan_person_product = models.ForeignKey(LoanForPerson, on_delete=models.CASCADE, related_name='loan_person_product_option', to_field='fin_co_no')
     # 금융상품 코드
 
     # ForeignKey를 설정
