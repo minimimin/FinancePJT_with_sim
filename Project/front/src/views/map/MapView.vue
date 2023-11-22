@@ -1,29 +1,35 @@
 <template>
   <div>
-    <h1>지도 페이지</h1>
+    <h1>내 주변의 은행 찾기</h1>
     <hr>
     <!-- 선택지 -->
-    <div>
-      <label for="sido">시/도 선택 : </label>
-      <select id="sido" v-model="selectedSido" @change="updateKeyword">
-        <option disabled value="">시/도를 선택하세요</option>
-        <option v-for="sido in sidoList" :key="sido.id" :value="sido">{{ sido }}</option>
-      </select>
-      <label for="gungu">시/군/구 선택 : </label>
-      <select id="gungu" v-model="selectedGungu" @change="updateKeyword">
-        <option disabled value="">시/군/구를 선택하세요</option>
-        <option v-for="gungu in filteredGungu" :key="gungu.id" :value="gungu.gungu">{{ gungu.gungu }}</option>
-      </select>
-      <label for="bank">은행 선택 : </label>
-      <select id="bank" v-model="selectedBank" @change="updateKeyword">
-        <option disabled value="">은행을 선택하세요</option>
-        <option v-for="bank in banks" :key="bank.id" :value="bank">{{ bank }}</option>
-      </select>
+    <div class="select-box">
+        <div>
+            <label for="sido">시/도 선택 : </label>
+            <select id="sido" v-model="selectedSido" @change="updateKeyword">
+              <option disabled value="">시/도를 선택하세요</option>
+              <option v-for="sido in sidoList" :key="sido.id" :value="sido">{{ sido }}</option>
+            </select>
+        </div>
+        <div>
+            <label for="gungu">시/군/구 선택 : </label>
+            <select id="gungu" v-model="selectedGungu" @change="updateKeyword">
+              <option disabled value="">시/군/구를 선택하세요</option>
+              <option v-for="gungu in filteredGungu" :key="gungu.id" :value="gungu.gungu">{{ gungu.gungu }}</option>
+            </select>
+        </div>
+        <div>
+            <label for="bank">은행 선택 : </label>
+            <select id="bank" v-model="selectedBank" @change="updateKeyword">
+              <option disabled value="">은행을 선택하세요</option>
+              <option v-for="bank in banks" :key="bank.id" :value="bank">{{ bank }}</option>
+            </select>
+        </div>
     </div>
     <hr>
     <!-- 지도 -->
     <div class="map_wrap">
-        <div id="map" style="width:1200px;height:800px;position:relative;overflow:hidden;"></div>
+        <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
         <ul id="category">
             <li id="BK9" data-order="0"> 
                 <span class="category_bg bank"></span>
@@ -80,15 +86,23 @@ watch([selectedSido, selectedGungu, selectedBank, inputKeyword], () => {
 })
 
 // 경도, 위도 초기값 (구미 캠퍼스)
-const latitude = ref(36.107793)
-const longitude = ref(128.416801)
+// const latitude = ref(36.107793)
+// const longitude = ref(128.416801)
+
+// 경도, 위도 초기값 (삼성전자 본사)
+// const latitude = ref(37.257836)
+// const longitude = ref(127.053511)
+
+// 경도, 위도 초기값 (멀티캠퍼스 역삼)
+const latitude = ref(37.501280)
+const longitude = ref(127.039536)
 
 const createMap = function () {
   // Kakao Map API를 사용하여 현재 위치를 기반으로 지도 생성
   const mapContainer = document.getElementById('map')
   const options = {
     center: new kakao.maps.LatLng(latitude.value, longitude.value),
-    level: 3,
+    level: 2,
   }
   const map = new kakao.maps.Map(mapContainer, options)
 
@@ -198,18 +212,21 @@ const createMap = function () {
 
   // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
   function addMarker(position, order) {
-      var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
-          imageSize = new kakao.maps.Size(27, 28),  // 마커 이미지의 크기
-          imgOptions =  {
-              spriteSize : new kakao.maps.Size(72, 208), // 스프라이트 이미지의 크기
-              spriteOrigin : new kakao.maps.Point(46, (order*36)), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
-              offset: new kakao.maps.Point(11, 28) // 마커 좌표에 일치시킬 이미지 내에서의 좌표
-          },
-          markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
-              marker = new kakao.maps.Marker({
+    //   var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
+    //       imageSize = new kakao.maps.Size(27, 28),  // 마커 이미지의 크기
+    //       imgOptions =  {
+    //           spriteSize : new kakao.maps.Size(72, 208), // 스프라이트 이미지의 크기
+    //           spriteOrigin : new kakao.maps.Point(46, (order*36)), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
+    //           offset: new kakao.maps.Point(11, 28) // 마커 좌표에 일치시킬 이미지 내에서의 좌표
+    //       },
+    //       markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
+    //           marker = new kakao.maps.Marker({
+    //           position: position, // 마커의 위치
+    //           image: markerImage 
+    //       });
+    var marker = new kakao.maps.Marker({
               position: position, // 마커의 위치
-              image: markerImage 
-          });
+            });
 
       marker.setMap(map); // 지도 위에 마커를 표출합니다
       markers.push(marker);  // 배열에 생성된 마커를 추가합니다
@@ -461,10 +478,10 @@ onMounted(() => {
 
 </script>
 
-<style scoped>
-.map_wrap, .map_wrap * {margin:0; padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
+<style>
+.map_wrap, .map_wrap * {padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
-.map_wrap {position:relative;width: 1200px;height: 800px;}
+.map_wrap {position:relative;width:100%;height: 800px;}
 
 #menu_wrap {position:absolute;top:0;left:0;bottom:0;width:250px;height:100%;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.9);z-index: 1;font-size:12px;border-radius: 0 10px 0 10px;}
 .bg_white {background:#fff;}
@@ -476,11 +493,11 @@ onMounted(() => {
 #category {position:absolute;top:45px;right:50px;border-radius: 5px; border:1px solid #909090;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);background: #fff;overflow: hidden;z-index: 2;}
 #category li {float:left;list-style: none;width:50px;border-right:1px solid #acacac;padding:6px 0;text-align: center; cursor: pointer;}
 #category li.on {background: #eee;}
-#category li:hover {background: #ffe6e6;border-left:1px solid #acacac;margin-left: -1px;}
+#category li:hover {background: #e6f4ff;border-left:1px solid #acacac;margin-left: -1px;}
 #category li:last-child{margin-right:0;border-right:0;}
 #category li span {display: block;margin:0 auto 3px;width:27px;height: 28px;}
-#category li .category_bg {background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png) no-repeat;}
-#category li .bank {background-position: -10px 0;}
+#category li .category_bg {background:url(@/assets/marker_spot.png) no-repeat;background-size: contain;background-position: center center;}
+/* #category li .bank {background-position: -10px 0;} */
 #category li.on .category_bg {background-position-x:-46px;}
 
 .placeinfo_wrap {position:absolute;bottom:28px;left:-150px;width:300px;}
@@ -523,4 +540,19 @@ onMounted(() => {
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
 
+</style>
+
+<style scoped>
+/* 여기는 내가 설정 */
+.select-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+label {
+    margin-right: 10px;
+    align-items: center;
+}
 </style>
