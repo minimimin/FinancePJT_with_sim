@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>여기는 적금 상품 조회를 할 곳입니다.</h1>
+    <h1>[적금 상품 조회]</h1>
     <table>
       <thead>
         <tr>
@@ -11,6 +11,7 @@
           <th colspan="{{ check.length + 1 }}">이자율</th>
         </tr>
         <tr>
+          <th></th>
           <th></th>
           <th></th>
           <th></th>

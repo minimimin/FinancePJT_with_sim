@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>여기는 전세자금대출상품 조회를 할 곳입니다.</h1>
+    <h1>[대출 상품 조회]</h1>
     <table>
       <thead>
         <tr>
@@ -18,17 +18,17 @@
           <th v-for="point in check">{{ point }}</th>
         </tr>
       </thead>
-
+      
       <tbody>
-        <template v-for="loanHome in loanHomeData" :key="loanHome.fin_prdt_cd">
-          <tr v-for="loan_home in loanHome.loan_home_product_option" :key="deposit.fin_prdt_nm" @click="goDetail">
-            <td>{{ loanHome.kor_co_nm }}</td>
-            <td>{{ loanHome.fin_prdt_nm }}</td>
-            <td>{{ loanHome.loan_lmt }}</td>
-            <td>{{ loan_home.lend_rate_type_nm }}</td>
-            <td >{{ loan_home.lend_rate_avg }}</td>
-            <td >{{ loan_home.lend_rate_min }}</td>
-            <td >{{ loan_home.lend_rate_max }}</td>
+        <template v-for="loanHome in financialProductStore.nowLoanHome" :key="loanHome.fin_prdt_cd">
+          <tr v-for="loan_home in loanHome.loan_home_product_option" :key="deposit?.fin_prdt_nm" @click="goDetail">
+            <td>{{ loanHome?.kor_co_nm }}</td>
+            <td>{{ loanHome?.fin_prdt_nm }}</td>
+            <td>{{ loanHome?.loan_lmt }}</td>
+            <td>{{ loan_home?.lend_rate_type_nm }}</td>
+            <td >{{ loan_home?.lend_rate_avg }}</td>
+            <td >{{ loan_home?.lend_rate_min }}</td>
+            <td >{{ loan_home?.lend_rate_max }}</td>
             </tr>
         </template>
       </tbody>
