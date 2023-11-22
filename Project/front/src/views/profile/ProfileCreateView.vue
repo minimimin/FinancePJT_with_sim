@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{ username }}님의 PROFILE</h1>
+    <h1>{{ userStore.loginUser?.username }}님의 PROFILE</h1>
     <hr>
     <p>상세 정보를 입력해주세요.</p>
     <!--age, money, salary, job, main_bank, 
@@ -152,18 +152,13 @@ import axios from 'axios'
     const banking_products = ref(null)
     const card_products = ref(null)
 
-    const API_URL = userStore.API_URL
-    const user_pk = userStore.userPk
-    const username = userStore.userName
-
-
     const createProfile = function () {
       if (otherJob.value) {
         job.value = otherJob.value
       }
       axios({
       method:'post',
-      url:`${API_URL}/users/profile/${user_pk}/`,
+      url:`${userStore.API_URL}/users/profile/${userStore.loginUser.id}/`,
       data:{
         age: age.value, 
         money: money.value, 

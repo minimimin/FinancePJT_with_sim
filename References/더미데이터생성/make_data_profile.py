@@ -81,7 +81,7 @@ with open(save_dir, 'w', encoding="utf-8") as f:
             'user': i+1,
             'deposit_products': [random.randint(1, 38) for _ in range(random.randint(0, 5))],
             'saving_products': [random.randint(1, 62) for _ in range(random.randint(0, 5))],
-            'loan_home_products': [random.randint(1, 40) for _ in range(random.randint(0, 5))],
+            'loan_home_products': [random.randint(1, 39) for _ in range(random.randint(0, 5))],
             'age': random.randint(1, 100),  # 나이
             'money': random.randrange(0, 100000000, 100000),    # 현재 가진 금액
             'salary': random.randrange(0, 1500000000, 1000000), # 연봉

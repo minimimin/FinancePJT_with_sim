@@ -1,7 +1,7 @@
 <template>
   <!--프로필이 있다면 보여주기 + 수정하기 페이지로 이동할 수 있도록 만들기-->
   <div  v-if="profileStore.isValue">
-    <h1>{{ userStore.userName }}님의 프로필</h1>
+    <h1>{{ userStore.loginUser.username }}님의 프로필</h1>
     <button @click="updateProfile">프로필 수정하기</button>
     <!--age, money, salary, job, main_bank, 
       stabillity, banking_products, card_products-->

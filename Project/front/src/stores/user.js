@@ -45,6 +45,9 @@ export const useUserStore = defineStore('user', () => {
         isSignUp.value = true
         logIn({ username, password, isSignUp })
       })
+      .then((res) => {
+        
+      })
       .catch((err) => {
         errors.value = err.response.data
         console.log(err)
@@ -65,7 +68,7 @@ export const useUserStore = defineStore('user', () => {
         token.value = res.data.key
         if (isSignUp) {
           isSignUp.value = false
-          router.push({ name: 'main' })
+          router.push({ name: 'profileCreate' })
         } else {
           history.back()
         }

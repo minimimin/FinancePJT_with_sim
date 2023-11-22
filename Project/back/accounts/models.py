@@ -10,18 +10,18 @@ class User(AbstractUser):
 
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    deposit_products = models.ManyToManyField(DepositProduct)
-    saving_products = models.ManyToManyField(SavingProduct)
-    loan_home_products = models.ManyToManyField(LoanForHome)
+    deposit_products = models.ManyToManyField(DepositProduct, blank=True)
+    saving_products = models.ManyToManyField(SavingProduct, blank=True)
+    loan_home_products = models.ManyToManyField(LoanForHome, blank=True)
     
     # 원하는 추가 필드 작성
-    age = models.IntegerField(null=True)
-    money = models.IntegerField(null=True)
-    salary = models.IntegerField(null=True)
-    job = models.CharField(max_length=30, null=True)
-    main_bank = models.TextField(null=True)
+    age = models.IntegerField(blank=True, null=True)
+    money = models.IntegerField(blank=True, null=True)
+    salary = models.IntegerField(blank=True, null=True)
+    job = models.CharField(max_length=30, blank=True, null=True)
+    main_bank = models.TextField(blank=True, null=True)
 
     # 유저 성향 관련 필드
-    stabillity = models.TextField(null=True)
-    banking_products = models.TextField(null=True)
-    card_products = models.TextField(null=True)
+    stabillity = models.TextField(blank=True, null=True)
+    banking_products = models.TextField(blank=True, null=True)
+    card_products = models.TextField(blank=True, null=True)

@@ -165,6 +165,9 @@ def loanForHomeSave(request):
     response = requests.get(url).json()
 
     for loanhome in response['result']['baseList']:
+        if LoanForHome.objects.filter(fin_prdt_cd=loanhome['fin_prdt_cd']).exists():
+            continue
+
         data = {
             'fin_co_no' : loanhome['fin_co_no'],
             'kor_co_nm' : loanhome['kor_co_nm'],
