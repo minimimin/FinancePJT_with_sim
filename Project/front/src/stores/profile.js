@@ -13,7 +13,7 @@ export const useProfileStore = defineStore('profile', () => {
     {name:'토스', id:4 }, 
     {name:'하나은행', id:5 }
   ])
-  const profile = ref([])
+  const profile = ref(null)
 
   const getProfile = function () {
     axios({

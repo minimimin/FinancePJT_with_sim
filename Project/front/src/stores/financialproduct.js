@@ -9,7 +9,6 @@ export const useFinancialProductStore = defineStore('financialproduct', () => {
   const depositProduct = ref(null)
   const savingProduct = ref(null)
   const loanForHomeProduct = ref(null)
-  const loanForPersonProduct = ref(null)
 
   const getDepositProduct = function () {
     axios({
@@ -50,19 +49,8 @@ export const useFinancialProductStore = defineStore('financialproduct', () => {
       })
   }
 
-  const getLoanPersonProduct = function () {
-    axios({
-      method: 'get',
-      url: `${userStore.API_URL}/finanProduct/loanforperson/`,
-    })
-      .then((res) =>{
-        loanForPersonProduct.value = res.data
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }
+
   return { 
-    userStore, depositProduct, savingProduct, loanForHomeProduct, loanForPersonProduct, 
-    getDepositProduct, getSavingProduct, getLoanHomeProduct, getLoanPersonProduct }
+    userStore, depositProduct, savingProduct, loanForHomeProduct, 
+    getDepositProduct, getSavingProduct, getLoanHomeProduct }
 })

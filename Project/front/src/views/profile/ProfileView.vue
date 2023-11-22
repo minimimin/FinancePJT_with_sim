@@ -41,8 +41,9 @@ const goProfileCreate = function() {
 }
 
   onMounted(() => {
-  profileStore.getProfile()
-  console.log(profileStore.profile)
+    if (profileStore.isValue){
+  profileStore.getProfile()}
+ 
 })
 
 

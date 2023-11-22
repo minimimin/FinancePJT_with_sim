@@ -4,8 +4,8 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 import requests
 from django.shortcuts import get_object_or_404, get_list_or_404
-from .models import FinancialCompany, DepositProduct, DepositProductOptions, SavingProduct, SavingProductOptions, LoanForHome, LoanForPerson, LoanForPersonOptions, ChooseProduct
-from .serializers import FinancialCompanySerializer, DepositProductSerializer, DepositProductOptionsSerializer, DepositProductWithOptionsSerializer, SavingProductSerializer, SavingProductOptionsSerializer, SavingProductWithOptionsSerializer, LoanForHomeSerializer, LoanForHomeOptionsSerializer, LoanForHomeWithOptionsSerializer, LoanForPersonSerializer, LoanForPersonOptionsSerializer, LoanForPersonWithOptionsSerializer, ChooseProductSerializer
+from .models import FinancialCompany, DepositProduct, SavingProduct, LoanForHome
+from .serializers import FinancialCompanySerializer, DepositProductSerializer, DepositProductOptionsSerializer, DepositProductWithOptionsSerializer, SavingProductSerializer, SavingProductOptionsSerializer, SavingProductWithOptionsSerializer, LoanForHomeSerializer, LoanForHomeOptionsSerializer, LoanForHomeWithOptionsSerializer
 
 from pprint import pprint as print
 
@@ -159,7 +159,7 @@ def savingProductGive(request):
 @api_view(['GET'])
 def loanForHomeSave(request):
     api_key = settings.FINLIFE_API_KEY
-    url = f'http://finlife.fss.or.kr/finlifeapi/rentHouseLoanProductsSearch.json?auth={api_key}&topFinGrpNo=050000&pageNo=1'
+    url = f'http://finlife.fss.or.kr/finlifeapi/rentHouseLoanProductsSearch.json?auth={api_key}&topFinGrpNo=020000&pageNo=1'
     loan_for_home_data=LoanForHome.objects.all()
     loan_for_home_data.delete()
     response = requests.get(url).json()
@@ -202,58 +202,3 @@ def loanForHomeGive(request):
     serializer = LoanForHomeWithOptionsSerializer(loan_for_home_data_all, many=True)
     return Response(serializer.data)
 
-
-
-# 개인대출정보 DB 저장하는 것(직렬화 된 것 고려하기)-----------------------------------------------------------------------------------------------------------------------
-@api_view(['GET'])
-def loanForPersonSave(request):
-    api_key = settings.FINLIFE_API_KEY
-    url = f'http://finlife.fss.or.kr/finlifeapi/creditLoanProductsSearch.json?auth={api_key}&topFinGrpNo=050000&pageNo=1'
-    loan_for_person_data=LoanForPerson.objects.all()
-    loan_for_person_data.delete()
-    response = requests.get(url).json()
-
-    for loanperson in response['result']['baseList']:
-        if LoanForPerson.objects.filter(fin_co_no=loanperson['fin_co_no']).exists():
-            continue
-        data = {
-            'fin_co_no' : loanperson['fin_co_no'],
-            'kor_co_nm' : loanperson['kor_co_nm'],
-            'fin_prdt_cd' : loanperson['fin_prdt_cd'],
-            'fin_prdt_nm' : loanperson['fin_prdt_nm'],
-            'join_way' : loanperson['join_way'],
-            'crdt_prdt_type' : loanperson['crdt_prdt_type'],
-            'crdt_prdt_type_nm' : loanperson['crdt_prdt_type_nm'],
-            'cb_name' : loanperson['cb_name'],
-        }
-
-        serializer = LoanForPersonSerializer(data=data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-
-    for option in response['result']['optionList']:
-        data = {
-            'crdt_lend_rate_type' : option['crdt_lend_rate_type'],
-            'crdt_lend_rate_type_nm' : option['crdt_lend_rate_type_nm'],
-            'crdt_grad_avg' : option['crdt_grad_avg'],
-            'crdt_grad_1' : option['crdt_grad_1'],
-            'crdt_grad_4' : option['crdt_grad_4'],
-            'crdt_grad_5' : option['crdt_grad_5'],
-            'loan_person_product' : option['fin_co_no']
-        }
-
-        serializer = LoanForPersonOptionsSerializer(data=data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-    return Response('I Saved')
-    # return으로 화면에 띄우는 건 없애자 나중에
-
-@api_view(['GET'])
-def loanForPersonGive(request):
-    loan_for_home_data_all = get_list_or_404(LoanForPerson)
-    serializer = LoanForPersonWithOptionsSerializer(loan_for_home_data_all, many=True)
-    return Response(serializer.data)
-
-
-
-# 가입한 상품 정보 DB 저장하는 것-----------------------------------------------------------------------------------------------------------------------

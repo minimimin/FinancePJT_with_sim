@@ -46,7 +46,7 @@
         <div>
           <input type="radio" id="기타" name="job" v-model.trim='job' value="기타" /> 
           <label for="기타">기타</label>
-          <input type="text" v-model.trim='otherJob' :disabled="job !== '기타'">
+          <!-- <input type="text" v-model.trim='otherJob' :disabled="job !== '기타'"> -->
           <!--이거때문에 계속 원래값 설정이 안되고 있나봐,,-->
         </div>
       </div>
@@ -79,27 +79,6 @@
       <div>
         <legend>선호하는 은행 상품 유형(하나만 선택)</legend>
 
-          <!-- <div>
-            <input type="checkbox" id="예금" value="예금" name="bankingProducts" v-model.trim='banking_products' />
-            <label for="예금">예금</label>
-          </div>
-
-          <div>
-            <input type="checkbox" id="적금" value="적금" name="bankingProducts" v-model.trim='banking_products' />
-            <label for="적금">적금</label>
-          </div>
-
-          <div>
-            <input type="checkbox" id="펀드" value="펀드" name="bankingProducts" v-model.trim='banking_products' />
-            <label for="펀드">펀드</label>
-          </div>
-
-          <div>
-            <input type="checkbox" id="대출" value="대출" name="bankingProducts" v-model.trim='banking_products' />
-            <label for="대출">대출</label>
-          </div>
-      </div> -->
-
           <div>
             <input type="radio" id="예금" value="예금" name="banking_products" v-model.trim='banking_products' />
             <label for="예금">예금</label>
@@ -111,14 +90,15 @@
           </div>
 
           <div>
-            <input type="radio" id="펀드" value="펀드" name="banking_products" v-model.trim='banking_products' />
-            <label for="펀드">펀드</label>
-          </div>
-
-          <div>
             <input type="radio" id="대출" value="대출" name="banking_products" v-model.trim='banking_products' />
             <label for="대출">대출</label>
           </div>
+
+          <div>
+            <input type="radio" id="해당없음" value="해당없음" name="banking_products" v-model.trim='banking_products' />
+            <label for="해당없음">해당없음</label>
+          </div>
+
       </div>
 
       <br>
@@ -136,8 +116,8 @@
         </div>
 
         <div>
-          <input type="radio" id="카드X" name="card" value="카드X" v-model.trim='card_products' />
-          <label for="카드X">카드를 사용을 희망하지 않음</label>
+          <input type="radio" id="해당없음" name="card" value="해당없음" v-model.trim='card_products' />
+          <label for="해당없음">해당없음</label>
         </div>
       </div>
       <br>
@@ -178,9 +158,7 @@ const banking_products = ref(profileStore.profile.banking_products)
 const card_products = ref(profileStore.profile.card_products)
 
 const updateProfile = function () {
-      if (otherJob.value) {
-        job.value = otherJob.value
-      }
+      
       axios({
       method:'put',
       url:`${API_URL}/users/profile/${user_pk}/`,
@@ -199,7 +177,6 @@ const updateProfile = function () {
       }
     })
       .then((response) => {
-        console.log(stabillity.value)
         router.push({ name: 'profile' })
         
       })

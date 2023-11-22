@@ -14,10 +14,9 @@ import CalculatorView from '@/views/calculator/CalculatorView.vue'
 import ExchangeView from '@/views/calculator/ExchangeView.vue'
 import MapView from '@/views/map/MapView.vue'
 import financialProductView from '@/views/financialproduct/financialProductView.vue'
-import depositproduct from '@/component/financialProduct/depositproduct.vue'
-import savingproduct from '@/component/financialProduct/savingproduct.vue'
-import loanhome from '@/component/financialProduct/loanhome.vue'
-import loanperson from '@/component/financialProduct/loanperson.vue'
+import depositproduct from '@/components/financialProduct/depositproduct.vue'
+import savingproduct from '@/components/financialProduct/savingproduct.vue'
+import loanhome from '@/components/financialProduct/loanhome.vue'
 
 
 const router = createRouter({
@@ -117,11 +116,6 @@ const router = createRouter({
       path: '/financialproduct/loanhome/',
       name: 'loanhome',
       component: loanhome
-    },
-    {
-      path: '/financialproduct/loanperson/',
-      name: 'loanperson',
-      component: loanperson
     },
   ]
 })

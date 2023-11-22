@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import FinancialCompany, DepositProduct, DepositProductOptions, SavingProduct, SavingProductOptions, LoanForHome, LoanForHomeOptions, LoanForPerson, LoanForPersonOptions, ChooseProduct
+from .models import FinancialCompany, DepositProduct, DepositProductOptions, SavingProduct, SavingProductOptions, LoanForHome, LoanForHomeOptions
 
 # 금융회사---------------------------------------------------------------------------------------------
 class FinancialCompanySerializer(serializers.ModelSerializer):
@@ -69,29 +69,3 @@ class LoanForHomeWithOptionsSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-# 개인신용대출------------------------------------------------------------------------------------------------
-class LoanForPersonSerializer(serializers.ModelSerializer):
-    class Meta():
-        model = LoanForPerson
-        fields = '__all__'
-
-
-class LoanForPersonOptionsSerializer(serializers.ModelSerializer):
-    class Meta():
-        model = LoanForPersonOptions
-        fields = '__all__'
-
-
-class LoanForPersonWithOptionsSerializer(serializers.ModelSerializer):
-    loan_person_product_option = LoanForPersonOptionsSerializer(many=True, read_only=True)
-
-    class Meta():
-        model = LoanForPerson
-        fields = '__all__'
-
-
-# 가입상품리스트용------------------------------------------------------------------------------------------------
-class ChooseProductSerializer(serializers.ModelSerializer):
-    class Meta():
-        model = ChooseProduct
-        fields = '__all__'
