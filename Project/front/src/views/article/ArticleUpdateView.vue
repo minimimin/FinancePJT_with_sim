@@ -2,8 +2,8 @@
   <div>
     <h1>게시글 수정 페이지</h1>
     <form @submit.prevent="updateArticle">
-      <label for="category">카테고리 선택:</label><br>
-      <select id="category" v-model="existingCategory">
+      <label for="article-category">카테고리 선택:</label><br>
+      <select id="article-category" v-model="existingCategory">
         <option disabled value="">카테고리를 선택하세요</option>
         <option v-for="category in articleStore.categories" 
         :key="category.id" :value="category.id">{{ category.name }}</option>

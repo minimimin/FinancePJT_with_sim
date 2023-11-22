@@ -1,8 +1,8 @@
 <template>
   <div>
     <form @submit.prevent="createCategory">
-      <label for="category">Category 종류:</label><br>
-      <input type="text" id="category" v-model="inputCategory"><br>
+      <label for="article-category">Category 종류:</label><br>
+      <input type="text" id="article-category" v-model="inputCategory"><br>
       <input type="submit" value="카테고리 생성">
     </form>
     <br>

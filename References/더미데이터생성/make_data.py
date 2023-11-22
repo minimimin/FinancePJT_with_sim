@@ -20,7 +20,6 @@
 
 ### 우리 모델
 # class User(AbstractUser):
-    # pass
     # username
     # first_name
     # last_name

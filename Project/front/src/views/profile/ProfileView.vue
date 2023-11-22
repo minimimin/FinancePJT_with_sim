@@ -43,7 +43,7 @@ const goProfileCreate = function() {
   onMounted(() => {
     if (profileStore.isValue){
   profileStore.getProfile()}
- 
+
 })
 
 
