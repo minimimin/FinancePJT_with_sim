@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
-from financial_products.models import DepositProduct, SavingProduct, LoanForHome, LoanForPerson
+from financial_products.models import DepositProduct, SavingProduct, LoanForHome
 
 # Create your models here.
 class User(AbstractUser):
@@ -13,7 +13,6 @@ class Profile(models.Model):
     deposit_products = models.ManyToManyField(DepositProduct)
     saving_products = models.ManyToManyField(SavingProduct)
     loan_home_products = models.ManyToManyField(LoanForHome)
-    loan_person_products = models.ManyToManyField(LoanForPerson)
     
     # 원하는 추가 필드 작성
     age = models.IntegerField(null=True)
