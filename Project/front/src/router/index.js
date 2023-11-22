@@ -15,8 +15,11 @@ import ExchangeView from '@/views/calculator/ExchangeView.vue'
 import MapView from '@/views/map/MapView.vue'
 import financialProductView from '@/views/financialproduct/financialProductView.vue'
 import depositproduct from '@/components/financialProduct/depositproduct.vue'
+import DepositproductDetail from '@/components/financialProduct/DepositproductDetail.vue'
 import savingproduct from '@/components/financialProduct/savingproduct.vue'
+import SavingproductDetail from '@/components/financialProduct/SavingproductDetail.vue'
 import loanhome from '@/components/financialProduct/loanhome.vue'
+import LoanhomeDetail from '@/components/financialProduct/LoanhomeDetail.vue'
 
 
 const router = createRouter({
@@ -108,14 +111,29 @@ const router = createRouter({
       component: depositproduct
     },
     {
+      path: '/financialproduct/deposit/detail/',
+      name: 'depositProductDetail',
+      component: DepositproductDetail
+    },
+    {
       path: '/financialproduct/saving/',
       name: 'savingProduct',
       component: savingproduct
     },
     {
+      path: '/financialproduct/saving/detail/',
+      name: 'savingProductDetail',
+      component: SavingproductDetail
+    },
+    {
       path: '/financialproduct/loanhome/',
       name: 'loanhome',
       component: loanhome
+    },
+    {
+      path: '/financialproduct/loanhome/detail/',
+      name: 'loanhomeDetail',
+      component: LoanhomeDetail
     },
   ]
 })

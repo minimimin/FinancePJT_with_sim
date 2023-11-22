@@ -5,8 +5,7 @@ from django.db import models
 class FinancialCompany(models.Model):
     fin_co_no = models.TextField(unique=True)
     # 금융회사 코드
-    # 이걸 PK로 잡는게 좋을 듯?!?!?
-    # PK 잡지말고 나중에 필터 쓰는 걸로 하자
+
     kor_co_nm = models.TextField()
     # 금융회사 명
     homp_url = models.TextField(blank=True, null=True)
@@ -42,8 +41,6 @@ class DepositProduct(models.Model):
 
 
 class DepositProductOptions(models.Model):
-    # deposit_company = models.ForeignKey(DepositProduct,on_delete=models.CASCADE related_name='deposit_product_option' to_field='fin_co_no')
-    # 금융회사 코드
     deposit_product = models.ForeignKey(DepositProduct, on_delete=models.CASCADE, related_name='deposit_product_option', to_field='fin_prdt_cd')
     # 금융상품 코드
 
@@ -86,8 +83,6 @@ class SavingProduct(models.Model):
 
 
 class SavingProductOptions(models.Model):
-    # fin_co_no = models.ForeignKey(SavingProduct,on_delete=models.CASCADE)
-    # 금융회사 코드
     saving_product = models.ForeignKey(SavingProduct, on_delete=models.CASCADE, related_name='saving_product_option', to_field='fin_prdt_cd')
     # 금융상품 코드
 

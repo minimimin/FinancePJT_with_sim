@@ -1,80 +1,74 @@
 <template>
   <div>
-    <!-- <h1>여기는 예금 상품 조회를 할 곳입니다.</h1> -->
-    <!-- <p v-for="hi in financialProductStore.depositProduct">
-      {{ hi }}
-      <p>------------------------------------------------------
-        <br>
-      금융상품 목록 : {{ hi.deposit_product_option }}
-      <br>
-      ------------------------------------------------------</p>
-      <br>
-    </p> -->
+    <h1>여기는 예금 상품 조회를 할 곳입니다.</h1>
+<table>
+  <thead>
+    <tr>
+      <th>은행명</th>
+      <th>상품명</th>
+      <th>금리유형</th>
+      <th>최고한도</th>
+      <th colspan="{{ check.length + 1 }}">이자율</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th v-for="num in check">{{ num }}개월</th>
 
+    </tr>
+  </thead>
+  <tbody>
+    <tr v-for="deposit in depositData" :key="deposit.fin_prdt_nm" @click="goDetail">
+      <td>{{ deposit.kor_co_nm }}</td>
+      <td>{{ deposit.fin_prdt_nm }}</td>
+      <td >{{ deposit.deposit_product_option[0].intr_rate_type_nm}}</td>
+      <td>{{ deposit.max_limit }}</td>
+      <td v-for="num in check">
+        {{ deposit.rates[num]}}</td>
+    </tr>
+  </tbody>
+</table>
 
-    <p>
-      <!-- <p> -->
-      <!-- {{ deposit.id }} -->
-      <br>
-      은행명 : {{ deposit.kor_co_nm }}
-      <br>
-      상품명 : {{ deposit.fin_prdt_nm }}
-      <br>
-      <!--이 아래부터는 디테일에 넣어놓을 것!-->
-      가입방법 : {{ deposit.join_way }}
-      <br>
-      가입 대상 : {{ deposit.join_member }}
-      <br>
-      {{ deposit.join_deny }}
-      <br>
-      {{ deposit.max_limit }}
-      <br>
-      {{ deposit.spcl_cnd }}
-      <br>
-      <br>
-      {{ deposit.mtrt_int }}
-      <br>
-      <br>
-      {{ deposit.etc_note }}
-      <br>
-      
-      <p>------------------------------------------------------
-        <br>
-      금융상품 목록 : 
-      <br>
-      {{ deposit.deposit_product_option.length }}
-      <p v-for="deposit_detail in deposit.deposit_product_option">
-      <br>
-      {{ deposit_detail.intr_rate_type_nm }}
-      <br>
-      {{ deposit_detail.intr_rate }}
-      <br>
-      {{ deposit_detail.intr_rate2 }}
-      <br>
-      {{ deposit_detail.save_trm }}
-      <br>
-      <!--이건 필터써서 동일한 것 뽑아내기?!?!-->
-      {{ deposit_detail.deposit_product }}
-      </p>
-      <br>
-      ------------------------------------------------------</p>
-      <br>
-    </p>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { useFinancialProductStore } from '@/stores/financialproduct'
 
+const check = [6, 12, 24, 36]
 const financialProductStore = useFinancialProductStore()
+const router = useRouter()
+const depositData = ref([])
+const goDetail = function() {
+  router.push({name:'depositProductDetail'})
+}
 
-const props = defineProps({
-  deposit: Object
-})
 
 onMounted(() => {
-  financialProductStore.getDepositProduct()
+  financialProductStore.getDepositProduct().then(()=>{
+    depositData.value = financialProductStore.nowDeposit?.map(deposit =>{
+      const rates = {
+        6 :null,
+        12 : null,
+        24 : null,
+        36 :null,
+      }
+      deposit.deposit_product_option.forEach(deposit_detail => {
+        if (!rates[deposit_detail.save_trm]) {
+          rates[deposit_detail.save_trm]=deposit_detail.intr_rate2
+        }
+      })
+      check.forEach(num => {
+        if (!rates[num]) {
+          rates[num] = '-'
+        }
+      })
+    return { ...deposit, rates }
+    })
+  })
 })
 
 </script>

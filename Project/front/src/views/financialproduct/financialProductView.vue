@@ -10,11 +10,7 @@
     <RouterLink :to="{ name: 'loanhome' }">LoanHome</RouterLink>  |
     <RouterLink :to="{ name: 'loanperson' }">LoanPerson</RouterLink>  | -->
 
-    <depositproduct v-show="deposit_show"
-    v-for="deposit in financialProductStore.depositProduct"
-    :key="deposit.fin_prdt_nm"
-    :deposit="deposit"
-    />
+    <depositproduct v-show="deposit_show"/>
 
     <savingproduct v-show="saving_show"/>
     <loanhome v-show="loan_home_show"/>
