@@ -172,7 +172,7 @@
 ### ✨ 기타사항
 
 #### - 메인 캐릭터
-![mini_sim](References\image\mini_sim_logo.png)
+![mini_sim](./References/image/mini_sim_logo.png)
 
 #### - 참고사이트
 
