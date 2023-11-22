@@ -35,6 +35,7 @@
 
 # class Profile(models.Model):
 #     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+#     choice = models.ForeignKey(ChooseProduct, on_delete=models.CASCADE)
     
 #     # 원하는 추가 필드 작성
 #     age = models.IntegerField(null=True)
@@ -47,6 +48,17 @@
 #     stabillity = models.TextField(null=True)
 #     banking_products = models.TextField(null=True)
 #     card_products = models.TextField(null=True)
+
+# 가입상품리스트용------------------------------------------------------------------------------------------------
+# class ChooseProduct(models.Model):
+#     fin_co_no = models.TextField()
+#     # 금융회사 코드
+#     kor_co_nm = models.TextField()
+#     # 금융회사명
+#     fin_prdt_cd = models.TextField() 
+#     # 금융상품코드
+#     fin_prdt_nm = models.TextField() 
+#     # 금융상품명
 
 
 import random
