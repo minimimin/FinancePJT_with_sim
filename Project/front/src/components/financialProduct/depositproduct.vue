@@ -20,7 +20,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr v-for="deposit in depositData" :key="deposit.fin_prdt_nm" @click="goDetail">
+    <tr v-for="deposit in depositData" :key="deposit.fin_prdt_nm" @click="goDetail(deposit.id)">
       <td>{{ deposit.kor_co_nm }}</td>
       <td>{{ deposit.fin_prdt_nm }}</td>
       <td >{{ deposit.deposit_product_option[0].intr_rate_type_nm}}</td>
@@ -43,8 +43,9 @@ const check = [6, 12, 24, 36]
 const financialProductStore = useFinancialProductStore()
 const router = useRouter()
 const depositData = ref([])
-const goDetail = function() {
-  router.push({name:'depositProductDetail'})
+const goDetail = function(deposit_id) {
+  financialProductStore.getDepositProductDetail(deposit_id)
+  router.push({ name:'depositProductDetail', params: { deposit_id : deposit_id } })
 }
 
 

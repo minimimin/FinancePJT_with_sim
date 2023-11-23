@@ -111,7 +111,7 @@ const router = createRouter({
       component: depositproduct
     },
     {
-      path: '/financialproduct/deposit/detail/',
+      path: '/financialproduct/deposit/:deposit_id/',
       name: 'depositProductDetail',
       component: DepositproductDetail
     },
@@ -121,7 +121,7 @@ const router = createRouter({
       component: savingproduct
     },
     {
-      path: '/financialproduct/saving/detail/',
+      path: '/financialproduct/saving/:saving_id/',
       name: 'savingProductDetail',
       component: SavingproductDetail
     },
@@ -131,7 +131,7 @@ const router = createRouter({
       component: loanhome
     },
     {
-      path: '/financialproduct/loanhome/detail/',
+      path: '/financialproduct/loanhome/:loan_id/',
       name: 'loanhomeDetail',
       component: LoanhomeDetail
     },

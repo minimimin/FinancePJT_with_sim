@@ -9,7 +9,6 @@
     <RouterLink :to="{ name: 'loanperson' }">LoanPerson</RouterLink>  | -->
 
     <depositproduct v-show="deposit_show"/>
-
     <savingproduct v-show="saving_show"/>
     <loanhome v-show="loan_home_show"/>
 

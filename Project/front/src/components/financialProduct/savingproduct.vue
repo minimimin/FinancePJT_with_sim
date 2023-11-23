@@ -20,7 +20,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="saving in savingData" :key="saving.fin_prdt_nm" @click="goDetail">
+        <tr v-for="saving in savingData" :key="saving.fin_prdt_nm" @click="goDetail(saving.id)">
           <td>{{ saving.kor_co_nm }}</td>
           <td>{{ saving.fin_prdt_nm }}</td>
           <td >{{ saving.saving_product_option[0].intr_rate_type_nm}}</td>
@@ -42,8 +42,9 @@ const check = [6, 12, 24, 36]
 const financialProductStore = useFinancialProductStore()
 const router = useRouter()
 const savingData = ref([])
-const goDetail = function() {
-  router.push({name:'savingProductDetail'})
+const goDetail = function(saving_id) {
+  financialProductStore.getSavingProductDetail(saving_id)
+  router.push({name:'savingProductDetail', params: { saving_id : saving_id}})
 }
 
 

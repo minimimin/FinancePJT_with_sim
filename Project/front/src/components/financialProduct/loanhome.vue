@@ -21,7 +21,7 @@
       
       <tbody>
         <template v-for="loanHome in financialProductStore.nowLoanHome" :key="loanHome.fin_prdt_cd">
-          <tr v-for="loan_home in loanHome.loan_home_product_option" :key="deposit?.fin_prdt_nm" @click="goDetail">
+          <tr v-for="loan_home in loanHome.loan_home_product_option" :key="loanHome?.fin_prdt_nm" @click="goDetail">
             <td>{{ loanHome?.kor_co_nm }}</td>
             <td>{{ loanHome?.fin_prdt_nm }}</td>
             <td>{{ loanHome?.loan_lmt }}</td>

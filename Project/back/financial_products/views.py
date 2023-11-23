@@ -99,6 +99,15 @@ def depositProductGive(request):
     return Response(serializer.data)
 
 
+# 게시글 한 개 불러오기
+@api_view(['GET'])
+def depositProductDetail(request, deposit_id):
+    deposit_detail = DepositProduct.objects.get(pk=deposit_id)
+    serializer = DepositProductWithOptionsSerializer(deposit_detail)
+    return Response(serializer.data)
+
+
+
 
 # 적금정보 DB 저장하는 것(직렬화 된 것 고려하기)-----------------------------------------------------------------------------------------------------------------------
 @api_view(['GET'])
@@ -153,6 +162,10 @@ def savingProductGive(request):
     return Response(serializer.data)
 
 
+def savingProductDetail(request, saving_id):
+    saving_detail = SavingProduct.objects.get(pk=saving_id)
+    serializer = SavingProductWithOptionsSerializer(saving_detail)
+    return Response(serializer.data)
 
 
 # 전세자금대출정보 DB 저장하는 것(직렬화 된 것 고려하기)-----------------------------------------------------------------------------------------------------------------------
@@ -205,3 +218,8 @@ def loanForHomeGive(request):
     serializer = LoanForHomeWithOptionsSerializer(loan_for_home_data_all, many=True)
     return Response(serializer.data)
 
+
+def loanForHomeDetail(request, loan_id):
+    loan_detail = LoanForHome.objects.get(pk=loan_id)
+    serializer = LoanForHomeWithOptionsSerializer(loan_detail)
+    return Response(serializer.data)
