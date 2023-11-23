@@ -9,7 +9,7 @@
     :key="bank.id" :value="bank.name">{{ bank.name }}</option>
   </select>
 </div>
-
+  <div class="d-flex justify-content-center">
     <table>
       <thead>
         <tr>
@@ -17,7 +17,11 @@
           <th>상품명</th>
           <th>금리유형</th>
           <th>최고한도</th>
-          <th colspan="{{ check.length + 1 }}">이자율</th>
+          <th></th>
+          <th></th>
+          <th>이자율</th>
+          <th></th>
+          <!-- <th colspan="{{ check.length + 1 }}">이자율</th> -->
         </tr>
         <tr>
           <th></th>
@@ -41,6 +45,7 @@
       </template>
       </tbody>
     </table>
+  </div>
   </div>
 </template>
 

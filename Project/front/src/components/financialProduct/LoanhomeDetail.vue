@@ -1,6 +1,6 @@
 <template>
   <div class="pre-line">
-    <h1>여기는 대출 상세 페이지</h1>
+    <h1>[대출 상품 상세]</h1>
     <div>
       <br>
       <br>
@@ -21,37 +21,37 @@
       <br>
         연체 이자율 : <br>{{ financialProductStore.loanDetail?.dly_rate }}
       <br>
-      <hr>
+      <hr style="margin-top: 50px;">
 
       <h6>[금융상품 목록(총 {{ financialProductStore.loanDetail?.loan_home_product_option.length }}개)]</h6>
       <!-- 여기서부터 v-for를 돌면서 찾아내야한다! -->
-      <br>
-      * 아래 대출 금리는 소수점 2자리에서 반올림 한 값입니다.
+      <p style="font-size: 15px; margin-bottom: 0;">* 아래 대출 금리는 소수점 2자리에서 반올림 한 값입니다.</p>
       <!-- 글씨 작게 + 오른쪽 끝으로 정렬되게 만들기! -->
+      <div class="d-flex justify-content-center" >
       <table>
-  <thead>
-    <tr>
-      <th>NO.</th>
-      <th>금리유형</th>
-      <th>평균금리</th>
-      <th>최저대출금리</th>
-      <th>최대대출금리</th>
-      <th>상품가입</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr v-for="loan_home in financialProductStore.loanDetail?.loan_home_product_option" :key="loan_home.id">
-      <td>{{ loan_home.id }}</td>
-      <!-- 사실 id로 하면 안되고 순서로 하고 싶은데,,, -->
-      <td>{{ loan_home.lend_rate_type_nm }}</td>
-      <td>{{ loan_home.lend_rate_avg }}</td>
-      <td >{{ loan_home.lend_rate_min }}</td>
-      <td >{{ loan_home.lend_rate_max }}</td>
-      <td><button>가입하기</button></td>
-    </tr>
-  </tbody>
-</table>
+        <thead>
+          <tr>
+            <th>NO.</th>
+            <th>금리유형</th>
+            <th>평균금리</th>
+            <th>최저대출금리</th>
+            <th>최대대출금리</th>
+            <!-- <th>상품가입</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="loan_home in financialProductStore.loanDetail?.loan_home_product_option" :key="loan_home.id">
+            <td>{{ loan_home.id }}</td>
+            <!-- 사실 id로 하면 안되고 순서로 하고 싶은데,,, -->
+            <td>{{ loan_home.lend_rate_type_nm }}</td>
+            <td>{{ loan_home.lend_rate_avg }}</td>
+            <td >{{ loan_home.lend_rate_min }}</td>
+            <td >{{ loan_home.lend_rate_max }}</td>
+            <!-- <td><button>가입하기</button></td> -->
+          </tr>
+        </tbody>
+      </table>
+      </div>
 
 
       <!-- <div v-for="loan_home in financialProductStore.loanDetail?.loan_home_product_option">

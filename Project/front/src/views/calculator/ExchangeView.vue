@@ -1,6 +1,7 @@
 <template>
     <div>
         <h1>환율 계산기</h1>
+        <br>
         <div>
             <h3>[나라별 환율 계산]</h3>
             <select v-model="changeCountry" >

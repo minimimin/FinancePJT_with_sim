@@ -2,6 +2,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth.decorators import login_required
 from .models import Profile
 from .serializers import ProfileSerializer, UserSerializer
 
@@ -34,3 +35,21 @@ def user_profile(request, user_pk):
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data)
+        
+
+# @api_view(['GET', 'POST'])
+# @login_required
+# def user_profile_deposit(request):
+#     pass
+
+
+# @api_view(['GET', 'POST'])
+# @login_required
+# def user_profile_saving(request):
+#     pass
+
+
+# @api_view(['GET', 'POST'])
+# @login_required
+# def user_profile_loan(request):
+#     pass
