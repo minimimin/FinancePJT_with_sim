@@ -1,6 +1,6 @@
 <template>
   <!--프로필이 있다면 보여주기 + 수정하기 페이지로 이동할 수 있도록 만들기-->
-  <div class="view-box" v-if="profileStore.isValue">
+  <div v-if="profileStore.isValue">
     <h1>{{ userStore.loginUser.username }}님의 프로필</h1>
     <button @click="updateProfile">프로필 수정하기</button>
     <!--age, money, salary, job, main_bank, 
@@ -40,12 +40,9 @@ const goProfileCreate = function() {
   router.push({ name: 'profileCreate' })
 }
 
-  onMounted(() => {
-    if (profileStore.isValue){
-  profileStore.getProfile()}
-
+onMounted(() => {
+  profileStore.getProfile()
 })
-
 
 const updateProfile = function () {
     router.push({ name: 'profileUpdate' })

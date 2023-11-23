@@ -56,12 +56,12 @@
       <select id="main_bank" v-model="mainBank">
         <option disabled value="">은행을 선택하세요</option>
         <option v-for="bank in profileStore.banks" 
-        :key="bank.id" :value="bank.id">{{ bank.name }}</option>
+        :key="bank.id" :value="bank.name">{{ bank.name }}</option>
       </select>
 
       <br>
       <br>
-
+  <div class="stabillity-box">
   <label for="stabillity">안정성</label><br>
   <input type="range" id="stabillity" name="stabillity" min="0" max="100"  list="values" v-model.trim='stabillity' >
   <datalist id="values">
@@ -71,7 +71,7 @@
     <option value="75" label="안정 추구"></option>
     <option value="100" label="매우 안정 추구"></option>
   </datalist>
-  
+  </div>
   <br>
   <br>
 
@@ -121,7 +121,7 @@
       </div>
             
       <br>
-      <button @click="submit">제출</button>
+      <button @click="submit">선택 완료</button>
       <br>
   </form>
   </div>
@@ -200,5 +200,9 @@ option {
 input[type="range"] {
   width: 200px;
   margin: 0;
+}
+
+.stabillity-box {
+  display: flex;flex-direction: column;align-items: center;
 }
 </style>

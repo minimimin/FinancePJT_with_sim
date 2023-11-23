@@ -20,7 +20,7 @@ import savingproduct from '@/components/financialProduct/savingproduct.vue'
 import SavingproductDetail from '@/components/financialProduct/SavingproductDetail.vue'
 import loanhome from '@/components/financialProduct/loanhome.vue'
 import LoanhomeDetail from '@/components/financialProduct/LoanhomeDetail.vue'
-
+import financialProductRecommendView from '@/views/financialproduct/financialProductRecommendView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -134,6 +134,11 @@ const router = createRouter({
       path: '/financialproduct/loanhome/:loan_id/',
       name: 'loanhomeDetail',
       component: LoanhomeDetail
+    },
+    {
+      path: '/financialproduct/recommend/',
+      name: 'recommend',
+      component: financialProductRecommendView
     },
   ]
 })

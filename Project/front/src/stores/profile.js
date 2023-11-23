@@ -24,7 +24,7 @@ export const useProfileStore = defineStore('profile', () => {
       }
     })
       .then((res) =>{
-        console.log(res.data)
+        // console.log(res.data)
         profile.value = res.data
       })
       .catch((err) => {
@@ -40,4 +40,4 @@ export const useProfileStore = defineStore('profile', () => {
     })
 
   return { banks, profile, getProfile, isValue }
-})
+}, { persist: true })

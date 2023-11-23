@@ -1,8 +1,9 @@
 <template>
   <div>
-    <button @click="depositTrue">Deposit</button>  |
-    <button @click="savingTrue">Saving</button>  |
-    <button @click="loanHomeTrue">Loan</button>  |
+    <RouterLink :to="{name: 'recommend'}">추천</RouterLink>
+    <button @click="depositTrue">예금</button>  |
+    <button @click="savingTrue">적금</button>  |
+    <button @click="loanHomeTrue">대출</button>  |
     <!-- <RouterLink :to="{ name: 'depositProduct' }">Deposit</RouterLink>  |
     <RouterLink :to="{ name: 'savingProduct' }">Saving</RouterLink>  |
     <RouterLink :to="{ name: 'loanhome' }">LoanHome</RouterLink>  |
@@ -49,12 +50,6 @@ const loanHomeTrue = function () {
   deposit_show.value = false
   saving_show.value = false
   loan_home_show.value = true
-}
-
-const loanPersonTrue = function () {
-  deposit_show.value = false
-  saving_show.value = false
-  loan_home_show.value = false
 }
 
 onMounted(() => {

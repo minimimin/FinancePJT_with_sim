@@ -27,4 +27,5 @@ urlpatterns = [
     path('exchange/', views.exchangeRate),
     path('maps/', include('maps.urls')),
     path('finanProduct/',  include('financial_products.urls')),
+    path('recommends/',  include('recommends.urls')),
 ]

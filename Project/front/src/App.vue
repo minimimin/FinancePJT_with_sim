@@ -60,7 +60,9 @@ const userStore = useUserStore()
 }
 .left-link a {
   font-size: 35px;
+  font-weight: 500;
   margin-right: 50px;
+  /* color: #005c77; */
 }
 .right-link {
   margin-top: 5px;
@@ -73,6 +75,11 @@ const userStore = useUserStore()
   margin: 20px;
   text-align: center;
 }
+
+button {
+  border: none;
+  background: none;
+}
 </style>
 
 <style>
@@ -82,10 +89,14 @@ a {
   color: black;
 }
 
-button {
-  border: none;
-  background: none;
-}
+/* button {
+  border: 3px solid #005c77;
+  border-radius: 10px;
+  background: #f6ffff;
+  padding: 3px 10px 3px;
+  font-weight: bold;
+  color: #005c77;
+} */
 
 article > div {
   background-color: white;
