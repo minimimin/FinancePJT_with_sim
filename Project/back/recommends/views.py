@@ -85,11 +85,11 @@ def recommend_product(request):
         sorted_loan_home_products_info = sorted(loan_home_products_info, key=lambda x: loan_home_counts[x.id], reverse=True)[:10]
 
         # 객체를 serializer로 변환
-        result_data = {
-            'sorted_deposit_products_info': DepositProductSerializer(sorted_deposit_products_info, many=True).data,
-            'sorted_saving_products_info': SavingProductSerializer(sorted_saving_products_info, many=True).data,
-            'sorted_loan_home_products_info': LoanForHomeSerializer(sorted_loan_home_products_info, many=True).data,
-        }
+        result_data = [
+            {'sorted_deposit_products_info': DepositProductSerializer(sorted_deposit_products_info, many=True).data},
+            {'sorted_saving_products_info': SavingProductSerializer(sorted_saving_products_info, many=True).data},
+            {'sorted_loan_home_products_info': LoanForHomeSerializer(sorted_loan_home_products_info, many=True).data},
+        ]
 
         # Vue로 전송
         return Response(result_data)

@@ -7,8 +7,8 @@
             <img class="home-logo" src="@/assets/mini_sim_logo_small.png" alt="logo">
           </RouterLink>
           <RouterLink :to="{ name: 'financialProduct' }">금융상품 정보</RouterLink>
-          <RouterLink :to="{ name: 'calculator' }">계산기</RouterLink>
-          <RouterLink :to="{ name: 'map' }">은행 찾기</RouterLink>
+          <RouterLink :to="{ name: 'exchange' }">환율계산기</RouterLink>
+          <RouterLink :to="{ name: 'map' }">은행찾기</RouterLink>
           <RouterLink :to="{ name: 'articles' }">게시판</RouterLink>
         </div>
         
@@ -31,7 +31,8 @@
       <RouterView />
     </article>
     <footer>
-
+      <p> copyright 2023</p>
+      <p>thanks to. 지피티님, 조현제님, 양건우님</p>
     </footer>
   </div>
 </template>
@@ -79,6 +80,15 @@ const userStore = useUserStore()
 button {
   border: none;
   background: none;
+}
+
+footer {
+  text-align: center;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px gainsboro;
+  margin: 20px;
+  padding: 10px;
 }
 </style>
 

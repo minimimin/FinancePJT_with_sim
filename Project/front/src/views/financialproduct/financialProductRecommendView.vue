@@ -18,26 +18,52 @@
 
       <input type="submit" value="검색">
     </form>
-    <hr>
-    <h4>적금 상품 추천</h4>
-    <div>{{ result?.sorted_deposit_products_info }}</div>
-    <h4>예금 상품 추천</h4>
-    <div>{{ result?.sorted_saving_products_info }}</div>
-    <h4>대출 상품 추천</h4>
-    <div>{{ result?.sorted_loan_home_products_info }}</div>
+    <br>
+
+    <template v-if="result">
+      <div class="product-list" v-for="(productName, index) in productList" :key="productName.id">
+        <h4>{{ productName }} 상품 추천</h4>
+        <hr>
+        <table>
+        <thead>
+        <tr>
+          <th></th>
+          <th>은행명</th>
+          <th>상품명</th>
+        </tr>
+        </thead>
+        <tbody>
+        <template v-for="products in result[index]" :key="products.id">
+          <tr v-for="(product, index) in products" :key="product.id" @click="goDetail(product.id)">
+            <td>{{ index+1 }}.</td>
+            <td>{{ product.kor_co_nm }}</td>
+            <td>{{ product.fin_prdt_nm }}</td>
+          </tr>
+        </template>
+        </tbody>
+        </table>
+      </div>
+    </template>
   </div>
 </template>
 
 <script setup>
 import { ref, watch } from 'vue'
+import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user'
+import { useFinancialProductStore } from '@/stores/financialproduct'
 import axios from 'axios'
 
+const router = useRouter()
 const userStore = useUserStore()
+const financialProductStore = useFinancialProductStore()
+
 const checkList_kr = ref(['나이', '자산', '연봉', '직업', '주거래은행', '안정성', '선호은행상품', '선호카드상품'])
 const checkList = ref(['age', 'money', 'salary', 'job', 'main_bank', 'stabillity', 'banking_products', 'card_products'])
 const selectedList = ref([])
 const allSelected = ref(false)
+
+const productList = ['예금', '적금', '대출']
 const result = ref(null)
 
 watch(allSelected, (newValue) => {
@@ -72,8 +98,35 @@ const getRecommends = function () {
     })
 }
 
+const goDetail = function(deposit_id) {
+  financialProductStore.getDepositProductDetail(deposit_id)
+  router.push({ name:'depositProductDetail', params: { deposit_id : deposit_id } })
+}
+
 </script>
 
 <style scoped>
+table {
+  margin: auto;
+  background-color: #f6ffff;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  box-shadow: 5px 5px 5px gainsboro;
+}
 
+.product-list{
+  margin-bottom: 20px;
+}
+
+hr {
+  color: #005c77;
+}
+
+td {
+  padding: 5px;
+  margin: 5px;
+  text-align: left;
+  border-bottom: 1px solid #005c77;
+}
 </style>
