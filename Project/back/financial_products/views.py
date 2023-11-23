@@ -161,11 +161,13 @@ def savingProductGive(request):
     serializer = SavingProductWithOptionsSerializer(saving_product_data_all, many=True)
     return Response(serializer.data)
 
-
+@api_view(['GET'])
 def savingProductDetail(request, saving_id):
     saving_detail = SavingProduct.objects.get(pk=saving_id)
     serializer = SavingProductWithOptionsSerializer(saving_detail)
     return Response(serializer.data)
+
+
 
 
 # 전세자금대출정보 DB 저장하는 것(직렬화 된 것 고려하기)-----------------------------------------------------------------------------------------------------------------------
@@ -218,7 +220,7 @@ def loanForHomeGive(request):
     serializer = LoanForHomeWithOptionsSerializer(loan_for_home_data_all, many=True)
     return Response(serializer.data)
 
-
+@api_view(['GET'])
 def loanForHomeDetail(request, loan_id):
     loan_detail = LoanForHome.objects.get(pk=loan_id)
     serializer = LoanForHomeWithOptionsSerializer(loan_detail)

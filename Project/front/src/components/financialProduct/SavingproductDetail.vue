@@ -33,11 +33,12 @@
       
       <p>
         <hr>
-      금융상품 목록(총 {{ financialProductStore.savingDetail?.saving_product_option.length }}개) : 
+      <!-- 금융상품 목록(총 {{ financialProductStore.savingDetail?.saving_product_option.length }}개) :  -->
+      테이블로 만들기
       <br>
       <br>
       <p v-for="saving_detail in financialProductStore.savingDetail?.saving_product_option">
-        [{{ saving_detail.id }}]
+        <!-- [{{ saving_detail.id }}] -->
         <br>
       저축금리유형명 : {{ saving_detail.intr_rate_type_nm }}
       <br>
@@ -47,7 +48,7 @@
       <br>
       저축기간 : {{ saving_detail.save_trm }}
       <br>
-      금융상품 코드 : {{ saving_detail.saving_product }}
+      <button>가입하기</button>
       </p>
       <br>
       <hr>
