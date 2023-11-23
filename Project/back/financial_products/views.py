@@ -1,11 +1,12 @@
 from django.conf import settings
-from django.http import JsonResponse
+from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 import requests
 from django.shortcuts import get_object_or_404, get_list_or_404
 from .models import FinancialCompany, DepositProduct, SavingProduct, LoanForHome
 from .serializers import FinancialCompanySerializer, DepositProductSerializer, DepositProductOptionsSerializer, DepositProductWithOptionsSerializer, SavingProductSerializer, SavingProductOptionsSerializer, SavingProductWithOptionsSerializer, LoanForHomeSerializer, LoanForHomeOptionsSerializer, LoanForHomeWithOptionsSerializer
+from accounts.serializers import ProfileSerializer
 
 from pprint import pprint as print
 
@@ -225,3 +226,28 @@ def loanForHomeDetail(request, loan_id):
     loan_detail = LoanForHome.objects.get(pk=loan_id)
     serializer = LoanForHomeWithOptionsSerializer(loan_detail)
     return Response(serializer.data)
+
+
+# 가입하기 누르면 해당DB로 보내주기------------------------------------------------------------------------------------------------------
+# @api_view(['POST'])
+# def signUpFinancial(request):
+#     serializer = ProfileSerializer(data=request.data)
+#     if serializer.is_valid(raise_exception=True):
+#         serializer.save()
+#         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
+
+# @api_view(['POST'])
+# def signUpFinancial(request):
+#     serializer = ProfileSerializer(data=request.data)
+#     if serializer.is_valid(raise_exception=True):
+#         serializer.save()
+#         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+# @api_view(['POST'])
+# def signUpFinancial(request):
+#     loan_id = request.data.get('loanId')
+#     loan = LoanForHome.objects.get(pk=loan_id)
+#     return Response(loan.data, status=status.HTTP_201_CREATED)
+    

@@ -1,6 +1,15 @@
 <template>
   <div>
     <h1>[예금 상품 조회]</h1>
+<div>
+  은행선택 : 
+  <select v-model="bankname" >
+    <option value="">은행 이름</option>
+    <option v-for="bank in profileStore.banks" 
+    :key="bank.id" :value="bank.name">{{ bank.name }}</option>
+  </select>
+</div>
+
 <table>
   <thead>
     <tr>
@@ -20,23 +29,25 @@
     </tr>
   </thead>
   <tbody>
-    <tr v-for="deposit in depositData" :key="deposit.fin_prdt_nm" @click="goDetail(deposit.id)">
-      <td>{{ deposit.kor_co_nm }}</td>
-      <td>{{ deposit.fin_prdt_nm }}</td>
-      <td >{{ deposit.deposit_product_option[0].intr_rate_type_nm}}</td>
-      <td>{{ deposit.max_limit }}</td>
-      <td v-for="num in check">
-        {{ deposit.rates[num]}}</td>
-    </tr>
+    <template v-for="deposit in depositData" :key="deposit.fin_prdt_nm">
+      <tr v-show="selectedBank(deposit.kor_co_nm)" @click="goDetail(deposit.id)">
+        <td>{{ deposit.kor_co_nm }}</td>
+        <td>{{ deposit.fin_prdt_nm }}</td>
+        <td >{{ deposit.deposit_product_option[0].intr_rate_type_nm}}</td>
+        <td>{{ deposit.max_limit }}</td>
+        <td v-for="num in check">
+          {{ deposit.rates[num]}}</td>
+      </tr>
+    </template>
   </tbody>
 </table>
-
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { useProfileStore } from '@/stores/profile'
 import { useFinancialProductStore } from '@/stores/financialproduct'
 
 const check = [6, 12, 24, 36]
@@ -48,10 +59,19 @@ const goDetail = function(deposit_id) {
   router.push({ name:'depositProductDetail', params: { deposit_id : deposit_id } })
 }
 
+const profileStore = useProfileStore()
+const bankname = ref('')
+const selectedBank = function (name) {
+  return bankname.value ? bankname.value===name : true
+}
 
 onMounted(() => {
   financialProductStore.getDepositProduct().then(()=>{
     depositData.value = financialProductStore.nowDeposit?.map(deposit =>{
+      if (!deposit.max_limit) {
+        deposit.max_limit = '없음'
+      }
+      
       const rates = {
         6 :null,
         12 : null,

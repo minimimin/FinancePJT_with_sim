@@ -1,7 +1,7 @@
 <template>
   <div>
 <h1>여기는 예금 디테일 페이지!</h1>
-    <div>
+    <div class="pre-line">
       <br>
       은행명 : {{ financialProductStore.depositDetail?.kor_co_nm }}
       <br>
@@ -34,11 +34,37 @@
       <p>
         <hr>
       <!-- 금융상품 목록(총 {{ financialProductStore.depositDetail?.deposit_product_option.length }}개) :  -->
-      테이블로 만들기
+      <table>
+  <thead>
+    <tr>
+      <th>NO.</th>
+      <th>저축금리유형</th>
+      <th>저축금리</th>
+      <th>최고 우대금리</th>
+      <th>저축기간</th>
+      <th>상품 가입</th>/
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr v-for="deposit_detail in financialProductStore.depositDetail?.deposit_product_option" :key="deposit_detail.id">
+      <td>{{ deposit_detail.id }}</td>
+      <!-- 사실 id로 하면 안되고 순서로 하고 싶은데,,, -->
+      <td>{{ deposit_detail.intr_rate_type_nm }}</td>
+      <td>{{ deposit_detail.intr_rate }}</td>
+      <td >{{ deposit_detail.intr_rate2 }}</td>
+      <td>{{ deposit_detail.save_trm }}</td>
+      <td><button>가입하기</button></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
       <br>
       <br>
-      <p v-for="deposit_detail in financialProductStore.depositDetail?.deposit_product_option">
-        <!-- [{{ deposit_detail.id }}] -->
+      <!-- <p v-for="deposit_detail in financialProductStore.depositDetail?.deposit_product_option">
         <br>
       저축금리유형명 : {{ deposit_detail.intr_rate_type_nm }}
       <br>
@@ -46,10 +72,10 @@
       <br>
       최고 우대금리: {{ deposit_detail.intr_rate2 }}
       <br>
-      저축기간 : {{ deposit_detail.save_trm }}
-      <br>
+      저축기간 : {{ deposit_detail.save_trm }} -->
+      <!-- <br>
       <button>가입하기</button>
-      </p>
+      </p> -->
       <br>
       <hr>
     </p>
@@ -75,5 +101,7 @@ const financialProductStore = useFinancialProductStore()
 </script>
 
 <style scoped>
-
+.pre-line {
+  white-space: pre-line;
+}
 </style>
