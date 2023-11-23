@@ -5,6 +5,7 @@ import ArticleCreateView from '@/views/article/ArticleCreateView.vue'
 import ArticleDetailView from '@/views/article/ArticleDetailView.vue'
 import ArticleUpdateView from '@/views/article/ArticleUpdateView.vue'
 import CategoryCreateView from '@/views/article/CategoryCreateView.vue'
+import CategoryUpdateView from '@/views/article/CategoryUpdateView.vue'
 import ProfileView from '@/views/profile/ProfileView.vue'
 import ProfileCreateView from '@/views/profile/ProfileCreateView.vue'
 import ProfileUpdateView from '@/views/profile/ProfileUpdateView.vue'
@@ -55,6 +56,11 @@ const router = createRouter({
       path: '/category/create',
       name: 'categoryCreate',
       component: CategoryCreateView
+    },
+    {
+      path: '/category/:id/update',
+      name: 'CategoryUpdate',
+      component: CategoryUpdateView
     },
     // user 관련
     {

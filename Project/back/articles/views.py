@@ -70,7 +70,7 @@ def category_detail(request):
     
     # 카테고리 수정
     elif request.method == 'PUT':
-        category_id = request.data.get('category')
+        category_id = request.data.get('id')
         category = Category.objects.get(pk=category_id)
         serializer = CategorySerializer(category, data=request.data)
         if serializer.is_valid(raise_exception=True):
@@ -79,7 +79,7 @@ def category_detail(request):
 
     # 카테고리 삭제
     elif request.method == 'DELETE':
-        category_id = request.data.get('category')
+        category_id = request.data.get('categoryId')
         category = Category.objects.get(pk=category_id)
         category.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)

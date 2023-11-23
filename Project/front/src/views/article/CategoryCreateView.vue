@@ -1,7 +1,7 @@
 <template>
   <div>
     <form @submit.prevent="createCategory">
-      <label for="article-category">Category 종류:</label><br>
+      <label for="article-category">Category 이름 :</label><br>
       <input type="text" id="article-category" v-model="inputCategory"><br>
       <input type="submit" value="카테고리 생성">
     </form>
@@ -9,14 +9,14 @@
     <h4>카테고리 목록</h4>
     <p v-for="category in articleStore.categories" :key="category.id">
       {{ category.name }}
-      <button>수정</button>
-      <button>삭제</button>
+      <button @click="goCategoryUpdate(category.id)">수정</button>
+      <button @click="categoryDelete(category.id)">삭제</button>
     </p>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user'
 import { useArticleStore } from '@/stores/article'
@@ -26,6 +26,10 @@ const router = useRouter()
 const userStore = useUserStore()
 const articleStore = useArticleStore()
 const inputCategory = ref(null)
+
+onMounted(() => {
+  articleStore.getCategories()
+})
 
 const createCategory = function () {
     axios({
@@ -46,6 +50,27 @@ const createCategory = function () {
       })
   }
 
+  const goCategoryUpdate = function (categoryId) {
+  router.push({ name: 'CategoryUpdate', params: {id : categoryId}})
+}
+
+const categoryDelete = function (categoryId) {
+  axios({
+    method: 'delete',
+    url: `${userStore.API_URL}/articles/category/detail/`,
+    data: {categoryId},
+    headers: {
+      Authorization: `Token ${userStore.token}`
+    }
+  })
+    .then((res) => {
+      articleStore.getCategories()
+      router.push({ name: 'categoryCreate'})
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
 
 </script>
 
