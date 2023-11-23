@@ -1,23 +1,17 @@
 <template>
   <div class="container">
-    <header class="head-box">
-      <nav class="d-flex justify-content-between">
-        <div class="left-link">
-          <RouterLink :to="{ name: 'main' }">
-            <img class="home-logo" src="@/assets/mini_sim_logo_small.png" alt="logo">
-          </RouterLink>
-          <RouterLink :to="{ name: 'financialProduct' }">금융상품 정보</RouterLink>
-          <RouterLink :to="{ name: 'exchange' }">환율계산기</RouterLink>
-          <RouterLink :to="{ name: 'map' }">은행찾기</RouterLink>
-          <RouterLink :to="{ name: 'articles' }">게시판</RouterLink>
-        </div>
-        
-        <div class="right-link">
+    <header class="head-box row">
+      <RouterLink class="col-2" :to="{ name: 'main' }">
+        <img class="home-logo" src="@/assets/mini_sim_logo_small.png" alt="logo">
+      </RouterLink>
+      <nav class="d-flex col-10" style="position: relative; ">
+        <div class="right-link row">
           <div v-if="!userStore.isLogin"> 
             <RouterLink :to="{ name: 'signup' }">회원가입</RouterLink>
             <RouterLink :to="{ name: 'login' }">로그인</RouterLink>
           </div>
           <div v-if="userStore.isLogin">
+            <p>{{ userStore.userName }}님</p>
             <template v-if="userStore.isLogin && userStore.loginUser?.is_superuser">
               <RouterLink :to="{ name: 'categoryCreate' }">카테고리 관리</RouterLink>
             </template>
@@ -25,13 +19,19 @@
             <button @click="userStore.logOut">로그아웃</button>
           </div>
         </div>
+        <div class="left-link row gap-2">
+          <RouterLink :to="{ name: 'financialProduct' }">금융상품 정보</RouterLink>
+          <RouterLink :to="{ name: 'exchange' }">환율계산기</RouterLink>
+          <RouterLink :to="{ name: 'map' }">은행찾기</RouterLink>
+          <RouterLink :to="{ name: 'articles' }">게시판</RouterLink>
+        </div>
       </nav>
     </header>
     <article class="article-box">
       <RouterView />
     </article>
     <footer>
-      <p> copyright 2023</p>
+      <p>ⓒ copyright 2023 Mini_Sim. All rights reserved.</p>
       <p>thanks to. 지피티님, 조현제님, 양건우님</p>
     </footer>
   </div>
@@ -59,18 +59,31 @@ const userStore = useUserStore()
   border-radius: 10px;
   margin: 10px;
 }
+.left-link {
+  flex-wrap: nowrap;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 .left-link a {
-  font-size: 35px;
+  width: max-content;
+  font-size: 30px;
   font-weight: 500;
-  margin-right: 50px;
   /* color: #005c77; */
 }
 .right-link {
+  position: absolute;
   margin-top: 5px;
   margin-right: 10px;
+  right: 0;
 }
 .right-link a {
   margin: 10px;
+}
+
+.right-link p {
+  display: inline-block;
 }
 .article-box {
   margin: 20px;
@@ -88,7 +101,11 @@ footer {
   border-radius: 20px;
   box-shadow: 5px 5px 5px gainsboro;
   margin: 20px;
-  padding: 10px;
+  padding: 20px;
+}
+
+footer p {
+  margin: 10px;
 }
 </style>
 

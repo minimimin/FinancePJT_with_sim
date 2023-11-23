@@ -7,7 +7,11 @@
     </form>
     <br>
     <h4>카테고리 목록</h4>
-    <p v-for="category in articleStore.categories" :key="category.id">{{ category.name }}</p>
+    <p v-for="category in articleStore.categories" :key="category.id">
+      {{ category.name }}
+      <button>수정</button>
+      <button>삭제</button>
+    </p>
   </div>
 </template>
 
