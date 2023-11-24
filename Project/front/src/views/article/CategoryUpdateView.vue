@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h5>카테고리 수정</h5>
+    <h3>카테고리 수정</h3>
     <form @submit.prevent="updateCategory(categoryId)">
-      <label for="article-category">Category 이름 :</label><br>
-      <input type="text" id="article-category" v-model="existingCategory"><br>
-      <input type="submit" value="카테고리 수정">
+      <label style="margin: 5px;" for="article-category">Category 이름 :</label><br>
+      <input class="select-style" type="text" id="article-category" v-model="existingCategory"><br>
+      <input class="btn submit-btn" type="submit" value="카테고리 수정">
     </form>
   </div>
 </template>

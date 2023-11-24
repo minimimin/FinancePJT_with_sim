@@ -1,8 +1,13 @@
 <template>
   <div>
-    <p>{{ comment.user }} : {{ comment.content }}</p>
-    <button v-if="userStore.isLogin && comment.user === userStore.userPk" @click="commentDelete">삭제</button>
-    <hr>
+    <div style="display: flex; align-items: center;">
+  <p style="display: inline-block; flex-grow: 1; margin-right: 10px; margin-bottom: 0;">{{ comment.content }}</p>
+  <button class="btn btn-sm small-submit-btn" v-if="userStore.isLogin && comment.user === userStore.userPk" @click="commentDelete">삭제</button>
+</div>
+<hr>
+    <!-- <p style="display: inline-block;">{{ comment.content }}</p>
+    <button class="btn btn-sm small-submit-btn" style="margin-bottom: 5px;" v-if="userStore.isLogin && comment.user === userStore.userPk" @click="commentDelete">삭제</button>
+    <hr> -->
   </div>
 </template>
 

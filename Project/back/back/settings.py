@@ -56,7 +56,6 @@ INSTALLED_APPS = [
     # DRF
     'rest_framework',
     'rest_framework.authtoken',
-    'django_extensions',
 
     # REST_AUTH
     'dj_rest_auth',
@@ -197,7 +196,7 @@ AUTHENTICATION_BACKENDS = (
 "allauth.account.auth_backends.AuthenticationBackend",
 )
 
-GRAPH_MODELS = {
-    'all_applications': True,
-    'group_models': True,
-}
+# GRAPH_MODELS = {
+#     'all_applications': True,
+#     'group_models': True,
+# }

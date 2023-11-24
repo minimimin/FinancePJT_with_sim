@@ -1,8 +1,10 @@
 <template>
   <div>
     <h1>커뮤니티</h1>
-    <div>
-      <p v-for="category in articleStore.categories" :key="category.id">{{ category.name }}</p>
+    <div class="category-box">
+      | <template  v-for="category in articleStore.categories" :key="category.id">
+      <p class="category-menu">{{ category.name }}</p>  |
+      </template>
     </div>
     <RouterLink @click="handleCreateArticle" class="btn submit-btn" :to="{ name: 'articleCreate' }">게시글 생성</RouterLink>
     <ArticleListItem
@@ -46,5 +48,16 @@ const handleCreateArticle = () => {
 </script>
 
 <style scoped>
+.category-box {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 20px;
+  border-top: 2px solid #0c768b;
+  border-bottom: 2px solid #0c768b;
+}
 
+.category-menu {
+  display: inline-block;
+  margin: 10px;
+}
 </style>

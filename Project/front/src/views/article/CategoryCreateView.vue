@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h3>카테고리 관리</h3>
     <form @submit.prevent="createCategory">
       <label style="margin: 5px;" for="article-category">Category 이름 :</label><br>
       <input class="select-style" type="text" id="article-category" v-model="inputCategory"><br>
@@ -7,11 +8,13 @@
     </form>
     <div class="hr-line"></div>
     <h4>카테고리 목록</h4>
-    <p v-for="category in articleStore.categories" :key="category.id">
+    <div style="width: 170px; margin: 20px auto;">
+    <p style="text-align: right; margin: 5px;" v-for="category in articleStore.categories" :key="category.id">
       {{ category.name }}
-      <button @click="goCategoryUpdate(category.id)">수정</button>
-      <button @click="categoryDelete(category.id)">삭제</button>
+      <button class="btn btn-sm small-submit-btn" @click="goCategoryUpdate(category.id)">수정</button>
+      <button class="btn btn-sm small-submit-btn"  @click="categoryDelete(category.id)">삭제</button>
     </p>
+    </div>
   </div>
 </template>
 

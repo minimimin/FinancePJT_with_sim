@@ -25,7 +25,7 @@
     <br>
     <h4>아직 프로필이 등록되지 않았습니다. <br>
       프로필을 작성해주세요.</h4>
-    <button @click="goProfileCreate">프로필 생성하기</button>
+    <button class="btn submit-btn" @click="goProfileCreate">프로필 생성하기</button>
   </div>
 </template>
 

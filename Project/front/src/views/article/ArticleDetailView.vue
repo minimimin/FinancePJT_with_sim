@@ -1,29 +1,31 @@
 <template>
-  <div v-if="articleStore.article">
-    <h1>게시글 상세 정보</h1>
+  <div style="text-align: left;" v-if="articleStore.article">
+    <div style="width: 50%; margin: 0 auto;">
     <p>{{ articleStore.article.category.name }}</p>
-    <p>{{ articleStore.article.id }}번 글</p>
-    <h2>{{ articleStore.article.title }}</h2>
     <hr>
-    <p>작성일: {{ articleStore.article.created_at }}</p>
-    <p>수정일: {{ articleStore.article.updated_at }}</p>
+    <h1>{{ articleStore.article.title }}</h1>
     <hr>
-    <p>{{ articleStore.article.content }}</p>
-    <div v-if="userStore.isLogin && articleStore.article.user === userStore.userPk">
-      <button @click="goUpdate">수정</button>
-      <button @click="articleDelete">삭제</button>
+    <h5 style="margin-bottom: 20px;">{{ articleStore.article.content }}</h5>
+    <div style="text-align: right; font-size: small;">
+    <p>작성일: {{ articleStore.article.created_at.slice(0,10) +' ' + articleStore.article.created_at.slice(11,19) }},     
+    수정일: {{ articleStore.article.updated_at.slice(0,10) +' ' + articleStore.article.updated_at.slice(11,19) }}</p>
     </div>
-    <hr>
+    <div style="text-align: right;" v-if="userStore.isLogin && articleStore.article.user === userStore.userPk">
+      <button class="btn btn-sm small-submit-btn" @click="goUpdate">수정</button>
+      <button class="btn btn-sm small-submit-btn" @click="articleDelete">삭제</button>
+    </div>
+    <div style="border-bottom: 1px solid #005c77; margin: 20px 0;"></div>
     <CommentItem
       v-for="comment in articleStore.comments"
       :key="comment.id"
       :comment="comment"
     />
     <form @submit.prevent="createComment">
-      <label for="comment">내용 : </label>
-      <input type="text" id="comment" v-model="inputComment">
-      <input type="submit" value="댓글 작성">
+      <label style="margin: 5px;" for="comment">내용 : </label>
+      <input class="select-style" type="text" id="comment" v-model="inputComment">
+      <input class="btn btn-sm small-submit-btn" style="margin-bottom: 5px;" type="submit" value="댓글 작성">
     </form>
+  </div>
   </div>
 </template>
 

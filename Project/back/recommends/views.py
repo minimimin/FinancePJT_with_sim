@@ -47,6 +47,7 @@ def recommend_product(request):
         # 사용자가 선택한 필드만 유사도를 계산
         selected_columns = request.data['selected']
         df_users_with_selected_columns = df_users[selected_columns].dropna()
+        # print(df_users_with_selected_columns)
 
         # 유사도 계산 (여기에서는 cosine_similarity를 사용했습니다)
         similarities = cosine_similarity(df_users_with_selected_columns.values)

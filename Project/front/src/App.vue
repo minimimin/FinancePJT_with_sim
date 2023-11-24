@@ -157,4 +157,21 @@ article > div {
   border-radius: 5px;
 }
 
+.small-submit-btn {
+  background-color: #0c768b;
+  color: white;
+  margin: 2px;
+}
+
+.medium-title {
+  margin: 20px;
+  font-size: large;
+  font-weight: 500;
+}
+
+.medium-legend {
+  font-size: large;
+  font-weight: 500;
+}
+
 </style>
