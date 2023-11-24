@@ -1,21 +1,25 @@
 <template>
   <div>
-    <h1>게시글 생성 페이지</h1>
+    <h1>게시글 쓰기</h1>
+    <div class="hr-line"></div>
     <form @submit.prevent="createArticle">
-      <label for="article-category">카테고리 선택:</label><br>
-      <select id="article-category" v-model="selectedCategory">
-        <option disabled value="">카테고리를 선택하세요</option>
-        <option v-for="category in articleStore.categories" 
-        :key="category.id" :value="category.id">{{ category.name }}</option>
-      </select>
-      <br>
-      <label for="title">제목:</label><br>
-      <input type="text" id="title" v-model="inputTitle">
-      <br>
-      <label for="content">내용:</label><br>
-      <textarea id="content" v-model="inputContent" cols="30" rows="10"></textarea>
-      <br>
-      <input type="submit" value="게시글 생성">
+      <div class="select-box">
+        <label style="margin: 5px;" for="article-category">카테고리 선택:</label><br>
+        <select class="select-style" id="article-category" v-model="selectedCategory">
+          <option disabled value="">카테고리를 선택하세요</option>
+          <option v-for="category in articleStore.categories" 
+          :key="category.id" :value="category.id">{{ category.name }}</option>
+        </select>
+      </div>
+      <div class="select-box">
+        <label for="title">제목:</label><br>
+        <input class="select-style"  type="text" id="title" v-model="inputTitle">
+      </div>
+      <div class="select-box">
+        <label for="content">내용:</label><br>
+        <textarea class="select-style"  id="content" v-model="inputContent" cols="30" rows="10"></textarea>
+      </div>
+      <input class="btn submit-btn" type="submit" value="게시글 생성">
     </form>
   </div>
 </template>

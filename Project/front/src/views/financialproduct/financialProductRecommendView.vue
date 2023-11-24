@@ -44,7 +44,7 @@
         <table class="table table-hover ">
         <thead>
         <tr>
-          <th class="num-td">#</th>
+          <th class="num-td">NO.</th>
           <th>은행명</th>
           <th>상품명</th>
         </tr>

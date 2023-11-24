@@ -1,15 +1,8 @@
 <template>
-  <div class="pre-line">
-    <h1>[대출 상품 상세]</h1>
-    <div>
-      <br>
-      <br>
-        은행명 : {{ financialProductStore.loanDetail?.kor_co_nm }}
-      <br>
-      <br>
-        상품명 : {{ financialProductStore.loanDetail?.fin_prdt_nm }}
-      <br>
-      <br>
+  <div class="detail-box">
+    <h1>{{ financialProductStore.loanDetail?.kor_co_nm }} {{ financialProductStore.loanDetail?.fin_prdt_nm }}</h1>
+    <div class="hr-line"></div>
+    <div  class="pre-line">
         대출한도 : {{ financialProductStore.loanDetail?.loan_lmt }}
       <br>
       <br>
@@ -21,14 +14,15 @@
       <br>
         연체 이자율 : <br>{{ financialProductStore.loanDetail?.dly_rate }}
       <br>
-      <hr style="margin-top: 50px;">
+      </div>
+      <div class="hr-line"></div>
 
-      <h6>[금융상품 목록(총 {{ financialProductStore.loanDetail?.loan_home_product_option.length }}개)]</h6>
+      <h6>금융상품 목록(총 {{ financialProductStore.loanDetail?.loan_home_product_option.length }}개)</h6>
       <!-- 여기서부터 v-for를 돌면서 찾아내야한다! -->
-      <p style="font-size: 15px; margin-bottom: 0;">* 아래 대출 금리는 소수점 2자리에서 반올림 한 값입니다.</p>
+      <p style="font-size: 15px; margin-top: 20px;">* 아래 대출 금리는 소수점 2자리에서 반올림 한 값입니다.</p>
       <!-- 글씨 작게 + 오른쪽 끝으로 정렬되게 만들기! -->
       <div class="d-flex justify-content-center" >
-      <table>
+      <table   class="table table-hover table-box" style="width: 70%;">
         <thead>
           <tr>
             <th>NO.</th>
@@ -74,7 +68,7 @@
         (가입한 상품 목록에 저장하는 것으로 설정하기!)
       </div> -->
     </div>
-  </div>
+
 </template>
 
 <script setup>
@@ -86,5 +80,18 @@ const financialProductStore = useFinancialProductStore()
 <style scoped>
 .pre-line {
   white-space: pre-line;
+  text-align: left;
+  width: 50%;
+  margin-left: 28%;
+}
+
+.detail-box {
+  padding: 30px;
+}
+
+.hr-line{
+  width: 75%;
+  margin: 20px auto;
+  border-bottom: 1px solid #005c77;
 }
 </style>

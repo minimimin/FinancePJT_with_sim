@@ -3,36 +3,34 @@
         <h1>환율 계산기</h1>
         <br>
         <div>
-            <h3>[나라별 환율 계산]</h3>
-            <select v-model="changeCountry" >
+            <h3>나라별 환율 계산</h3>
+            <select class="select-style" v-model="changeCountry" >
                 <option disabled value="">나라 및 통화명</option>
                 <option v-for="exchangeAll in calculatorStore.exchange" 
                 :key="exchangeAll.cur_unit" :value="exchangeAll.cur_unit">{{ exchangeAll.cur_nm }}({{ exchangeAll.cur_unit }})</option>
             </select>
-            <input type="number" v-model="changeMoney" @input="exchangeMoney">
+            <input class="select-style" type="number" v-model="changeMoney" @input="exchangeMoney">
         <br>
-            <select v-model="standardCountry" >
+            <select class="select-style" v-model="standardCountry" >
                 <option disabled value="">나라 및 통화명</option>
                 <option v-for="exchangeAll in calculatorStore.exchange" 
                 :key="exchangeAll.cur_unit" :value="exchangeAll.cur_unit">{{ exchangeAll.cur_nm }}({{ exchangeAll.cur_unit }})</option>
             </select>
-            <input type="number" v-model="reChangeMoney" @input="exchangeMoney2">
+            <input class="select-style"  type="number" v-model="reChangeMoney" @input="exchangeMoney2">
         </div>
-
         <br>
+        <div class="hr-line"></div>
         <br>
-
         <div>
         <!--나라를 정하면 그것의 송금 보낼 때 송금 받을 때 값 넣을 수 있게-->
-        <h3>[한국에서 송금/착금 할 때 환율 계산]</h3>
-        <br>
-        <select id='mySelect' v-model="exchangeKorea">
+        <h3>한국에서 송금할 때 / 받을 때 환율 계산</h3>
+        <select class="select-style"  id='mySelect' v-model="exchangeKorea">
             <option disabled value="">나라 및 통화명</option>
             <option v-for="exchangeAll in calculatorStore.exchange" 
             :key="exchangeAll.cur_unit" :value="exchangeAll.cur_unit">{{ exchangeAll.cur_nm }}</option>
         </select>
-        <br>
-        <p>보내실때(송금) : {{ exchangeKoreaTTS }}원</p>
+
+        <p class="mt-4">보내실때(송금) : {{ exchangeKoreaTTS }}원</p>
         <p>받으실때(송금) : {{ exchangeKoreaTTB }}원</p>
         </div>
         
@@ -122,4 +120,11 @@ onMounted(() => {
 
 <style scoped>
 
+select {
+    margin: 5px 5px;
+}
+
+h3 {
+    margin-bottom: 20px;
+}
 </style>

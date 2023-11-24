@@ -139,4 +139,22 @@ article > div {
 .select-box {
   margin: 20px;
 }
+
+.hr-line{
+  width: 75%;
+  margin: 20px auto;
+  border-bottom: 1px solid #005c77;
+}
+.submit-btn {
+  background-color: #0c768b;
+  color: white;
+  padding: 5px 30px;
+  margin: 20px;
+}
+
+.select-style {
+  border: 1px solid #0c768b;
+  border-radius: 5px;
+}
+
 </style>

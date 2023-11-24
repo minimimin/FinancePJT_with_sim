@@ -1,14 +1,10 @@
 <template>
-  
-  <link>
-  <div>
-<h1>[예금 상품 상세]</h1>
+  <div class="detail-box">
+<h1>{{ financialProductStore.depositDetail?.kor_co_nm }} {{ financialProductStore.depositDetail?.fin_prdt_nm }}</h1>
 <!-- deposit_id 이거를 params로 받아온다는 말이지?! -->
 <!-- <button @click="goSignUpBank(deposit_id)">가입하기</button> -->
+<div class="hr-line"></div>
     <div class="pre-line">
-      <br>
-      은행명 : {{ financialProductStore.depositDetail?.kor_co_nm }}<br><br>
-      상품명 : {{ financialProductStore.depositDetail?.fin_prdt_nm }}<br><br>
       가입방법 : {{ financialProductStore.depositDetail?.join_way }}<br><br>
       가입 대상 : {{ financialProductStore.depositDetail?.join_member }}<br><br>
       가입 제한 : {{ financialProductStore.depositDetail?.join_deny }}<br><br>
@@ -16,10 +12,11 @@
       우대조건 : {{ financialProductStore.depositDetail?.spcl_cnd }}<br><br>
       만기 후 이자율 : <br>{{ financialProductStore.depositDetail?.mtrt_int }}<br><br>
       유의사항 : <br>{{ financialProductStore.depositDetail?.etc_note }}<br>
-        <hr style="margin-top: 50px ;">
+    </div>
+      <div class="hr-line"></div>
       <!-- 금융상품 목록(총 {{ financialProductStore.depositDetail?.deposit_product_option.length }}개) :  -->
       <div class="d-flex justify-content-center" style="margin-top: 30px;">
-      <table>
+      <table  class="table table-hover table-box" style="width: 70%;">
         <thead>
           <tr>
             <th>NO.</th>
@@ -45,7 +42,6 @@
       </table>
     </div>
     </div>
-  </div>
 </template>
 
 <script setup>
@@ -92,9 +88,18 @@ const deposit_id = ref(route.params.deposit_id)
 <style scoped>
 .pre-line {
   white-space: pre-line;
+  text-align: left;
+  width: 50%;
+  margin-left: 28%;
 }
 
-/* table {
-  text-align: center;
-} */
+.detail-box {
+  padding: 30px;
+}
+
+.hr-line{
+  width: 75%;
+  margin: 20px auto;
+  border-bottom: 1px solid #005c77;
+}
 </style>

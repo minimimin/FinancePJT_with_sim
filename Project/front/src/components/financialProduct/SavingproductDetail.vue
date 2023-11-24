@@ -1,14 +1,8 @@
 <template>
-  <div>
-<h1>[적금 상품 상세]</h1>
-    <div class="pre-line">
-      <br>
-      은행명 : {{ financialProductStore.savingDetail?.kor_co_nm }}
-      <br>
-      <br>
-      상품명 : {{ financialProductStore.savingDetail?.fin_prdt_nm }}
-      <br>
-      <br>
+  <div class="detail-box">
+  <h1>{{ financialProductStore.savingDetail?.kor_co_nm }} {{ financialProductStore.savingDetail?.fin_prdt_nm }}</h1>
+  <div class="hr-line"></div>  
+  <div class="pre-line">
       가입방법 : {{ financialProductStore.savingDetail?.join_way }}
       <br>
       <br>
@@ -31,12 +25,11 @@
       <br>
       유의사항 : <br>{{ financialProductStore.savingDetail?.etc_note }}
       <br>
-      
-      <p>
-        <hr style="margin-top: 50px;">
+      </div>
+      <div class="hr-line"></div>
       <!-- 금융상품 목록(총 {{ financialProductStore.savingDetail?.saving_product_option.length }}개) :  -->
       <div class="d-flex justify-content-center" style="margin-top: 30px;">
-      <table>
+      <table   class="table table-hover table-box" style="width: 70%;">
         <thead>
           <tr>
             <th>NO.</th>
@@ -74,10 +67,6 @@
       <button>가입하기</button>
       </p> -->
       <br>
-      <hr>
-    </p>
-    </div>
-
   </div>
 </template>
 
@@ -92,5 +81,18 @@ const financialProductStore = useFinancialProductStore()
 <style scoped>
 .pre-line {
   white-space: pre-line;
+  text-align: left;
+  width: 50%;
+  margin-left: 28%;
+}
+
+.detail-box {
+  padding: 30px;
+}
+
+.hr-line{
+  width: 75%;
+  margin: 20px auto;
+  border-bottom: 1px solid #005c77;
 }
 </style>

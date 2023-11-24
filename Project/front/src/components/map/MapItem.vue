@@ -4,28 +4,28 @@
     <div class="select-box">
         <div>
             <label for="sido">시/도 선택 : </label>
-            <select id="sido" v-model="selectedSido">
+            <select class="select-style"  id="sido" v-model="selectedSido">
                 <option disabled value="">시/도를 선택하세요</option>
                 <option v-for="sido in sidoList" :key="sido.id" :value="sido">{{ sido }}</option>
             </select>
         </div>
         <div>
             <label for="gungu">시/군/구 선택 : </label>
-            <select id="gungu" v-model="selectedGungu">
+            <select class="select-style"  id="gungu" v-model="selectedGungu">
                 <option disabled value="">시/군/구를 선택하세요</option>
                 <option v-for="gungu in filteredGungu" :key="gungu.id" :value="gungu.gungu">{{ gungu.gungu }}</option>
             </select>
         </div>
         <div>
             <label for="select-bank">은행 선택 : </label>
-            <select id="select-bank" v-model="selectedBank">
+            <select class="select-style"  id="select-bank" v-model="selectedBank">
                 <option disabled value="">은행을 선택하세요</option>
                 <option v-for="bank in banks" :key="bank.id" :value="bank">{{ bank }}</option>
             </select>
         </div>
         <div>
             <label for="keyword">키워드 : </label>
-            <input type="text" id="keyword" v-model="totalKeyword" @keyup.enter="keywordMap()">
+            <input class="select-style"  type="text" id="keyword" v-model="totalKeyword" @keyup.enter="keywordMap()">
         </div>
       </div>
     <hr>
@@ -141,7 +141,7 @@ function addEventHandle(target, type, callback) {
     }
 }
 
-// searchPlaces()
+searchPlaces()
 
 // 카테고리 검색을 요청하는 함수입니다
 function searchPlaces() {

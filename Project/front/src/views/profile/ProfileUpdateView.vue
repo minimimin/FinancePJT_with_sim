@@ -8,20 +8,20 @@
     <form @submit.prevent="updateProfile">
 
       <label for="age">나이</label><br>
-      <input type="number" id="age" v-model.trim='age' min=0 max=200>
+      <input class="select-style"  type="number" id="age" v-model.trim='age' min=0 max=200>
       
       <br>
       <br>
       
       <label for="money">자산</label>
       <br>
-      <input type="number" id="money" v-model.trim='money'>
+      <input class="select-style"  type="number" id="money" v-model.trim='money'>
       <br>
       <br>
 
       <label for="salary">연봉</label>
       <br>
-      <input type="number" id="salary" v-model.trim='salary'>
+      <input class="select-style" type="number" id="salary" v-model.trim='salary'>
       <br>
       <br>
 
@@ -53,6 +53,7 @@
 
       <br>
       <br>
+      <div class="stabillity-box">
       <label for="stabillity">안정성</label><br>
       <input type="range" id="stabillity" name="stabillity" min="0" max="100"  list="values" v-model.trim='stabillity' >
         <datalist id="values">
@@ -62,11 +63,12 @@
           <option value="75" label="안정 추구"></option>
           <option value="100" label="매우 안정 추구"></option>
         </datalist>
+      </div>
       <br>
       <br>
 
       <label for="main_bank">주거래은행 : </label><br>
-      <select id="main_bank" v-model="mainBank">
+      <select  class="select-style"  id="main_bank" v-model="mainBank">
         <option disabled value="">은행을 선택하세요</option>
         <option v-for="bank in profileStore.banks" 
         :key="bank.id" :value="bank.name">{{ bank.name }}</option>
@@ -121,7 +123,7 @@
         </div>
       </div>
       <br>
-      <button @click="submit">제출</button>
+      <button class="btn submit-btn" @click="submit">제출</button>
       <br>
 
     </form>
@@ -205,5 +207,9 @@ option {
 input[type="range"] {
   width: 200px;
   margin: 0;
+}
+
+.stabillity-box {
+  display: flex;flex-direction: column;align-items: center;
 }
 </style>

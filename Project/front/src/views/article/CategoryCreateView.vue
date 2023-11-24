@@ -1,11 +1,11 @@
 <template>
   <div>
     <form @submit.prevent="createCategory">
-      <label for="article-category">Category 이름 :</label><br>
-      <input type="text" id="article-category" v-model="inputCategory"><br>
-      <input type="submit" value="카테고리 생성">
+      <label style="margin: 5px;" for="article-category">Category 이름 :</label><br>
+      <input class="select-style" type="text" id="article-category" v-model="inputCategory"><br>
+      <input class="btn submit-btn" type="submit" value="카테고리 생성">
     </form>
-    <br>
+    <div class="hr-line"></div>
     <h4>카테고리 목록</h4>
     <p v-for="category in articleStore.categories" :key="category.id">
       {{ category.name }}

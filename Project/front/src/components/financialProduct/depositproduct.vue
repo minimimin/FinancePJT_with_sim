@@ -3,7 +3,7 @@
     <h1>예금 상품 조회</h1>
 <div class="select-box">
   은행선택 : 
-  <select v-model="bankname" >
+  <select class="select-style" v-model="bankname" >
     <option value="">은행 이름</option>
     <option v-for="bank in profileStore.banks" 
     :key="bank.id" :value="bank.name">{{ bank.name }}</option>
