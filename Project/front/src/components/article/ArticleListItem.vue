@@ -1,7 +1,21 @@
 <template>
   <div>
-    <p>{{ article.category.name }}</p>
-    <h3 @click="goDetail">{{ article.id }}번 글 | {{ article.title }}</h3>
+    <table class="table table-hover table-box " style="width: 70%; margin: 0 auto;">
+      <thead>
+        <tr>
+        <th scope="col">NO.</th>
+        <th scope="col">카테고리</th>
+        <th scope="col">제목</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr @click="goDetail">
+          <td>{{ article.id }}</td>
+          <td>{{ article.category.name }}</td>
+          <td>{{ article.title }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
@@ -20,5 +34,4 @@ const goDetail = function () {
 </script>
 
 <style scoped>
-
 </style>

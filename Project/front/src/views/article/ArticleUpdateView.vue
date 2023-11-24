@@ -1,18 +1,24 @@
 <template>
   <div>
-    <h1>게시글 수정 페이지</h1>
+    <h1>게시글 수정하기</h1>
     <form @submit.prevent="updateArticle">
-      <label for="article-category">카테고리 선택:</label><br>
-      <select id="article-category" v-model="existingCategory">
+      <div class="select-box">
+      <label style="margin: 5px;" for="article-category">카테고리 선택:</label><br>
+      <select class="select-style"  id="article-category" v-model="existingCategory">
         <option disabled value="">카테고리를 선택하세요</option>
         <option v-for="category in articleStore.categories" 
         :key="category.id" :value="category.id">{{ category.name }}</option>
       </select><br>
-      <label for="title">제목:</label><br>
-      <input type="text" id="title" v-model="existingTitle"><br>
-      <label for="content">내용:</label><br>
-      <textarea id="content" v-model="existingContent" cols="30" rows="10"></textarea><br>
-      <input type="submit" value="게시글 수정">
+    </div>
+    <div class="select-box">
+      <label style="margin: 5px;"  for="title">제목:</label><br>
+      <input class="select-style"  type="text" id="title" v-model="existingTitle"><br>
+    </div>
+    <div class="select-box">
+      <label style="margin: 5px;"  for="content">내용:</label><br>
+      <textarea class="select-style"  id="content" v-model="existingContent" cols="30" rows="10"></textarea><br>
+    </div>
+      <input class="btn submit-btn" type="submit" value="게시글 수정">
     </form>
   </div>
 </template>

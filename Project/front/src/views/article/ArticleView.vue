@@ -1,12 +1,12 @@
 <template>
   <div>
-    <h1>커뮤니티</h1>
-    <div class="category-box">
+    <h1>게시판</h1>
+    <!-- <div class="category-box">
       | <template  v-for="category in articleStore.categories" :key="category.id">
       <p class="category-menu">{{ category.name }}</p>  |
       </template>
-    </div>
-    <RouterLink @click="handleCreateArticle" class="btn submit-btn" :to="{ name: 'articleCreate' }">게시글 생성</RouterLink>
+    </div> -->
+    <RouterLink @click="handleCreateArticle" class="btn submit-btn" :to="{ name: 'articleCreate' }">게시글 쓰기</RouterLink>
     <ArticleListItem
       v-for="article in articleStore.articles"
       :key="article.id"

@@ -4,7 +4,7 @@
     <p>{{ articleStore.article.category.name }}</p>
     <hr>
     <h1>{{ articleStore.article.title }}</h1>
-    <hr>
+    <div style="border-bottom: 1px solid #005c77; margin: 20px 0;"></div>
     <h5 style="margin-bottom: 20px;">{{ articleStore.article.content }}</h5>
     <div style="text-align: right; font-size: small;">
     <p>작성일: {{ articleStore.article.created_at.slice(0,10) +' ' + articleStore.article.created_at.slice(11,19) }},     

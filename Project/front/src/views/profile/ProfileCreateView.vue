@@ -2,25 +2,25 @@
   <div>
     <h1>{{ userStore.loginUser?.username }}님의 PROFILE</h1>
     <hr>
-    <h4>상세 정보를 입력해주세요.</h4>
+    <h4 style="margin: 20px;">상세 정보를 입력해주세요.</h4>
     <!--age, money, salary, job, main_bank, 
       stabillity, banking_products, card_products-->
     <form @submit.prevent="createProfile">
 
-      <label class="medium-title" for="age">나이</label><br>
+      <label style="font-size: large; font-weight: 500; margin-bottom: 5px;"  for="age">나이</label><br>
       <input class="select-style" type="number" id="age" v-model.trim='age' min=0 max=200><br>
-
-      <label class="medium-title"  for="money">자산</label><br>
+      <div class="select-box">
+      <label  style="font-size: large; font-weight: 500; margin-bottom: 5px;"   for="money">자산</label><br>
       <input class="select-style"  type="number" id="money" v-model.trim='money'><br>
-
-
-      <label class="medium-title"  for="salary">연봉</label>
+    </div>
+    <div class="select-box">
+      <label  style="font-size: large; font-weight: 500; margin-bottom: 5px;"  for="salary">연봉</label>
       <br>
       <input class="select-style"  type="number" id="salary" v-model.trim='salary'>
-
+      </div>
 <!--:disabled=''를 사용하면 선택한 거 안보이게 할 수 있다.-->
       <div>
-        <legend class="medium-legend">직업</legend>
+        <legend style="font-size: large; font-weight: 500; margin-bottom: 5px;">직업</legend>
         <div>
           <input type="radio" id="학생 및 주부" name="job" v-model.trim='job' value="학생 및 주부" />
           <label for="학생 및 주부">학생 및 주부</label>
@@ -46,7 +46,7 @@
       <br>
 
 
-      <label class="medium-title"  for="main_bank">주거래은행 : </label><br>
+      <label style="font-size: large; font-weight: 500; margin-bottom: 5px;" for="main_bank">주거래은행 : </label><br>
       <select class="select-style"  id="main_bank" v-model="mainBank">
         <option disabled value="">은행을 선택하세요</option>
         <option v-for="bank in profileStore.banks" 
@@ -56,7 +56,7 @@
       <br>
       <br>
   <div class="stabillity-box">
-  <label class="medium-title"  for="stabillity">안정성</label><br>
+  <label style="font-size: large; font-weight: 500; margin-bottom: 0;" for="stabillity">안정성</label><br>
   <input type="range" id="stabillity" name="stabillity" min="0" max="100"  list="values" v-model.trim='stabillity' >
   <datalist id="values">
     <option value="0" label="매우 모험 추구"></option>
@@ -67,10 +67,9 @@
   </datalist>
   </div>
   <br>
-  <br>
 
   <div>
-    <legend class="medium-legend" >선호하는 은행 상품 유형(하나만 선택)</legend>
+    <legend style="font-size: large; font-weight: 500; margin-bottom: 5px;" >선호하는 은행 상품 유형(하나만 선택)</legend>
 
       <div>
         <input type="radio" id="예금" value="예금" name="banking_products" v-model.trim='banking_products' />
@@ -93,7 +92,7 @@
       </div>
   </div>
 
-      <div>
+      <div class="select-box">
         <legend class="medium-legend" >선호하는 카드 유형(하나만 선택)</legend>
         <div>
           <input type="radio" id="신용카드" name="card" value="신용카드" v-model.trim='card_products' />
