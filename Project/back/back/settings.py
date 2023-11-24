@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     # DRF
     'rest_framework',
     'rest_framework.authtoken',
+    'django_extensions',
 
     # REST_AUTH
     'dj_rest_auth',
@@ -195,3 +196,8 @@ AUTHENTICATION_BACKENDS = (
 # django-allauth 패키지에서 제공하는 인증 백엔드 클래스.
 "allauth.account.auth_backends.AuthenticationBackend",
 )
+
+GRAPH_MODELS = {
+    'all_applications': True,
+    'group_models': True,
+}
