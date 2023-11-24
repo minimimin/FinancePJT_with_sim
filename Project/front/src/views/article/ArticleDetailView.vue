@@ -70,6 +70,15 @@ const articleDelete = function () {
 }
 
 const createComment = function () {
+  if (!userStore.isLogin) {
+    const confirmResult = confirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?");
+    if (confirmResult) {
+      // 로그인 페이지로 이동
+      router.push({ name: 'login' });
+    }
+    return; // 로그인이 되어있지 않으면 이후 코드 실행하지 않음
+  }
+  
   axios({
     method: 'post',
     url: `${userStore.API_URL}/articles/comment/${articleId.value}/`,

@@ -45,7 +45,13 @@
           </tr>
         </tbody>
       </table>
-      </div>
+    </div>
+    <template v-if="userStore.isLogin && !isSignUp">
+    <button  class="btn submit-btn" @click="signUpLoan(loanId)">가입하기</button>
+  </template>
+  <template v-if="userStore.isLogin && isSignUp">
+    <button  class="btn submit-btn" @click="signUpLoan(loanId)">가입완료</button>
+  </template>
 
 
       <!-- <div v-for="loan_home in financialProductStore.loanDetail?.loan_home_product_option">
@@ -72,8 +78,44 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { useUserStore } from '@/stores/user'
 import { useFinancialProductStore } from '@/stores/financialproduct'
+import axios from 'axios'
+
+const route = useRoute()
+const router = useRouter()
+const userStore = useUserStore()
 const financialProductStore = useFinancialProductStore()
+
+const loanId = ref(route.params.loan_id)
+const isSignUp = ref(false)
+
+const signUpLoan = function (loanId) {
+  // loan_id랑 loginUser 정보 데이터로 넘기기
+  axios({
+      method: 'post',
+      url: `${userStore.API_URL}/recommends/signup/`,
+      data: {
+        loan_id: loanId,
+        id: userStore.loginUser.id,
+        flag: !isSignUp.value
+      },
+      headers: {
+      Authorization: `Token ${userStore.token}`
+      }
+    })
+      .then((res) => {
+        isSignUp.value=!isSignUp.value
+      })
+      .then((res) => {
+        router.push({ name: 'loanhomeDetail', params : { loan_id : loanId} })
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+}
 
 </script>
 

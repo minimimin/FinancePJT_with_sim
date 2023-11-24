@@ -8,9 +8,6 @@
     <RouterLink :to="{ name: 'savingProduct' }">Saving</RouterLink>  |
     <RouterLink :to="{ name: 'loanhome' }">LoanHome</RouterLink>  |
     <RouterLink :to="{ name: 'loanperson' }">LoanPerson</RouterLink>  | -->
-
-    
-
   </div>
   <div class="financial-box">
     <financialProductRecommendView v-show="recommend_show"/>

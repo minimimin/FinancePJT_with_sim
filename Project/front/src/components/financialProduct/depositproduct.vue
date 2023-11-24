@@ -58,9 +58,9 @@ const check = [6, 12, 24, 36]
 const financialProductStore = useFinancialProductStore()
 const router = useRouter()
 const depositData = ref([])
-const goDetail = function(deposit_id) {
-  financialProductStore.getDepositProductDetail(deposit_id)
-  router.push({ name:'depositProductDetail', params: { deposit_id : deposit_id } })
+const goDetail = function(depositId) {
+  financialProductStore.getDepositProductDetail(depositId)
+  router.push({ name:'depositProductDetail', params: { deposit_id : depositId } })
 }
 
 const profileStore = useProfileStore()

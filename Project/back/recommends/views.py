@@ -4,6 +4,7 @@ from collections import Counter
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth import get_user_model
 from accounts.models import Profile
 from financial_products.models import DepositProduct, SavingProduct, LoanForHome
 from financial_products.serializers import DepositProductSerializer, SavingProductSerializer, LoanForHomeSerializer
@@ -94,3 +95,29 @@ def recommend_product(request):
 
         # Vue로 전송
         return Response(result_data)
+    
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def signup_product(request):
+    if request.method == 'POST':
+        user_id = request.data['id']
+        profile = Profile.objects.get(id=user_id)
+        if 'deposit_id' in request.data:
+            if request.data['flag']:
+                profile.deposit_products.add(request.data['deposit_id'])
+            else:
+                profile.deposit_products.remove(request.data['deposit_id'])
+            return Response()
+        elif 'saving_id' in request.data:
+            if request.data['flag']:
+                profile.saving_products.add(request.data['saving_id'])
+            else:
+                profile.saving_products.remove(request.data['saving_id'])
+            return Response()
+        elif 'loan_id' in request.data:
+            if request.data['flag']:
+                profile.loan_home_products.add(request.data['loan_id'])
+            else:
+                profile.loan_home_products.remove(request.data['loan_id'])
+            return Response()

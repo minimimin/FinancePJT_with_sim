@@ -54,6 +54,12 @@
           </tbody>
         </table>
       </div>
+      <template v-if="userStore.isLogin && !isSignUp">
+    <button  class="btn submit-btn" @click="signUpSaving(savingId)">가입하기</button>
+  </template>
+  <template v-if="userStore.isLogin && isSignUp">
+    <button  class="btn submit-btn" @click="signUpSaving(savingId)">가입완료</button>
+  </template>
       <!-- <p v-for="saving_detail in financialProductStore.savingDetail?.saving_product_option">
         <br>
       저축금리유형명 : {{ saving_detail.intr_rate_type_nm }}
@@ -71,10 +77,45 @@
 </template>
 
 <script setup>
-// import { ref } from 'vue'
+import { ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { useUserStore } from '@/stores/user'
 import { useFinancialProductStore } from '@/stores/financialproduct'
+import axios from 'axios'
+
+const route = useRoute()
+const router = useRouter()
+const userStore = useUserStore()
 const financialProductStore = useFinancialProductStore()
 // const savingDetail = ref(financialProductStore.savingDetail)
+
+const savingId = ref(route.params.saving_id)
+const isSignUp = ref(false)
+
+const signUpSaving = function (savingId) {
+  // saving_id loginUser 정보 데이터로 넘기기
+  axios({
+      method: 'post',
+      url: `${userStore.API_URL}/recommends/signup/`,
+      data: {
+        saving_id: savingId,
+        id: userStore.loginUser.id,
+        flag: !isSignUp.value
+      },
+      headers: {
+      Authorization: `Token ${userStore.token}`
+      }
+    })
+      .then((res) => {
+        isSignUp.value=!isSignUp.value
+      })
+      .then((res) => {
+        router.push({ name: 'savingProductDetail', params : { saving_id : savingId} })
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+}
 
 </script>
 

@@ -2,7 +2,7 @@
   <div class="detail-box">
 <h1>{{ financialProductStore.depositDetail?.kor_co_nm }} {{ financialProductStore.depositDetail?.fin_prdt_nm }}</h1>
 <!-- deposit_id 이거를 params로 받아온다는 말이지?! -->
-<!-- <button @click="goSignUpBank(deposit_id)">가입하기</button> -->
+
 <div class="hr-line"></div>
     <div class="pre-line">
       가입방법 : {{ financialProductStore.depositDetail?.join_way }}<br><br>
@@ -41,6 +41,12 @@
         </tbody>
       </table>
     </div>
+    <template v-if="userStore.isLogin && !isSignUp">
+      <button  class="btn submit-btn" @click="signUpDeposit(depositId)">가입하기</button>
+    </template>
+    <template v-if="userStore.isLogin && isSignUp">
+      <button  class="btn submit-btn" @click="signUpDeposit(depositId)">가입완료</button>
+    </template>
     </div>
 </template>
 
@@ -51,13 +57,38 @@ import { useUserStore } from '@/stores/user'
 import { useFinancialProductStore } from '@/stores/financialproduct'
 import axios from 'axios'
 
-
 const route = useRoute()
 const router = useRouter()
 const userStore = useUserStore()
 const financialProductStore = useFinancialProductStore()
 
-const deposit_id = ref(route.params.deposit_id)
+const depositId = ref(route.params.deposit_id)
+const isSignUp = ref(false)
+
+const signUpDeposit = function (depositId) {
+  // deposit_id랑 loginUser 정보 데이터로 넘기기
+  axios({
+      method: 'post',
+      url: `${userStore.API_URL}/recommends/signup/`,
+      data: {
+        deposit_id: depositId,
+        id: userStore.loginUser.id,
+        flag: !isSignUp.value
+      },
+      headers: {
+      Authorization: `Token ${userStore.token}`
+      }
+    })
+      .then((res) => {
+        isSignUp.value=!isSignUp.value
+      })
+      .then((res) => {
+        router.push({ name: 'depositProductDetail', params : { deposit_id : depositId} })
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+}
 
 // const goSignUpBank = function (deposit_id) {
 //   axios({

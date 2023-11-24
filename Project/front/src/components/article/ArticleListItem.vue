@@ -1,13 +1,13 @@
 <template>
   <div>
     <table class="table table-hover table-box " style="width: 70%; margin: 0 auto;">
-      <thead>
+      <!-- <thead>
         <tr>
         <th scope="col">NO.</th>
         <th scope="col">카테고리</th>
         <th scope="col">제목</th>
         </tr>
-      </thead>
+      </thead> -->
       <tbody>
         <tr @click="goDetail">
           <td>{{ article.id }}</td>

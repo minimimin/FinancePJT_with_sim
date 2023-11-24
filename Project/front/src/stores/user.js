@@ -23,6 +23,7 @@ export const useUserStore = defineStore('user', () => {
       userPk.value = null
       userName.value = null
       store.profile = null
+      loginUser.value = null
       return false
     } else {
       getUserInfo()

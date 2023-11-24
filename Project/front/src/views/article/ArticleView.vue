@@ -39,10 +39,12 @@ const handleCreateArticle = () => {
       // 로그인 페이지로 이동
       router.push({ name: 'login' });
     }
-    return; // 로그인이 되어있지 않으면 이후 코드 실행하지 않음
-  } 
-
-  router.push({ name: 'articleCreate' });
+    // confirm 취소 버튼을 눌렀을 때는 아무 작업도 하지 않음
+    router.push({ name: 'articles' });
+  } else {
+    // confirm 취소가 아니라면 articleCreate 페이지로 이동
+    router.push({ name: 'articleCreate' });
+  }
 }
 
 </script>
