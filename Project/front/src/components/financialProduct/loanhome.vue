@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>[대출 상품 조회]</h1>
-    <div>
+    <h1>대출 상품 조회</h1>
+    <div  class="select-box">
     은행선택 : 
     <select v-model="bankname" >
       <option value="">은행 이름</option>
@@ -10,16 +10,14 @@
     </select>
     </div>
     <div class="d-flex justify-content-center">
-    <table>
+    <table  class="table table-hover table-box ">
       <thead>
         <tr>
           <th>은행명</th>
           <th>상품명</th>
           <th>대출한도</th>
           <!-- <th>금리유형</th> -->
-          <th></th>
-      <th>대출금리</th>
-      <th></th>
+      <th colspan="3">대출금리</th>
           <!-- <th colspan="{{ check.length + 1 }}">대출금리</th> -->
         </tr>
         <tr>

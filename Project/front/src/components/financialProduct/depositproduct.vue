@@ -1,8 +1,7 @@
 <template>
   <div>
-    <h1>[예금 상품 조회]</h1>
-    <br>
-<div>
+    <h1>예금 상품 조회</h1>
+<div class="select-box">
   은행선택 : 
   <select v-model="bankname" >
     <option value="">은행 이름</option>
@@ -12,17 +11,14 @@
 </div>
 <div>
 <div class="d-flex justify-content-center">
-  <table>
+  <table class="table table-hover table-box ">
     <thead>
       <tr>
         <th>은행명</th>
         <th>상품명</th>
         <th>금리유형</th>
         <th>최고한도</th>
-        <th></th>
-        <th></th>
-        <th>이자율</th>
-        <th></th>
+        <th colspan="4">이자율</th>
         <!--  colspan="{{ check.length + 1 }}" -->
       </tr>
       <tr>

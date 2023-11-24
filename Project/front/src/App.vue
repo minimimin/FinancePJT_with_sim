@@ -19,7 +19,7 @@
             <button @click="userStore.logOut">로그아웃</button>
           </div>
         </div>
-        <div class="left-link row gap-2">
+        <div class="left-link row gap-4">
           <RouterLink :to="{ name: 'financialProduct' }">금융상품 정보</RouterLink>
           <RouterLink :to="{ name: 'exchange' }">환율계산기</RouterLink>
           <RouterLink :to="{ name: 'map' }">은행찾기</RouterLink>
@@ -63,7 +63,7 @@ const userStore = useUserStore()
   flex-wrap: nowrap;
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 35%;
   transform: translate(-50%, -50%);
 }
 .left-link a {
@@ -130,5 +130,13 @@ article > div {
   border-radius: 20px;
   padding: 20px;
   box-shadow: 5px 5px 5px gainsboro;
+}
+
+/* form input {
+  border: 1px solid #1f87a1;
+  border-radius: 10px;
+} */
+.select-box {
+  margin: 20px;
 }
 </style>
