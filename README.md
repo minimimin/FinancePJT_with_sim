@@ -186,7 +186,7 @@
 
 - 이정민
   
-  :  처음 프로젝트 주제를 정할 때 평소 관심있는 금융 분야 관련 웹 사이트를 만들려고 보니 나는 어떤 서비스가 필요하다고 생각했을까를 떠올려보았다. 나의 입장에서는 금융상품을 비교해가면서 이자율이나, 우대조건, 주거래은행 등을 전부 고려하다보니 시간이 많이 걸리는 것이 단점이었다. 그래서 나와 유사한 사용자들이 많을 것이라고 생각하여 이런 서비스를 개발하게 되었다.
+  :  처음 프로젝트 주제를 정한 후 나는 어떤 서비스가 필요하다고 생각했을까를 떠올려보았다. 나의 입장에서는 금융상품을 비교해가면서 이자율이나, 우대조건, 주거래은행 등을 전부 고려하다보니 시간이 많이 걸리는 것이 단점이었다. 그래서 나와 유사한 사용자들이 많을 것이라고 생각하여 이런 서비스를 개발하게 되었다.
   
   프로젝트를 진행하면서 이전에는 그냥 사용했던 사이트들도 개발자의 시선으로 보게 되었다. 내가 보는 화면들은 어떻게 구성되는지, 어떤 로직을 쓴 건지 생각해보며 자연스럽게 개발 중인 웹에 적용하는 법을 찾아나갔다. 그 과정에서 다양한 아이디어와 지식을 습득하며 사고가 확장되고 많이 배웠다.
   
@@ -202,30 +202,16 @@
 
 #### - 참고사이트
 
-#### 화면
+#### API 출처
 
-1. 대구은행 : [GDWEB:선정작:DGB대구은행](https://www.gdweb.co.kr/sub/view.asp?displayrow=60&Txt_key=all&Txt_word=&Txt_agnumber=&Txt_fgbn=5&Txt_bcode1=021810001&Txt_gbflag=&Txt_bcode2=&Txt_bcode3=&Txt_bcode4=&Txt_bcode5=&Page=1&str_no=19756)
+1. 토스 api : [카드사 혜택 조회하기 | 토스페이먼츠 개발자센터](https://docs.tosspayments.com/common/apis/card-benefits)
 
-2. 뱅크샐러드 : [https://www.banksalad.com/](https://www.banksalad.com/)
+2. 금융결제원 api : [금융결제원 오픈API 개발자사이트](https://developers.kftc.or.kr/dev/openapi/map)
 
-3. 핀다 : [https://finda.co.kr/](https://finda.co.kr/)
+3. 금융감독원 api : [정기예금 API(목록) | 상세 및 테스트 | 오픈API | 금융감독원 금융상품통합비교공시 금융상품한눈에](https://finlife.fss.or.kr/finlife/api/fdrmDpstApi/list.do?menuNo=700052)
 
-4. 핀크 : [https://www.finnq.com/](https://www.finnq.com/)
+4. 마이데이터 api : https://www.mydatacenter.or.kr:3441/myd/mydapi/sub3.do
 
-5. 토스 api : [카드사 혜택 조회하기 | 토스페이먼츠 개발자센터](https://docs.tosspayments.com/common/apis/card-benefits)
-
-6. 금융결제원 api : [금융결제원 오픈API 개발자사이트](https://developers.kftc.or.kr/dev/openapi/map)
-
-7. 금융감독원 api : [정기예금 API(목록) | 상세 및 테스트 | 오픈API | 금융감독원 금융상품통합비교공시 금융상품한눈에](https://finlife.fss.or.kr/finlife/api/fdrmDpstApi/list.do?menuNo=700052)
-
-8. 마이데이터 api : https://www.mydatacenter.or.kr:3441/myd/mydapi/sub3.do
-
-#### 
-
-#### 유저
-
-velog : [](https://velog.io/@mmy789/Django-AbstractUser%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4%EC%84%9C-%EC%9C%A0%EC%A0%80-%EB%AA%A8%EB%8D%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0)[https://velog.io/@mmy789/Django-AbstractUser를-이용해서-유저-모델-만들기](https://velog.io/@mmy789/Django-AbstractUser%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4%EC%84%9C-%EC%9C%A0%EC%A0%80-%EB%AA%A8%EB%8D%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0)
-
-django docs : [django.contrib.auth | Django documentation | Django](https://docs.djangoproject.com/en/4.2/ref/contrib/auth/)
-
-wikidocs : [03) User 모델의 확장 기법 비교 - Django 자습](https://wikidocs.net/6651)
+5. 카카오맵 api : 
+https://developers.kakao.com/
+https://apis.map.kakao.com/web/sample/

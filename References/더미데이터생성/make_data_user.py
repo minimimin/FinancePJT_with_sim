@@ -107,15 +107,12 @@ while i < N:
     i += 1
 
 
-# dict_keys = ['username', ]
-
 # json 파일 만들기
 import json
 from collections import OrderedDict
 
 file = OrderedDict()
 
-# 저장 위치는 프로젝트 구조에 맞게 수정합니다.
 save_dir = '../user_data.json'
 with open(save_dir, 'w', encoding="utf-8") as f:
     f.write('[')
